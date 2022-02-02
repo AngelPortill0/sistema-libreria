@@ -16,20 +16,22 @@ public class Autor extends Persona {
   }
 
   private String setBio(String bio) {
-    // put some logic here
+      
     return bio;
   }
 
   private int setNumeroDePublicaciones(int numeroDePublicaciones) {
-    // put some logic here
+      
     return numeroDePublicaciones;
   }
 
   public String getBio() {
+      
     return bio;
   }
 
   public int getNumeroDePublicaciones() {
+      
     return numeroDePublicaciones;
   }
 }
