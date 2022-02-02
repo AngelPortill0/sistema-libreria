@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Camilo/Desktop/sistema-libreria/MiniProyecto/src/miniproyecto/General.java</file>
-            <file>file:/C:/Users/Camilo/Desktop/sistema-libreria/MiniProyecto/src/miniproyecto/InicioSesion.java</file>
-            <file>file:/C:/Users/Camilo/Desktop/sistema-libreria/MiniProyecto/src/miniproyecto/Libro.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/InicioSesion.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/ConfigUtils.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/MiniProyecto.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/Persona.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/DataBase.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/General.java</file>
+            <file>file:/home/enigma/Documents/java-projects/sistema-libreria/MiniProyecto/src/miniproyecto/Autor.java</file>
         </group>
     </open-files>
 </project-private>
