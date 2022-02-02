@@ -1,90 +1,99 @@
 package miniproyecto;
 
 public class Libro {
-    
-    private String titulo;
-    private String fechaDePublicacion;
-    private String isbn;
-    private int numeroDePaginas;
-    private int puntuacion;
-    private String descripcion;
-    private Autor autor;
-    
-    Libro (String titulo, String fechaDePublicacion, String isbn, 
-            int numeroDePaginas, int puntuacion, String descripcion, 
-            String nombreAutor, String apellidoAutor, 
-            String fechaDeNacimientoAutor, String bioAutor, int numeroDePublicacionesAutor) 
-    {
-        
-        this.titulo = setTitulo(titulo);
-        this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
-        this.isbn = setIsbn(isbn);
-        this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
-        this.puntuacion = setPuntuacion(puntuacion);
-        this.descripcion = setDescripcion(descripcion);
-        autor = new Autor(nombreAutor, apellidoAutor,fechaDeNacimientoAutor, bioAutor, numeroDePublicacionesAutor);
 
-    }
+  private String titulo;
+  private String fechaDePublicacion;
+  private String isbn;
+  private int numeroDePaginas;
+  private int puntuacion;
+  private String descripcion;
+  private Autor autor;
 
-    private String setTitulo(String titulo) {
-        
-        return titulo;
-    }
+  Libro(
+      String titulo,
+      String fechaDePublicacion,
+      String isbn,
+      int numeroDePaginas,
+      int puntuacion,
+      String descripcion,
+      String nombreAutor,
+      String apellidoAutor,
+      String fechaDeNacimientoAutor,
+      String bioAutor,
+      int numeroDePublicacionesAutor) {
 
-    private String setFechaDePubicacion(String fechaDePublicacion) {
-        
-        return fechaDePublicacion;
-    }
+    this.titulo = setTitulo(titulo);
+    this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
+    this.isbn = setIsbn(isbn);
+    this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
+    this.puntuacion = setPuntuacion(puntuacion);
+    this.descripcion = setDescripcion(descripcion);
+    autor =
+        new Autor(
+            nombreAutor,
+            apellidoAutor,
+            fechaDeNacimientoAutor,
+            bioAutor,
+            numeroDePublicacionesAutor);
+  }
 
-    private String setIsbn(String isbn) {
-        
-        return isbn;
-    }
+  private String setTitulo(String titulo) {
 
-    private int setNumeroDePaginas(int numeroDePaginas) {
-        
-        return numeroDePaginas;
-    }
+    return titulo;
+  }
 
-    private int setPuntuacion(int puntuacion) {
-        
-        return puntuacion;
-    }
+  private String setFechaDePubicacion(String fechaDePublicacion) {
 
-    private String setDescripcion(String descripcion) {
-        
-        return descripcion;
-    }
+    return fechaDePublicacion;
+  }
 
-    private String setAutor(String autor) {
-        
-        return autor;
-    }
+  private String setIsbn(String isbn) {
 
-    public String getTitulo() {
-        return titulo;
-    }
+    return isbn;
+  }
 
-    public String getFechaDePublicacion() {
-        return fechaDePublicacion;
-    }
+  private int setNumeroDePaginas(int numeroDePaginas) {
 
-    public String getIsbn() {
-        return isbn;
-    }
+    return numeroDePaginas;
+  }
 
-    public int getNumeroDePaginas() {
-        return numeroDePaginas;
-    }
+  private int setPuntuacion(int puntuacion) {
 
-    public int getPuntuacion() {
-        return puntuacion;
-    }
+    return puntuacion;
+  }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-   
+  private String setDescripcion(String descripcion) {
+
+    return descripcion;
+  }
+
+  private String setAutor(String autor) {
+
+    return autor;
+  }
+
+  public String getTitulo() {
+    return titulo;
+  }
+
+  public String getFechaDePublicacion() {
+    return fechaDePublicacion;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public int getNumeroDePaginas() {
+    return numeroDePaginas;
+  }
+
+  public int getPuntuacion() {
+    return puntuacion;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
 }
-
-
