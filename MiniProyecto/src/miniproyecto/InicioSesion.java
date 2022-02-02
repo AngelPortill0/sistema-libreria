@@ -166,7 +166,7 @@ public class InicioSesion extends javax.swing.JFrame {
   private void aceptarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_aceptarActionPerformed
 
-    String opcional_user = "admin";
+    String opcional_user = "mega";
     String opcional_con = "123";
 
     String user = usuario.getText();
