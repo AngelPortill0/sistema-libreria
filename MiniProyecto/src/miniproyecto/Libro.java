@@ -8,18 +8,22 @@ public class Libro {
     private int numeroDePaginas;
     private int puntuacion;
     private String descripcion;
-    private String autor;
+    private Autor autor;
     
     Libro (String titulo, String fechaDePublicacion, String isbn, 
-            int numeroDePaginas, int puntuacion, String descripcion, String autor) 
+            int numeroDePaginas, int puntuacion, String descripcion, 
+            String nombreAutor, String apellidoAutor, 
+            String fechaDeNacimientoAutor, String bioAutor, int numeroDePublicacionesAutor) 
     {
+        
         this.titulo = setTitulo(titulo);
         this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
         this.isbn = setIsbn(isbn);
         this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
         this.puntuacion = setPuntuacion(puntuacion);
         this.descripcion = setDescripcion(descripcion);
-        this.autor = setAutor(autor);
+        autor = new Autor(nombreAutor, apellidoAutor,fechaDeNacimientoAutor, bioAutor, numeroDePublicacionesAutor);
+
     }
 
     private String setTitulo(String titulo) {
@@ -79,10 +83,6 @@ public class Libro {
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public String getAutor() {
-        return autor;
     }
    
 }
