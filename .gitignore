@@ -20,7 +20,7 @@
 *.rar
 
 # Netbeans stuff
-**/nbproject/private/
+nbproject
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
 build/
