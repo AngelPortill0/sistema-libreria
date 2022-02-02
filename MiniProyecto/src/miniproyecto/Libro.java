@@ -1,90 +1,92 @@
 package miniproyecto;
 
 public class Libro {
-    
-    private String titulo;
-    private String fechaDePublicacion;
-    private String isbn;
-    private int numeroDePaginas;
-    private int puntuacion;
-    private String descripcion;
-    private String autor;
-    
-    Libro (String titulo, String fechaDePublicacion, String isbn, 
-            int numeroDePaginas, int puntuacion, String descripcion, String autor) 
-    {
-        this.titulo = setTitulo(titulo);
-        this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
-        this.isbn = setIsbn(isbn);
-        this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
-        this.puntuacion = setPuntuacion(puntuacion);
-        this.descripcion = setDescripcion(descripcion);
-        this.autor = setAutor(autor);
-    }
 
-    private String setTitulo(String titulo) {
-        
-        return titulo;
-    }
+  private String titulo;
+  private String fechaDePublicacion;
+  private String isbn;
+  private int numeroDePaginas;
+  private int puntuacion;
+  private String descripcion;
+  private String autor;
 
-    private String setFechaDePubicacion(String fechaDePublicacion) {
-        
-        return fechaDePublicacion;
-    }
+  Libro(
+      String titulo,
+      String fechaDePublicacion,
+      String isbn,
+      int numeroDePaginas,
+      int puntuacion,
+      String descripcion,
+      String autor) {
+    this.titulo = setTitulo(titulo);
+    this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
+    this.isbn = setIsbn(isbn);
+    this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
+    this.puntuacion = setPuntuacion(puntuacion);
+    this.descripcion = setDescripcion(descripcion);
+    this.autor = setAutor(autor);
+  }
 
-    private String setIsbn(String isbn) {
-        
-        return isbn;
-    }
+  private String setTitulo(String titulo) {
 
-    private int setNumeroDePaginas(int numeroDePaginas) {
-        
-        return numeroDePaginas;
-    }
+    return titulo;
+  }
 
-    private int setPuntuacion(int puntuacion) {
-        
-        return puntuacion;
-    }
+  private String setFechaDePubicacion(String fechaDePublicacion) {
 
-    private String setDescripcion(String descripcion) {
-        
-        return descripcion;
-    }
+    return fechaDePublicacion;
+  }
 
-    private String setAutor(String autor) {
-        
-        return autor;
-    }
+  private String setIsbn(String isbn) {
 
-    public String getTitulo() {
-        return titulo;
-    }
+    return isbn;
+  }
 
-    public String getFechaDePublicacion() {
-        return fechaDePublicacion;
-    }
+  private int setNumeroDePaginas(int numeroDePaginas) {
 
-    public String getIsbn() {
-        return isbn;
-    }
+    return numeroDePaginas;
+  }
 
-    public int getNumeroDePaginas() {
-        return numeroDePaginas;
-    }
+  private int setPuntuacion(int puntuacion) {
 
-    public int getPuntuacion() {
-        return puntuacion;
-    }
+    return puntuacion;
+  }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+  private String setDescripcion(String descripcion) {
 
-    public String getAutor() {
-        return autor;
-    }
-   
+    return descripcion;
+  }
+
+  private String setAutor(String autor) {
+
+    return autor;
+  }
+
+  public String getTitulo() {
+    return titulo;
+  }
+
+  public String getFechaDePublicacion() {
+    return fechaDePublicacion;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public int getNumeroDePaginas() {
+    return numeroDePaginas;
+  }
+
+  public int getPuntuacion() {
+    return puntuacion;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
+  public String getAutor() {
+    return autor;
+  }
 }
-
-
