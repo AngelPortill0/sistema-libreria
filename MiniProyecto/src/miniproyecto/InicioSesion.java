@@ -20,8 +20,8 @@ public class InicioSesion extends javax.swing.JFrame {
     salir = new javax.swing.JButton();
     aceptar = new javax.swing.JButton();
     usuario = new javax.swing.JTextField();
-    contasena = new javax.swing.JTextField();
     jLabel3 = new javax.swing.JLabel();
+    contasena = new javax.swing.JPasswordField();
 
     javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
     jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -203,7 +203,7 @@ public class InicioSesion extends javax.swing.JFrame {
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton aceptar;
-  private javax.swing.JTextField contasena;
+  private javax.swing.JPasswordField contasena;
   private javax.swing.JDesktopPane jDesktopPane1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
