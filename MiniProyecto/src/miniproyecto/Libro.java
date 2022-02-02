@@ -8,7 +8,9 @@ public class Libro {
   private int numeroDePaginas;
   private int puntuacion;
   private String descripcion;
+  private float precio;
   private Autor autor;
+  private GeneroLiterario generoLiterario;
 
   Libro(
       String titulo,
@@ -17,11 +19,13 @@ public class Libro {
       int numeroDePaginas,
       int puntuacion,
       String descripcion,
+      float precio,
       String nombreAutor,
       String apellidoAutor,
       String fechaDeNacimientoAutor,
       String bioAutor,
-      int numeroDePublicacionesAutor) {
+      int numeroDePublicacionesAutor,
+      GeneroLiterario generoLiterario) {
 
     this.titulo = setTitulo(titulo);
     this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
@@ -29,6 +33,8 @@ public class Libro {
     this.numeroDePaginas = setNumeroDePaginas(numeroDePaginas);
     this.puntuacion = setPuntuacion(puntuacion);
     this.descripcion = setDescripcion(descripcion);
+    this.precio = setPrecio(precio);
+    this.generoLiterario = generoLiterario;
     autor =
         new Autor(
             nombreAutor,
@@ -68,9 +74,9 @@ public class Libro {
     return descripcion;
   }
 
-  private String setAutor(String autor) {
+  private float setPrecio(float precio) {
 
-    return autor;
+    return precio;
   }
 
   public String getTitulo() {
@@ -95,5 +101,10 @@ public class Libro {
 
   public String getDescripcion() {
     return descripcion;
+  }
+
+  public float getPrecio() {
+
+    return precio;
   }
 }
