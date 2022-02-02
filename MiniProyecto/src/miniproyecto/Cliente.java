@@ -2,20 +2,20 @@ package miniproyecto;
 
 public class Cliente extends Persona {
   private String direccion;
-  private int numero_de_telefono;
-  private int cedula_de_identidad;
+  private int numeroDeTelefono;
+  private int cedulaDeIdentidad;
 
   public Cliente(
       String nombre,
       String apellido,
       String fechaDeNacimiento,
       String direccion,
-      int numero_de_telefono,
-      int cedula_de_identidad) {
+      int numeroDeTelefono,
+      int cedulaDeIdentidad) {
     super(nombre, apellido, fechaDeNacimiento);
     this.direccion = setDireccion(direccion);
-    this.numero_de_telefono = setNumero_de_telefono(numero_de_telefono);
-    this.cedula_de_identidad = setCedula_de_indentidad(cedula_de_identidad);
+    this.numeroDeTelefono = setNumeroDeTelefono(numeroDeTelefono);
+    this.cedulaDeIdentidad = setCedulaDeIndentidad(cedulaDeIdentidad);
   }
 
   private String setDireccion(String direccion) {
@@ -23,14 +23,14 @@ public class Cliente extends Persona {
     return direccion;
   }
 
-  private int setNumero_de_telefono(int numero_de_telefono) {
+  private int setNumeroDeTelefono(int numeroDeTelefono) {
 
-    return numero_de_telefono;
+    return numeroDeTelefono;
   }
 
-  private int setCedula_de_indentidad(int cedula_de_identidad) {
+  private int setCedulaDeIndentidad(int cedulaDeIdentidad) {
 
-    return cedula_de_identidad;
+    return cedulaDeIdentidad;
   }
 
   public String getDireccion() {
@@ -38,13 +38,13 @@ public class Cliente extends Persona {
     return direccion;
   }
 
-  public int getNumero_de_telefono() {
+  public int getNumeroDeTelefono() {
 
-    return numero_de_telefono;
+    return numeroDeTelefono;
   }
 
-  public int setCedula_de_indentidad() {
+  public int setCedulaDeIndentidad() {
 
-    return cedula_de_identidad;
+    return cedulaDeIdentidad;
   }
 }
