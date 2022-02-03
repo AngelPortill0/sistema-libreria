@@ -1,7 +1,7 @@
 package interfaz;
 
-import javax.swing.JOptionPane;
 import dao.ClienteDAO;
+import javax.swing.JOptionPane;
 
 public class Clientes extends javax.swing.JFrame {
 

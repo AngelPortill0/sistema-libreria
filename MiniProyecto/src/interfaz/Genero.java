@@ -1,7 +1,7 @@
 package interfaz;
 
-import javax.swing.JOptionPane;
 import dao.GeneroDAO;
+import javax.swing.JOptionPane;
 
 public class Genero extends javax.swing.JFrame {
 
