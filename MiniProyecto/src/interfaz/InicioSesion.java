@@ -2,12 +2,14 @@ package interfaz;
 
 import javax.swing.JOptionPane;
 import dao.DataBase;
+import dao.LibroDAO;
 
 public class InicioSesion extends javax.swing.JFrame {
 
   public InicioSesion() {
-    DataBase bd = new DataBase();
-    bd.conectarBaseDeDatos();
+    LibroDAO lDAO = new LibroDAO();
+    lDAO.cargarLibros();
+    
     initComponents();
   }
 
