@@ -1,7 +1,6 @@
-package miniproyecto;
+package interfaz;
 
 public class Genero extends javax.swing.JFrame {
-
 
     public Genero() {
         initComponents();
