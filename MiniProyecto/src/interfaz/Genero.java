@@ -1,5 +1,6 @@
 package interfaz;
 
+import dao.GeneroDAO;
 import javax.swing.JOptionPane;
 
 public class Genero extends javax.swing.JFrame {
@@ -7,6 +8,8 @@ public class Genero extends javax.swing.JFrame {
   public Genero() {
     initComponents();
     setLocationRelativeTo(null);
+    GeneroDAO gDAO = new GeneroDAO();
+    gDAO.listar(tablaGenero);
   }
 
   @SuppressWarnings("unchecked")

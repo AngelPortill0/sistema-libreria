@@ -1,5 +1,6 @@
 package interfaz;
 
+import dao.ClienteDAO;
 import javax.swing.JOptionPane;
 
 public class Clientes extends javax.swing.JFrame {
@@ -7,6 +8,8 @@ public class Clientes extends javax.swing.JFrame {
   public Clientes() {
     initComponents();
     setLocationRelativeTo(null);
+    ClienteDAO cDAO = new ClienteDAO();
+    cDAO.listar(tablaClientes);
   }
 
   @SuppressWarnings("unchecked")
