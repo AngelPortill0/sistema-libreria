@@ -1,12 +1,16 @@
 package interfaz;
 
 import javax.swing.JOptionPane;
+import dao.AutorDAO;
 
 public class Autores extends javax.swing.JFrame {
 
   public Autores() {
     initComponents();
     setLocationRelativeTo(null);
+    AutorDAO aDAO = new AutorDAO();
+    aDAO.listar(tablaAutores);
+    
   }
 
   @SuppressWarnings("unchecked")
