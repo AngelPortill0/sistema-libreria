@@ -34,6 +34,7 @@ public class Clientes extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +92,13 @@ public class Clientes extends javax.swing.JFrame {
 
         buscar.setText("Buscar");
 
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,7 +152,9 @@ public class Clientes extends javax.swing.JFrame {
                         .addGap(253, 253, 253))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(atras)
-                        .addGap(370, 370, 370))))
+                        .addGap(18, 18, 18)
+                        .addComponent(salir)
+                        .addGap(324, 324, 324))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +194,9 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(atras)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atras)
+                    .addComponent(salir))
                 .addGap(30, 30, 30))
         );
 
@@ -194,6 +206,10 @@ public class Clientes extends javax.swing.JFrame {
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Agregar();
     }//GEN-LAST:event_agregarActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_salirActionPerformed
 
     private void Agregar(){
         String nombre = Tnombre.getText();
@@ -251,6 +267,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton salir;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

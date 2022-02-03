@@ -14,7 +14,6 @@ public class Genero extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        atras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGenero = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -23,18 +22,13 @@ public class Genero extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
+        atras1 = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setText("Genero");
-
-        atras.setText("Atrás");
-        atras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atrasActionPerformed(evt);
-            }
-        });
 
         tablaGenero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +57,20 @@ public class Genero extends javax.swing.JFrame {
         eliminar.setText("Eliminar");
 
         buscar.setText("Buscar");
+
+        atras1.setText("Atrás");
+        atras1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atras1ActionPerformed(evt);
+            }
+        });
+
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,10 +104,13 @@ public class Genero extends javax.swing.JFrame {
                                         .addComponent(buscar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(eliminar)))
-                                .addGap(246, 246, 246))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(atras)
-                                .addGap(373, 373, 373))))))
+                                .addGap(246, 246, 246))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atras1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(salir)
+                .addGap(329, 329, 329))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +130,9 @@ public class Genero extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atras)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salir)
+                    .addComponent(atras1))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -136,12 +149,15 @@ public class Genero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_agregarActionPerformed
 
-  private void atrasActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
+    private void atras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atras1ActionPerformed
     General Genero = new General();
     Genero.setVisible(true);
     this.setVisible(false);
-  } // GEN-LAST:event_atrasActionPerformed
+    }//GEN-LAST:event_atras1ActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_salirActionPerformed
 
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -181,13 +197,14 @@ public class Genero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Tgenero;
     private javax.swing.JButton agregar;
-    private javax.swing.JButton atras;
+    private javax.swing.JButton atras1;
     private javax.swing.JButton buscar;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton salir;
     private javax.swing.JTable tablaGenero;
     // End of variables declaration//GEN-END:variables
 }

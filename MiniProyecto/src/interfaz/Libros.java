@@ -44,9 +44,9 @@ public class Libros extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 700));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setText("LIRBROS");
@@ -110,6 +110,13 @@ public class Libros extends javax.swing.JFrame {
 
         buscar.setText("Buscar");
 
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,7 +167,9 @@ public class Libros extends javax.swing.JFrame {
                         .addGap(236, 236, 236))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(atras)
-                        .addGap(373, 373, 373))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salir)
+                        .addGap(331, 331, 331))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +221,9 @@ public class Libros extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atras)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atras)
+                    .addComponent(salir))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -240,6 +251,10 @@ public class Libros extends javax.swing.JFrame {
         }
            
     }//GEN-LAST:event_agregarActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_salirActionPerformed
 
   private void atrasActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
@@ -290,6 +305,7 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton salir;
     private javax.swing.JTable tablaLibros;
     // End of variables declaration//GEN-END:variables
 }
