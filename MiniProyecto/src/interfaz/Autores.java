@@ -1,7 +1,7 @@
 package interfaz;
 
-import javax.swing.JOptionPane;
 import dao.AutorDAO;
+import javax.swing.JOptionPane;
 
 public class Autores extends javax.swing.JFrame {
 
@@ -10,7 +10,6 @@ public class Autores extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     AutorDAO aDAO = new AutorDAO();
     aDAO.listar(tablaAutores);
-    
   }
 
   @SuppressWarnings("unchecked")
