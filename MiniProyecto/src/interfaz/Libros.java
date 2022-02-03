@@ -238,13 +238,7 @@ public class Libros extends javax.swing.JFrame {
         }else{
         
         }
-                 
-                
-                
-                
-                
-                
-                
+           
     }//GEN-LAST:event_agregarActionPerformed
 
   private void atrasActionPerformed(
