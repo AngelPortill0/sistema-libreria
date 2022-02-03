@@ -1,12 +1,15 @@
 package interfaz;
 
 import javax.swing.JOptionPane;
+import dao.ClienteDAO;
 
 public class Clientes extends javax.swing.JFrame {
 
   public Clientes() {
     initComponents();
     setLocationRelativeTo(null);
+    ClienteDAO cDAO = new ClienteDAO();
+    cDAO.listar(tablaClientes);
   }
 
   @SuppressWarnings("unchecked")

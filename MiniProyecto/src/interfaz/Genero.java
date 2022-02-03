@@ -1,12 +1,15 @@
 package interfaz;
 
 import javax.swing.JOptionPane;
+import dao.GeneroDAO;
 
 public class Genero extends javax.swing.JFrame {
 
   public Genero() {
     initComponents();
     setLocationRelativeTo(null);
+    GeneroDAO gDAO = new GeneroDAO();
+    gDAO.listar(tablaGenero);
   }
 
   @SuppressWarnings("unchecked")
