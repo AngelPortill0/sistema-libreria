@@ -1,5 +1,7 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 public class Venta extends javax.swing.JFrame {
 
   public Venta() {
@@ -134,8 +136,17 @@ public class Venta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   private void agregarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-  } // GEN-LAST:event_agregarActionPerformed
+      java.awt.event.ActionEvent evt) {
+      String libro = Tlibro.getText();
+      String cliente = Tcliente.getText();
+      
+      if(libro.equals("") ||cliente.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        }else{
+        
+        }
+  }
 
   private void atrasActionPerformed(java.awt.event.ActionEvent evt) {
     General Venta = new General();

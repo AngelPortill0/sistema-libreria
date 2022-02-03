@@ -51,7 +51,7 @@
                   <Component id="Tgenero" alignment="0" max="32767" attributes="0"/>
                   <Component id="Tfpublicacion" alignment="0" max="32767" attributes="0"/>
                   <Component id="Tisbn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Tnpuntuacion" alignment="0" max="32767" attributes="0"/>
+                  <Component id="Tnpublicacion" alignment="0" max="32767" attributes="0"/>
                   <Component id="Tpuntuacion" alignment="0" max="32767" attributes="0"/>
                   <Component id="Tdescripcion" alignment="0" max="32767" attributes="0"/>
                   <Component id="Tprecio" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Tnpuntuacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Tnpublicacion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -300,7 +300,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Tisbn">
     </Component>
-    <Component class="javax.swing.JTextField" name="Tnpuntuacion">
+    <Component class="javax.swing.JTextField" name="Tnpublicacion">
     </Component>
     <Component class="javax.swing.JTextField" name="Tpuntuacion">
     </Component>
@@ -312,6 +312,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="editar">
       <Properties>

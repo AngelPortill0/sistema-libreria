@@ -1,5 +1,7 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 public class Genero extends javax.swing.JFrame {
 
   public Genero() {
@@ -16,7 +18,7 @@ public class Genero extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGenero = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Tgenero = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
@@ -50,6 +52,11 @@ public class Genero extends javax.swing.JFrame {
         jLabel3.setText("Genero:");
 
         agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
         editar.setText("Editar");
 
@@ -79,7 +86,7 @@ public class Genero extends javax.swing.JFrame {
                                         .addGap(93, 93, 93)
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Tgenero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(agregar)
@@ -102,7 +109,7 @@ public class Genero extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Tgenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar)
@@ -118,6 +125,16 @@ public class Genero extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        String genero = Tgenero.getText();
+        
+        if(genero.equals("")){         
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        }else{
+        
+        }
+    }//GEN-LAST:event_agregarActionPerformed
 
   private void atrasActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
@@ -162,6 +179,7 @@ public class Genero extends javax.swing.JFrame {
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Tgenero;
     private javax.swing.JButton agregar;
     private javax.swing.JButton atras;
     private javax.swing.JButton buscar;
@@ -170,7 +188,6 @@ public class Genero extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tablaGenero;
     // End of variables declaration//GEN-END:variables
 }

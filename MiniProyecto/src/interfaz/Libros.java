@@ -2,6 +2,7 @@ package interfaz;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -35,7 +36,7 @@ public class Libros extends javax.swing.JFrame {
         Tgenero = new javax.swing.JTextField();
         Tfpublicacion = new javax.swing.JTextField();
         Tisbn = new javax.swing.JTextField();
-        Tnpuntuacion = new javax.swing.JTextField();
+        Tnpublicacion = new javax.swing.JTextField();
         Tpuntuacion = new javax.swing.JTextField();
         Tdescripcion = new javax.swing.JTextField();
         Tprecio = new javax.swing.JTextField();
@@ -97,6 +98,11 @@ public class Libros extends javax.swing.JFrame {
         jLabel11.setText("Puntuación:");
 
         agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
         editar.setText("Editar");
 
@@ -131,7 +137,7 @@ public class Libros extends javax.swing.JFrame {
                     .addComponent(Tgenero)
                     .addComponent(Tfpublicacion)
                     .addComponent(Tisbn)
-                    .addComponent(Tnpuntuacion)
+                    .addComponent(Tnpublicacion)
                     .addComponent(Tpuntuacion)
                     .addComponent(Tdescripcion)
                     .addComponent(Tprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,7 +190,7 @@ public class Libros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(Tnpuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Tnpublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
@@ -212,6 +218,34 @@ public class Libros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        String titulo = Ttitulo.getText();
+        String autor = Tautor.getText();
+        String genero = Tgenero.getText();
+        String fpublicacion = Tfpublicacion.getText();      
+        String isbn = Tisbn.getText();       
+        String publicacion = Tfpublicacion.getText();       
+        String puntuacion = Tnpublicacion.getText();       
+        String descripcion = Tdescripcion.getText();      
+        String precio = Tprecio.getText();
+        
+        if(titulo.equals("") ||autor.equals("") || genero.equals("") ||
+                fpublicacion.equals("") || isbn.equals("") || publicacion.equals("") ||
+                puntuacion.equals("") || descripcion.equals("") || precio.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        }else{
+        
+        }
+                 
+                
+                
+                
+                
+                
+                
+    }//GEN-LAST:event_agregarActionPerformed
 
   private void atrasActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
@@ -242,7 +276,7 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JTextField Tfpublicacion;
     private javax.swing.JTextField Tgenero;
     private javax.swing.JTextField Tisbn;
-    private javax.swing.JTextField Tnpuntuacion;
+    private javax.swing.JTextField Tnpublicacion;
     private javax.swing.JTextField Tprecio;
     private javax.swing.JTextField Tpuntuacion;
     private javax.swing.JTextField Ttitulo;

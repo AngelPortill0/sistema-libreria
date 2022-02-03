@@ -1,5 +1,7 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 public class Clientes extends javax.swing.JFrame {
 
   public Clientes() {
@@ -200,7 +202,14 @@ public class Clientes extends javax.swing.JFrame {
         String ci = Tci.getText();
         String Ntelefono = Ttelefono.getText();
         String direccion = Tdireccion.getText();
-    
+        
+        if(nombre.equals("") ||apellido.equals("") || fnacimiento.equals("") ||
+                ci.equals("") || Ntelefono.equals("") || direccion.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        }else{
+        
+        }
     }
   private void TtelefonoActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_TtelefonoActionPerformed

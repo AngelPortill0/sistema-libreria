@@ -56,7 +56,7 @@
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="Tnombre" alignment="0" pref="253" max="32767" attributes="0"/>
                                       <Component id="Tapellido" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="Tfecha" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="Tfnacimiento" alignment="0" max="32767" attributes="0"/>
                                       <Component id="Tpublicaciones" alignment="0" max="32767" attributes="0"/>
                                       <Component id="Tbiografia" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -97,7 +97,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Tfecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Tfnacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -225,7 +225,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Tapellido">
     </Component>
-    <Component class="javax.swing.JTextField" name="Tfecha">
+    <Component class="javax.swing.JTextField" name="Tfnacimiento">
     </Component>
     <Component class="javax.swing.JTextField" name="Tpublicaciones">
     </Component>
@@ -235,6 +235,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="editar">
       <Properties>

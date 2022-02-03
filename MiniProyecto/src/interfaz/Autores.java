@@ -1,5 +1,7 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 public class Autores extends javax.swing.JFrame {
 
   public Autores() {
@@ -22,7 +24,7 @@ public class Autores extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         Tnombre = new javax.swing.JTextField();
         Tapellido = new javax.swing.JTextField();
-        Tfecha = new javax.swing.JTextField();
+        Tfnacimiento = new javax.swing.JTextField();
         Tpublicaciones = new javax.swing.JTextField();
         Tbiografia = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
@@ -66,6 +68,11 @@ public class Autores extends javax.swing.JFrame {
         jLabel7.setText("Biografía:");
 
         agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
         editar.setText("Editar");
 
@@ -106,7 +113,7 @@ public class Autores extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(Tnombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                                         .addComponent(Tapellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tfecha, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Tfnacimiento, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Tpublicaciones, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Tbiografia, javax.swing.GroupLayout.Alignment.LEADING)))))
                         .addGap(0, 237, Short.MAX_VALUE))
@@ -135,7 +142,7 @@ public class Autores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(Tfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Tfnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -160,6 +167,23 @@ public class Autores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        String nombre = Tnombre.getText();
+        String apellido = Tapellido.getText();
+        String fnacimiento = Tfnacimiento.getText();
+        String publicaciones = Tpublicaciones.getText();
+        String biografia = Tbiografia.getText();
+        
+        if(nombre.equals("") ||apellido.equals("") || fnacimiento.equals("") ||
+                publicaciones.equals("") || biografia.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        }else{
+        
+        }
+      
+    }//GEN-LAST:event_agregarActionPerformed
+
   private void TidActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_TidActionPerformed
     // TODO add your handling code here:
@@ -182,7 +206,7 @@ public class Autores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Tapellido;
     private javax.swing.JTextField Tbiografia;
-    private javax.swing.JTextField Tfecha;
+    private javax.swing.JTextField Tfnacimiento;
     private javax.swing.JTextField Tnombre;
     private javax.swing.JTextField Tpublicaciones;
     private javax.swing.JButton agregar;
