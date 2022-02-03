@@ -188,17 +188,15 @@ public class Venta extends javax.swing.JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
-  private void agregarActionPerformed(
-      java.awt.event.ActionEvent evt) {
-      String libro = Tlibro.getText();
-      String cliente = Tcliente.getText();
-      
-      if(libro.equals("") ||cliente.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-        }else{
-        
-        }
+  private void agregarActionPerformed(java.awt.event.ActionEvent evt) {
+    String libro = Tlibro.getText();
+    String cliente = Tcliente.getText();
+
+    if (libro.equals("") || cliente.equals("")) {
+      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+    } else {
+
+    }
   }
 
   private void atrasActionPerformed(java.awt.event.ActionEvent evt) {
