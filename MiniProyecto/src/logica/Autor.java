@@ -1,4 +1,4 @@
-package miniproyecto;
+package logica;
 
 public class Autor extends Persona {
   private String bio;

@@ -1,4 +1,4 @@
-package miniproyecto;
+package logica;
 
 public class Persona {
   private String nombre;

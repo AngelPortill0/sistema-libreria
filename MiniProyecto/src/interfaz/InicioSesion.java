@@ -1,5 +1,6 @@
-package miniproyecto;
+package interfaz;
 
+import dao.DataBase;
 import javax.swing.JOptionPane;
 
 public class InicioSesion extends javax.swing.JFrame {
@@ -15,6 +16,8 @@ public class InicioSesion extends javax.swing.JFrame {
   private void initComponents() {
 
     jDesktopPane1 = new javax.swing.JDesktopPane();
+    jInternalFrame1 = new javax.swing.JInternalFrame();
+    jInternalFrame2 = new javax.swing.JInternalFrame();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
     salir = new javax.swing.JButton();
@@ -33,6 +36,34 @@ public class InicioSesion extends javax.swing.JFrame {
         jDesktopPane1Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE));
+
+    jInternalFrame1.setVisible(true);
+
+    javax.swing.GroupLayout jInternalFrame1Layout =
+        new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+    jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+    jInternalFrame1Layout.setHorizontalGroup(
+        jInternalFrame1Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE));
+    jInternalFrame1Layout.setVerticalGroup(
+        jInternalFrame1Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE));
+
+    jInternalFrame2.setVisible(true);
+
+    javax.swing.GroupLayout jInternalFrame2Layout =
+        new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+    jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+    jInternalFrame2Layout.setHorizontalGroup(
+        jInternalFrame2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE));
+    jInternalFrame2Layout.setVerticalGroup(
+        jInternalFrame2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE));
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Inicio de Sesión");
@@ -84,26 +115,16 @@ public class InicioSesion extends javax.swing.JFrame {
                     .addGap(39, 39, 39)
                     .addGroup(
                         layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(
-                                jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addGroup(
-                                layout
-                                    .createSequentialGroup()
-                                    .addGroup(
-                                        layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1))
-                                    .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(
-                                        layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(usuario)
-                                            .addComponent(contasena))))
+                                usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(contasena))
                     .addGap(50, 50, 50))
             .addGroup(
                 layout
@@ -115,6 +136,14 @@ public class InicioSesion extends javax.swing.JFrame {
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         Short.MAX_VALUE)
                     .addComponent(aceptar)
+                    .addContainerGap())
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                layout
+                    .createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(
+                        jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                     .addContainerGap()));
     layout.setVerticalGroup(
         layout
@@ -123,13 +152,14 @@ public class InicioSesion extends javax.swing.JFrame {
                 javax.swing.GroupLayout.Alignment.TRAILING,
                 layout
                     .createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()
                     .addComponent(
                         jLabel3,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,6 +235,8 @@ public class InicioSesion extends javax.swing.JFrame {
   private javax.swing.JButton aceptar;
   private javax.swing.JPasswordField contasena;
   private javax.swing.JDesktopPane jDesktopPane1;
+  private javax.swing.JInternalFrame jInternalFrame1;
+  private javax.swing.JInternalFrame jInternalFrame2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;

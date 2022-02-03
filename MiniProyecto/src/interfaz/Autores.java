@@ -1,4 +1,4 @@
-package miniproyecto;
+package interfaz;
 
 public class Autores extends javax.swing.JFrame {
 

@@ -1,4 +1,4 @@
-package miniproyecto;
+package interfaz;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;

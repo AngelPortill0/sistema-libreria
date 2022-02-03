@@ -1,4 +1,4 @@
-package miniproyecto;
+package interfaz;
 
 public class General extends javax.swing.JFrame {
 

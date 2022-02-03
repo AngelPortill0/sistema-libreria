@@ -1,4 +1,4 @@
-package miniproyecto;
+package interfaz;
 
 public class Clientes extends javax.swing.JFrame {
 

@@ -1,4 +1,4 @@
-package miniproyecto;
+package logica;
 
 public enum GeneroLiterario {
   ROMANCE,
