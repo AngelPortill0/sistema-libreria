@@ -20,17 +20,33 @@ public class LibroDAO {
     }
     
     public void cargarLibros() {
-        String sqlSelect = "SELECT libro.titulo, libro.fechaDePublicacion, libro.isbn, libro.numeroDePaginas, libro.puntuacion, libro.descripcion, libro.precio"
-                         + " FROM libro"
-                         + " INNER JOIN autor"
-                         + " ON libro.idAutor=autor.id";
+        String sqlSelect = "SELECT " 
+                                + "libros_autores.idAutor, " 
+                                + "autor.nombre, " 
+                                + "autor.apellido, " 
+                                + "autor.biografia, "
+                                + "autor.numeroDePublicaciones, "
+                                + "libros_autores.idLibro, " 
+                                + "libro.titulo, " 
+                                + "libro.fechaDePublicacion, " 
+                                + "libro.isbn, " 
+                                + "libro.numeroDePaginas, " 
+                                + "libro.puntuacion, " 
+                                + "libro.descripcion, " 
+                                + "libro.precio " 
+                            + "FROM " 
+                                + "libros_autores "
+                            + "INNER JOIN autor "
+                            + "ON autor.id = libros_autores.idAutor "
+                            + "INNER JOIN "
+                            + "libro ON libro.id = libros_autores.idLibro";
         
         try {
             preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
             resultSet = preparedStatement.executeQuery();
             
             while (resultSet.next()) {
-                // Se crearán objetos Libro pasándole datos de la BD a su constructor
+                // La lógica irá aquí
             }
         } catch (SQLException ex) {
             Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);

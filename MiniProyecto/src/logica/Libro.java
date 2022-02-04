@@ -2,7 +2,6 @@ package logica;
 
 public class Libro {
 
-  private int idLibro;
   private String titulo;
   private String fechaDePublicacion;
   private String isbn;

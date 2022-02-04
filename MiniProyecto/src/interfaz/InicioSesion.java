@@ -1,11 +1,8 @@
 package interfaz;
 
 import dao.DataBase;
-<<<<<<< HEAD
 import dao.LibroDAO;
-=======
 import javax.swing.JOptionPane;
->>>>>>> cabe37234d481b31be82a7a1533bd5a323376926
 
 public class InicioSesion extends javax.swing.JFrame {
 
