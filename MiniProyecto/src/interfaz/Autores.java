@@ -343,7 +343,7 @@ public class Autores extends javax.swing.JFrame {
 
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
-    editar();
+    
   } // GEN-LAST:event_editarActionPerformed
 
   private void tablaAutoresMouseClicked(
@@ -367,91 +367,17 @@ public class Autores extends javax.swing.JFrame {
     }
   }
 
-  void editar() {
-
-    String Nombre = Tnombre.getText();
-    String Apellido = Tapellido.getText();
-    String Fnacimiento = Tfnacimiento.getText();
-    String Npublicaciones = Tpublicaciones.getText();
-    String Biografia = Tbiografia.getText();
-    String sql =
-        "update persona set Nombre = '"
-            + Nombre
-            + "', Apellido = '"
-            + Apellido
-            + "', Fecha de nacimiento = '"
-            + Fnacimiento
-            + "', Número de publicaciones = '"
-            + Npublicaciones
-            + "', Biografia = '"
-            + Biografia
-            + "'";
-
-    if (Nombre.equals("")
-        || Apellido.equals("")
-        || Fnacimiento.equals("")
-        || Npublicaciones.equals("")
-        || Biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Debe introducir datos!!!");
-    } else {
-      try {
-
-      } catch (Exception e) {
-      }
-    }
-  }
-
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    eliminar();
+
   } // GEN-LAST:event_eliminarActionPerformed
 
-  void eliminar() {
-
-    int seleccionado = tablaAutores.getSelectedRow();
-
-    if (seleccionado == -1) {
-      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    } else {
-      String sql = "delete from persona where Nombre=" + seleccionado;
-      try {
-
-        JOptionPane.showMessageDialog(null, "Autor eliminado satisfactoriamente");
-
-      } catch (Exception e) {
-
-      }
-    }
-  }
+  
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
     String nombre = Tnombre.getText();
-    String apellido = Tapellido.getText();
-    String fnacimiento = Tfnacimiento.getText();
-    String publicaciones = Tpublicaciones.getText();
-    String biografia = Tbiografia.getText();
 
-    if (nombre.equals("")
-        || apellido.equals("")
-        || fnacimiento.equals("")
-        || publicaciones.equals("")
-        || biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } else {
-      String sql =
-          "insert into persona(Nombre, Apellido, Fecha de nacimiento, Número de Publicaciones,"
-              + " Biografia)values('"
-              + nombre
-              + "','"
-              + apellido
-              + "','"
-              + fnacimiento
-              + "','"
-              + publicaciones
-              + "','"
-              + biografia
-              + "')";
     }
   } // GEN-LAST:event_agregarActionPerformed
 
