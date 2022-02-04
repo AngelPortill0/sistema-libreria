@@ -26,13 +26,13 @@ public class GeneroDAO {
       conexion = db.conectarBaseDeDatos();
       statement = conexion.createStatement();
       resultSet = statement.executeQuery(sql);
-      Object[] persona = new Object[1];
+      Object[] registro = new Object[1];
       modelo = (DefaultTableModel) tablaAutor.getModel();
 
       while (resultSet.next()) {
 
-        persona[0] = resultSet.getString("genero");
-        modelo.addRow(persona);
+        registro[0] = resultSet.getString("genero");
+        modelo.addRow(registro);
       }
     } catch (SQLException e) {
     }
