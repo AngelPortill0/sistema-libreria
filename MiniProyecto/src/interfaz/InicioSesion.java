@@ -1,6 +1,5 @@
 package interfaz;
 
-import dao.LibroDAO;
 import javax.swing.JOptionPane;
 
 public class InicioSesion extends javax.swing.JFrame {

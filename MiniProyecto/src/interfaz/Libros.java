@@ -1,11 +1,7 @@
 package interfaz;
 
 import dao.LibroDAO;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -347,60 +343,60 @@ public class Libros extends javax.swing.JFrame {
 
   private void tablaLibrosMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaLibrosMouseClicked
-        DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
-        int filaSeleccionada = tablaLibros.getSelectedRow();
+    DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
+    int filaSeleccionada = tablaLibros.getSelectedRow();
 
-        Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-        Tautor.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-        Tgenero.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-        Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
-        Tisbn.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
-        Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
-        Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
-        Tdescripcion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
-        Tprecio.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+    Tautor.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+    Tgenero.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
+    Tdescripcion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
+    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
   } // GEN-LAST:event_tablaLibrosMouseClicked
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-//    int seleccionado = tablaLibros.getSelectedRow();
-//
-//    if (seleccionado == -1) {
-//      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-//    } else {
-//      try {
-//
-//      } catch (Exception e) {
-//
-//      }
-//    }
+    //    int seleccionado = tablaLibros.getSelectedRow();
+    //
+    //    if (seleccionado == -1) {
+    //      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+    //    } else {
+    //      try {
+    //
+    //      } catch (Exception e) {
+    //
+    //      }
+    //    }
   } // GEN-LAST:event_eliminarActionPerformed
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-//    String titulo = Ttitulo.getText();
-//    String autor = Tautor.getText();
-//    String genero = Tgenero.getText();
-//    String fpublicacion = Tfpublicacion.getText();
-//    String isbn = Tisbn.getText();
-//    String publicacion = Tfpublicacion.getText();
-//    String puntuacion = Tnpublicacion.getText();
-//    String descripcion = Tdescripcion.getText();
-//    String precio = Tprecio.getText();
-//
-//    if (titulo.equals("")
-//        || autor.equals("")
-//        || genero.equals("")
-//        || fpublicacion.equals("")
-//        || isbn.equals("")
-//        || publicacion.equals("")
-//        || puntuacion.equals("")
-//        || descripcion.equals("")
-//        || precio.equals("")) {
-//      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-//    } else {
-//
-//    }
+    //    String titulo = Ttitulo.getText();
+    //    String autor = Tautor.getText();
+    //    String genero = Tgenero.getText();
+    //    String fpublicacion = Tfpublicacion.getText();
+    //    String isbn = Tisbn.getText();
+    //    String publicacion = Tfpublicacion.getText();
+    //    String puntuacion = Tnpublicacion.getText();
+    //    String descripcion = Tdescripcion.getText();
+    //    String precio = Tprecio.getText();
+    //
+    //    if (titulo.equals("")
+    //        || autor.equals("")
+    //        || genero.equals("")
+    //        || fpublicacion.equals("")
+    //        || isbn.equals("")
+    //        || publicacion.equals("")
+    //        || puntuacion.equals("")
+    //        || descripcion.equals("")
+    //        || precio.equals("")) {
+    //      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+    //    } else {
+    //
+    //    }
   } // GEN-LAST:event_agregarActionPerformed
 
   private void salirActionPerformed(
@@ -416,12 +412,12 @@ public class Libros extends javax.swing.JFrame {
   } // GEN-LAST:event_atrasActionPerformed
 
   public void setBox(JTable Tlibros, TableColumn columna) {
-//
-//    JComboBox c = new JComboBox();
-//    c.addItem("MegaBlacksTer");
-//
-//    columna.setCellEditor(new DefaultCellEditor(c));
-//    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+    //
+    //    JComboBox c = new JComboBox();
+    //    c.addItem("MegaBlacksTer");
+    //
+    //    columna.setCellEditor(new DefaultCellEditor(c));
+    //    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
   }
 
   public static void main(String args[]) {
