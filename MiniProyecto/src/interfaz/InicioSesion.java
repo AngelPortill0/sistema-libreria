@@ -1,14 +1,10 @@
 package interfaz;
 
-import dao.LibroDAO;
 import javax.swing.JOptionPane;
 
 public class InicioSesion extends javax.swing.JFrame {
 
   public InicioSesion() {
-    LibroDAO lDAO = new LibroDAO();
-    lDAO.cargarLibros();
-
     setLocationRelativeTo(null);
     initComponents();
   }
