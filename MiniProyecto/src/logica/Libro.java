@@ -24,14 +24,9 @@ public class Libro {
       String apellidoAutor,
       String fechaDeNacimientoAutor,
       String bioAutor,
-<<<<<<< HEAD
       int numeroDePublicacionesAutor,
       GeneroLiterario generoLiterario) {
 
-=======
-      int numeroDePublicacionesAutor) {
-    // GeneroLiterario generoLiterario
->>>>>>> 759048a90fcfc86681a081846173698137872617
     this.titulo = setTitulo(titulo);
     this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
     this.isbn = setIsbn(isbn);
@@ -39,11 +34,7 @@ public class Libro {
     this.puntuacion = setPuntuacion(puntuacion);
     this.descripcion = setDescripcion(descripcion);
     this.precio = setPrecio(precio);
-<<<<<<< HEAD
     this.generoLiterario = generoLiterario;
-=======
-    // this.generoLiterario = generoLiterario;
->>>>>>> 759048a90fcfc86681a081846173698137872617
     autor =
         new Autor(
             nombreAutor,
@@ -88,13 +79,6 @@ public class Libro {
     return precio;
   }
 
-<<<<<<< HEAD
-=======
-  public String getNombreAutor() {
-    return autor.getNombre() + " " + autor.getApellido();
-  }
-
->>>>>>> 759048a90fcfc86681a081846173698137872617
   public String getTitulo() {
     return titulo;
   }

@@ -1,6 +1,7 @@
 package interfaz;
 
 import dao.AutorDAO;
+import javax.swing.JOptionPane;
 
 public class Autores extends javax.swing.JFrame {
 
@@ -8,11 +9,7 @@ public class Autores extends javax.swing.JFrame {
     initComponents();
     setLocationRelativeTo(null);
     AutorDAO aDAO = new AutorDAO();
-<<<<<<< HEAD
     aDAO.listar(tablaAutores);
-=======
-    // aDAO.listar(tablaAutores);
->>>>>>> 759048a90fcfc86681a081846173698137872617
   }
 
   @SuppressWarnings("unchecked")
@@ -209,7 +206,6 @@ public class Autores extends javax.swing.JFrame {
 
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
-<<<<<<< HEAD
     editar();
   } // GEN-LAST:event_editarActionPerformed
 
@@ -362,80 +358,4 @@ public class Autores extends javax.swing.JFrame {
     private javax.swing.JButton salir;
     private javax.swing.JTable tablaAutores;
     // End of variables declaration//GEN-END:variables
-=======
-  } // GEN-LAST:event_editarActionPerformed
-
-  //  private void tablaAutoresMouseClicked(
-  //      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
-  //    int autor = tablaAutores.getSelectedRow();
-  //
-  //    if (autor == -1) {
-  //      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
-  //    } else {
-  //      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
-  //      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
-  //      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
-  //      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
-  //      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
-  //
-  //      Tnombre.setText(Nombre);
-  //      Tapellido.setText(Apellido);
-  //      Tfnacimiento.setText(Fnacimiento);
-  //      Tpublicaciones.setText(Npublicaciones);
-  //      Tbiografia.setText(Biografia);
-  //    }
-  //  }
-
-  private void eliminarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-  } // GEN-LAST:event_eliminarActionPerformed
-
-  //  private void agregarActionPerformed(
-  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-  //    String nombre = Tnombre.getText();
-  //
-  //    }
-  //  } // GEN-LAST:event_agregarActionPerformed
-  //
-  //  private void salirActionPerformed(
-  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
-  //    dispose();
-  //  } // GEN-LAST:event_salirActionPerformed
-  //
-  //  private void atrasActionPerformed(
-  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
-  //    General Autores = new General();
-  //    Autores.setVisible(true);
-  //    this.setVisible(false);
-  //  } // GEN-LAST:event_atrasActionPerformed
-  //
-  //  public static void main(String args[]) {
-  //    java.awt.EventQueue.invokeLater(
-  //        () -> {
-  //          new Autores().setVisible(true);
-  //        });
-  //  }
-  //
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JTextField Tapellido;
-  private javax.swing.JTextField Tbiografia;
-  private javax.swing.JTextField Tfnacimiento;
-  private javax.swing.JTextField Tnombre;
-  private javax.swing.JTextField Tpublicaciones;
-  private javax.swing.JButton agregar;
-  private javax.swing.JButton atras;
-  private javax.swing.JButton buscar;
-  private javax.swing.JButton editar;
-  private javax.swing.JButton eliminar;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
-  private javax.swing.JLabel jLabel6;
-  private javax.swing.JLabel jLabel7;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JButton salir;
-  private javax.swing.JTable tablaAutores;
-  // End of variables declaration//GEN-END:variables
->>>>>>> 759048a90fcfc86681a081846173698137872617
 }
