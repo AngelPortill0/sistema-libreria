@@ -6,8 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AutorDAO {
 
-  private Statement statement;
-  private Connection conexion;
+  private PreparedStatement preparedStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
   private DataBase db;
@@ -23,9 +22,8 @@ public class AutorDAO {
 
     try {
 
-      conexion = db.conectarBaseDeDatos();
-      statement = conexion.createStatement();
-      resultSet = statement.executeQuery(sql);
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sql);
+      resultSet = preparedStatement.executeQuery();
       Object[] persona = new Object[5];
       modelo = (DefaultTableModel) tablaAutor.getModel();
 
