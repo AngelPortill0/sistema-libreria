@@ -1,7 +1,6 @@
 package interfaz;
 
 import dao.AutorDAO;
-import javax.swing.JOptionPane;
 
 public class Autores extends javax.swing.JFrame {
 
@@ -9,7 +8,7 @@ public class Autores extends javax.swing.JFrame {
     initComponents();
     setLocationRelativeTo(null);
     AutorDAO aDAO = new AutorDAO();
-    //aDAO.listar(tablaAutores);
+    // aDAO.listar(tablaAutores);
   }
 
   @SuppressWarnings("unchecked")
@@ -343,63 +342,59 @@ public class Autores extends javax.swing.JFrame {
 
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
-    
   } // GEN-LAST:event_editarActionPerformed
 
-//  private void tablaAutoresMouseClicked(
-//      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
-//    int autor = tablaAutores.getSelectedRow();
-//
-//    if (autor == -1) {
-//      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
-//    } else {
-//      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
-//      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
-//      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
-//      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
-//      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
-//
-//      Tnombre.setText(Nombre);
-//      Tapellido.setText(Apellido);
-//      Tfnacimiento.setText(Fnacimiento);
-//      Tpublicaciones.setText(Npublicaciones);
-//      Tbiografia.setText(Biografia);
-//    }
-//  }
+  //  private void tablaAutoresMouseClicked(
+  //      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
+  //    int autor = tablaAutores.getSelectedRow();
+  //
+  //    if (autor == -1) {
+  //      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
+  //    } else {
+  //      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
+  //      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
+  //      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
+  //      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
+  //      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
+  //
+  //      Tnombre.setText(Nombre);
+  //      Tapellido.setText(Apellido);
+  //      Tfnacimiento.setText(Fnacimiento);
+  //      Tpublicaciones.setText(Npublicaciones);
+  //      Tbiografia.setText(Biografia);
+  //    }
+  //  }
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-
   } // GEN-LAST:event_eliminarActionPerformed
 
-  
-
-//  private void agregarActionPerformed(
-//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-//    String nombre = Tnombre.getText();
-//
-//    }
-//  } // GEN-LAST:event_agregarActionPerformed
-//
-//  private void salirActionPerformed(
-//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
-//    dispose();
-//  } // GEN-LAST:event_salirActionPerformed
-//
-//  private void atrasActionPerformed(
-//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
-//    General Autores = new General();
-//    Autores.setVisible(true);
-//    this.setVisible(false);
-//  } // GEN-LAST:event_atrasActionPerformed
-//
-//  public static void main(String args[]) {
-//    java.awt.EventQueue.invokeLater(
-//        () -> {
-//          new Autores().setVisible(true);
-//        });
-//  }
-//
+  //  private void agregarActionPerformed(
+  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+  //    String nombre = Tnombre.getText();
+  //
+  //    }
+  //  } // GEN-LAST:event_agregarActionPerformed
+  //
+  //  private void salirActionPerformed(
+  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
+  //    dispose();
+  //  } // GEN-LAST:event_salirActionPerformed
+  //
+  //  private void atrasActionPerformed(
+  //      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
+  //    General Autores = new General();
+  //    Autores.setVisible(true);
+  //    this.setVisible(false);
+  //  } // GEN-LAST:event_atrasActionPerformed
+  //
+  //  public static void main(String args[]) {
+  //    java.awt.EventQueue.invokeLater(
+  //        () -> {
+  //          new Autores().setVisible(true);
+  //        });
+  //  }
+  //
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Tapellido;
   private javax.swing.JTextField Tbiografia;
