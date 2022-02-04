@@ -1,9 +1,15 @@
 package interfaz;
 
+import dao.ClienteDAO;
+import javax.swing.JOptionPane;
+
 public class Clientes extends javax.swing.JFrame {
 
   public Clientes() {
     initComponents();
+    setLocationRelativeTo(null);
+    ClienteDAO cDAO = new ClienteDAO();
+    cDAO.listar(tablaClientes);
   }
 
   @SuppressWarnings("unchecked")
@@ -13,7 +19,7 @@ public class Clientes extends javax.swing.JFrame {
     buttonGroup1 = new javax.swing.ButtonGroup();
     jLabel1 = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tablaClientes = new javax.swing.JTable();
     atras = new javax.swing.JButton();
     jLabel2 = new javax.swing.JLabel();
     Tci = new javax.swing.JTextField();
@@ -21,33 +27,32 @@ public class Clientes extends javax.swing.JFrame {
     Ttelefono = new javax.swing.JTextField();
     jLabel4 = new javax.swing.JLabel();
     Tdireccion = new javax.swing.JTextField();
-    agregar = new javax.swing.JButton();
-    editar = new javax.swing.JButton();
-    eliminar = new javax.swing.JButton();
-    jLabel5 = new javax.swing.JLabel();
     jLabel6 = new javax.swing.JLabel();
     jLabel7 = new javax.swing.JLabel();
     jLabel8 = new javax.swing.JLabel();
-    Tid = new javax.swing.JTextField();
     Tnombre = new javax.swing.JTextField();
     Tapellido = new javax.swing.JTextField();
-    Tfecha = new javax.swing.JTextField();
+    TFnacimiento = new javax.swing.JTextField();
+    agregar = new javax.swing.JButton();
+    editar = new javax.swing.JButton();
+    eliminar = new javax.swing.JButton();
+    buscar = new javax.swing.JButton();
+    salir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
     jLabel1.setText("CLIENTES");
 
-    jTable1.setModel(
+    tablaClientes.setModel(
         new javax.swing.table.DefaultTableModel(
             new Object[][] {
-              {null, null, null, null, null, null, null},
-              {null, null, null, null, null, null, null},
-              {null, null, null, null, null, null, null},
-              {null, null, null, null, null, null, null}
+              {null, null, null, null, null, null},
+              {null, null, null, null, null, null},
+              {null, null, null, null, null, null},
+              {null, null, null, null, null, null}
             },
             new String[] {
-              "ID",
               "Nombre",
               "Apellido",
               "Fecha de nacimiento",
@@ -55,7 +60,13 @@ public class Clientes extends javax.swing.JFrame {
               "Número de teléfono",
               "Dirección"
             }));
-    jScrollPane1.setViewportView(jTable1);
+    tablaClientes.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            tablaClientesMouseClicked(evt);
+          }
+        });
+    jScrollPane1.setViewportView(tablaClientes);
 
     atras.setText("Atrás");
     atras.addActionListener(
@@ -78,19 +89,39 @@ public class Clientes extends javax.swing.JFrame {
 
     jLabel4.setText("Dirección:");
 
-    agregar.setText("Agregar");
-
-    editar.setText("Editar");
-
-    eliminar.setText("Eliminar");
-
-    jLabel5.setText("ID:");
-
     jLabel6.setText("Nombre:");
 
     jLabel7.setText("Apellido:");
 
     jLabel8.setText("Fecha de nacimiento:");
+
+    agregar.setText("Agregar");
+    agregar.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            agregarActionPerformed(evt);
+          }
+        });
+
+    editar.setText("Editar");
+
+    eliminar.setText("Eliminar");
+    eliminar.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            eliminarActionPerformed(evt);
+          }
+        });
+
+    buscar.setText("Buscar");
+
+    salir.setText("Salir");
+    salir.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            salirActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -108,124 +139,103 @@ public class Clientes extends javax.swing.JFrame {
                             .addGroup(
                                 layout
                                     .createSequentialGroup()
+                                    .addGap(371, 371, 371)
+                                    .addComponent(jLabel1)
+                                    .addGap(0, 367, Short.MAX_VALUE)))
+                    .addContainerGap())
+            .addGroup(
+                layout
+                    .createSequentialGroup()
+                    .addGap(279, 279, 279)
+                    .addGroup(
+                        layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(
+                                layout
+                                    .createSequentialGroup()
                                     .addGroup(
                                         layout
                                             .createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(
+                                                jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(
+                                                jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(
                                                 layout
                                                     .createSequentialGroup()
-                                                    .addGap(371, 371, 371)
-                                                    .addComponent(jLabel1))
-                                            .addGroup(
-                                                layout
-                                                    .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(
-                                                        layout
-                                                            .createSequentialGroup()
-                                                            .addGroup(
-                                                                layout
-                                                                    .createParallelGroup(
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.LEADING)
-                                                                    .addComponent(
-                                                                        jLabel3,
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.TRAILING)
-                                                                    .addComponent(
-                                                                        jLabel2,
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.TRAILING)
-                                                                    .addGroup(
-                                                                        layout
-                                                                            .createSequentialGroup()
-                                                                            .addGap(56, 56, 56)
-                                                                            .addComponent(jLabel4)))
-                                                            .addGap(3, 3, 3)
-                                                            .addGroup(
-                                                                layout
-                                                                    .createParallelGroup(
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.TRAILING,
-                                                                        false)
-                                                                    .addComponent(
-                                                                        Ttelefono,
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.LEADING)
-                                                                    .addComponent(Tdireccion)
-                                                                    .addComponent(
-                                                                        Tci,
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.LEADING,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        100,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE)))
-                                                    .addGroup(
-                                                        layout
-                                                            .createSequentialGroup()
-                                                            .addGap(270, 270, 270)
-                                                            .addGroup(
-                                                                layout
-                                                                    .createParallelGroup(
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.TRAILING)
-                                                                    .addComponent(jLabel6)
-                                                                    .addComponent(jLabel7)
-                                                                    .addComponent(jLabel8)
-                                                                    .addComponent(jLabel5))
-                                                            .addPreferredGap(
-                                                                javax.swing.LayoutStyle
-                                                                    .ComponentPlacement.RELATED)
-                                                            .addGroup(
-                                                                layout
-                                                                    .createParallelGroup(
-                                                                        javax.swing.GroupLayout
-                                                                            .Alignment.LEADING,
-                                                                        false)
-                                                                    .addComponent(
-                                                                        Tnombre,
-                                                                        javax.swing.GroupLayout
-                                                                            .DEFAULT_SIZE,
-                                                                        100,
-                                                                        Short.MAX_VALUE)
-                                                                    .addComponent(Tapellido)
-                                                                    .addComponent(Tfecha)
-                                                                    .addComponent(Tid)))))
-                                    .addGap(0, 0, Short.MAX_VALUE))
+                                                    .addGap(56, 56, 56)
+                                                    .addComponent(jLabel4)))
+                                    .addGap(3, 3, 3)
+                                    .addGroup(
+                                        layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(
+                                                Ttelefono,
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Tdireccion)
+                                            .addComponent(
+                                                Tci,
+                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                100,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(
+                                layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Tnombre)
+                                            .addComponent(Tapellido)
+                                            .addComponent(
+                                                TFnacimiento,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                100,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                layout
+                    .createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(
+                        layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 layout
                                     .createSequentialGroup()
+                                    .addComponent(agregar)
                                     .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        294,
-                                        Short.MAX_VALUE)
-                                    .addGroup(
-                                        layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(agregar)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .UNRELATED)
-                                                    .addComponent(editar)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(eliminar)
-                                                    .addGap(279, 279, 279))
-                                            .addGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(atras)
-                                                    .addGap(353, 353, 353)))))
-                    .addContainerGap()));
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(editar)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buscar)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(eliminar)
+                                    .addGap(253, 253, 253))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                layout
+                                    .createSequentialGroup()
+                                    .addComponent(atras)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(salir)
+                                    .addGap(324, 324, 324)))));
     layout.setVerticalGroup(
         layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,17 +244,7 @@ public class Clientes extends javax.swing.JFrame {
                     .createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1)
-                    .addGap(21, 21, 21)
-                    .addGroup(
-                        layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(
-                                Tid,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(18, 18, 18)
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -272,7 +272,7 @@ public class Clientes extends javax.swing.JFrame {
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(
-                                Tfecha,
+                                TFnacimiento,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,25 +307,82 @@ public class Clientes extends javax.swing.JFrame {
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(agregar)
                             .addComponent(eliminar)
-                            .addComponent(editar))
+                            .addComponent(editar)
+                            .addComponent(buscar))
                     .addGap(18, 18, 18)
                     .addComponent(
                         jScrollPane1,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         144,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(atras)
-                    .addGap(52, 52, 52)));
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(atras)
+                            .addComponent(salir))
+                    .addGap(30, 30, 30)));
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void tablaClientesMouseClicked(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaClientesMouseClicked
+    int fila = tablaClientes.getSelectedRow();
+
+    if (fila == -1) {
+      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
+    } else {
+
+    }
+  } // GEN-LAST:event_tablaClientesMouseClicked
+
+  private void eliminarActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
+    int seleccionado = tablaClientes.getSelectedRow();
+
+    if (seleccionado == -1) {
+      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+    } else {
+      try {
+
+      } catch (Exception e) {
+
+      }
+    }
+  } // GEN-LAST:event_eliminarActionPerformed
+
+  private void agregarActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+    String nombre = Tnombre.getText();
+    String apellido = Tapellido.getText();
+    String fnacimiento = TFnacimiento.getText();
+    String ci = Tci.getText();
+    String Ntelefono = Ttelefono.getText();
+    String direccion = Tdireccion.getText();
+
+    if (nombre.equals("")
+        || apellido.equals("")
+        || fnacimiento.equals("")
+        || ci.equals("")
+        || Ntelefono.equals("")
+        || direccion.equals("")) {
+      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+    } else {
+
+    }
+  } // GEN-LAST:event_agregarActionPerformed
+
+  private void salirActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
+    dispose();
+  } // GEN-LAST:event_salirActionPerformed
 
   private void TtelefonoActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_TtelefonoActionPerformed
@@ -347,15 +404,15 @@ public class Clientes extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextField TFnacimiento;
   private javax.swing.JTextField Tapellido;
   private javax.swing.JTextField Tci;
   private javax.swing.JTextField Tdireccion;
-  private javax.swing.JTextField Tfecha;
-  private javax.swing.JTextField Tid;
   private javax.swing.JTextField Tnombre;
   private javax.swing.JTextField Ttelefono;
   private javax.swing.JButton agregar;
   private javax.swing.JButton atras;
+  private javax.swing.JButton buscar;
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.JButton editar;
   private javax.swing.JButton eliminar;
@@ -363,11 +420,11 @@ public class Clientes extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel7;
   private javax.swing.JLabel jLabel8;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
+  private javax.swing.JButton salir;
+  private javax.swing.JTable tablaClientes;
   // End of variables declaration//GEN-END:variables
 }

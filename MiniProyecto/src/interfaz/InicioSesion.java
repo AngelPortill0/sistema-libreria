@@ -1,6 +1,5 @@
 package interfaz;
 
-import dao.DataBase;
 import dao.LibroDAO;
 import javax.swing.JOptionPane;
 
@@ -9,7 +8,8 @@ public class InicioSesion extends javax.swing.JFrame {
   public InicioSesion() {
     LibroDAO lDAO = new LibroDAO();
     lDAO.cargarLibros();
-    
+
+    setLocationRelativeTo(null);
     initComponents();
   }
 
@@ -206,7 +206,7 @@ public class InicioSesion extends javax.swing.JFrame {
     String user = usuario.getText();
     String con = contasena.getText();
 
-    if (user.isEmpty() && con.isEmpty()) {
+    if (user.isEmpty() || con.isEmpty()) {
       JOptionPane.showMessageDialog(
           null, "Los campos estan vacios, inserte el usuario y contraseña");
     } else {

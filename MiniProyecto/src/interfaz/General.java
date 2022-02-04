@@ -4,6 +4,7 @@ public class General extends javax.swing.JFrame {
 
   public General() {
     initComponents();
+    setLocationRelativeTo(null);
   }
 
   @SuppressWarnings("unchecked")

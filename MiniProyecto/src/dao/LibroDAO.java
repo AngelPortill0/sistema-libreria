@@ -6,16 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logica.Libro;
 
 public class LibroDAO {
-    
+
+    private DataBase db;
     private PreparedStatement preparedStatement;
     private Connection conexion;
     private ResultSet resultSet;
-    private DataBase db;
-
-    public LibroDAO(){
+    
+    public LibroDAO() {
         db = new DataBase();
     }
     
@@ -52,5 +51,4 @@ public class LibroDAO {
             Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

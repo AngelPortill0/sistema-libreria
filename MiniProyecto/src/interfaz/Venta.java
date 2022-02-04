@@ -1,9 +1,12 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 public class Venta extends javax.swing.JFrame {
 
   public Venta() {
     initComponents();
+    setLocationRelativeTo(null);
   }
 
   @SuppressWarnings("unchecked")
@@ -12,17 +15,17 @@ public class Venta extends javax.swing.JFrame {
 
     atras = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tablaVenta = new javax.swing.JTable();
     jLabel1 = new javax.swing.JLabel();
-    jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     jLabel4 = new javax.swing.JLabel();
-    Tid = new javax.swing.JTextField();
     Tlibro = new javax.swing.JTextField();
     Tcliente = new javax.swing.JTextField();
     agregar = new javax.swing.JButton();
     editar = new javax.swing.JButton();
     eliminar = new javax.swing.JButton();
+    buscar = new javax.swing.JButton();
+    salir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,38 +37,57 @@ public class Venta extends javax.swing.JFrame {
           }
         });
 
-    jTable1.setModel(
+    tablaVenta.setModel(
         new javax.swing.table.DefaultTableModel(
             new Object[][] {
-              {null, null, null},
-              {null, null, null},
-              {null, null, null},
-              {null, null, null}
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null}
             },
-            new String[] {"ID", "Libro", "Cliente"}));
-    jScrollPane1.setViewportView(jTable1);
+            new String[] {"Libro", "Cliente"}));
+    tablaVenta.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            tablaVentaMouseClicked(evt);
+          }
+        });
+    jScrollPane1.setViewportView(tablaVenta);
 
     jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
     jLabel1.setText("VENTA");
-
-    jLabel2.setText("ID:");
 
     jLabel3.setText("Libro:");
 
     jLabel4.setText("Cliente:");
 
-    Tid.addActionListener(
+    agregar.setText("Agregar");
+    agregar.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
-            TidActionPerformed(evt);
+            agregarActionPerformed(evt);
           }
         });
-
-    agregar.setText("Agregar");
 
     editar.setText("Editar");
 
     eliminar.setText("Eliminar");
+    eliminar.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            eliminarActionPerformed(evt);
+          }
+        });
+
+    buscar.setText("Buscar");
+
+    salir.setText("Salir");
+    salir.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            salirActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -91,18 +113,16 @@ public class Venta extends javax.swing.JFrame {
                                 layout
                                     .createSequentialGroup()
                                     .addComponent(atras)
-                                    .addGap(375, 375, 375))))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(salir)
+                                    .addGap(329, 329, 329))))
             .addGroup(
                 layout
                     .createSequentialGroup()
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(
-                                layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jScrollPane1))
                             .addGroup(
                                 layout
                                     .createSequentialGroup()
@@ -120,8 +140,7 @@ public class Venta extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.Alignment
                                                                     .TRAILING)
                                                             .addComponent(jLabel4)
-                                                            .addComponent(jLabel3)
-                                                            .addComponent(jLabel2))
+                                                            .addComponent(jLabel3))
                                                     .addPreferredGap(
                                                         javax.swing.LayoutStyle.ComponentPlacement
                                                             .RELATED)
@@ -131,7 +150,6 @@ public class Venta extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.Alignment
                                                                     .LEADING,
                                                                 false)
-                                                            .addComponent(Tid)
                                                             .addComponent(Tlibro)
                                                             .addComponent(
                                                                 Tcliente,
@@ -143,15 +161,27 @@ public class Venta extends javax.swing.JFrame {
                                             .addGroup(
                                                 layout
                                                     .createSequentialGroup()
-                                                    .addGap(285, 285, 285)
+                                                    .addGap(253, 253, 253)
                                                     .addComponent(agregar)
                                                     .addPreferredGap(
                                                         javax.swing.LayoutStyle.ComponentPlacement
                                                             .UNRELATED)
                                                     .addComponent(editar)
-                                                    .addGap(18, 18, 18)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .UNRELATED)
+                                                    .addComponent(buscar)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .UNRELATED)
                                                     .addComponent(eliminar)))
-                                    .addGap(0, 294, Short.MAX_VALUE)))
+                                    .addGap(0, 248, Short.MAX_VALUE))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jScrollPane1)))
                     .addContainerGap()));
     layout.setVerticalGroup(
         layout
@@ -162,16 +192,6 @@ public class Venta extends javax.swing.JFrame {
                     .createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1)
-                    .addGap(18, 18, 18)
-                    .addGroup(
-                        layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(
-                                Tid,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
                         layout
@@ -192,37 +212,78 @@ public class Venta extends javax.swing.JFrame {
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(agregar)
                             .addComponent(eliminar)
-                            .addComponent(editar))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(editar)
+                            .addComponent(buscar))
+                    .addGap(18, 18, 18)
                     .addComponent(
                         jScrollPane1,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         222,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(atras)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                    .addGap(12, 12, 12)
+                    .addGroup(
+                        layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(atras)
+                            .addComponent(salir))
+                    .addContainerGap(19, Short.MAX_VALUE)));
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
-  private void atrasActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
+  private void tablaVentaMouseClicked(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaVentaMouseClicked
+    int fila = tablaVenta.getSelectedRow();
+
+    if (fila == -1) {
+      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
+    } else {
+
+    }
+  } // GEN-LAST:event_tablaVentaMouseClicked
+
+  private void eliminarActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
+    int seleccionado = tablaVenta.getSelectedRow();
+
+    if (seleccionado == -1) {
+      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+    } else {
+      try {
+
+      } catch (Exception e) {
+
+      }
+    }
+  } // GEN-LAST:event_eliminarActionPerformed
+
+  private void salirActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
+    dispose();
+  } // GEN-LAST:event_salirActionPerformed
+
+  private void agregarActionPerformed(java.awt.event.ActionEvent evt) {
+    String libro = Tlibro.getText();
+    String cliente = Tcliente.getText();
+
+    if (libro.equals("") || cliente.equals("")) {
+      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+    } else {
+
+    }
+  }
+
+  private void atrasActionPerformed(java.awt.event.ActionEvent evt) {
     General Venta = new General();
     Venta.setVisible(true);
     this.setVisible(false);
-  } // GEN-LAST:event_atrasActionPerformed
-
-  private void TidActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_TidActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_TidActionPerformed
+  }
 
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(
@@ -233,17 +294,17 @@ public class Venta extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Tcliente;
-  private javax.swing.JTextField Tid;
   private javax.swing.JTextField Tlibro;
   private javax.swing.JButton agregar;
   private javax.swing.JButton atras;
+  private javax.swing.JButton buscar;
   private javax.swing.JButton editar;
   private javax.swing.JButton eliminar;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
+  private javax.swing.JButton salir;
+  private javax.swing.JTable tablaVenta;
   // End of variables declaration//GEN-END:variables
 }
