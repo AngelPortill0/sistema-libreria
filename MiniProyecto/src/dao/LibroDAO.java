@@ -9,46 +9,47 @@ import java.util.logging.Logger;
 
 public class LibroDAO {
 
-    private DataBase db;
-    private PreparedStatement preparedStatement;
-    private Connection conexion;
-    private ResultSet resultSet;
-    
-    public LibroDAO() {
-        db = new DataBase();
+  private DataBase db;
+  private PreparedStatement preparedStatement;
+  private Connection conexion;
+  private ResultSet resultSet;
+
+  public LibroDAO() {
+    db = new DataBase();
+  }
+
+  public void cargarLibros() {
+    String sqlSelect =
+        "SELECT "
+            + "libros_autores.idAutor, "
+            + "autor.nombre, "
+            + "autor.apellido, "
+            + "autor.biografia, "
+            + "autor.numeroDePublicaciones, "
+            + "libros_autores.idLibro, "
+            + "libro.titulo, "
+            + "libro.fechaDePublicacion, "
+            + "libro.isbn, "
+            + "libro.numeroDePaginas, "
+            + "libro.puntuacion, "
+            + "libro.descripcion, "
+            + "libro.precio "
+            + "FROM "
+            + "libros_autores "
+            + "INNER JOIN autor "
+            + "ON autor.id = libros_autores.idAutor "
+            + "INNER JOIN "
+            + "libro ON libro.id = libros_autores.idLibro";
+
+    try {
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+      resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()) {
+        // La lógica irá aquí
+      }
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
-    public void cargarLibros() {
-        String sqlSelect = "SELECT " 
-                                + "libros_autores.idAutor, " 
-                                + "autor.nombre, " 
-                                + "autor.apellido, " 
-                                + "autor.biografia, "
-                                + "autor.numeroDePublicaciones, "
-                                + "libros_autores.idLibro, " 
-                                + "libro.titulo, " 
-                                + "libro.fechaDePublicacion, " 
-                                + "libro.isbn, " 
-                                + "libro.numeroDePaginas, " 
-                                + "libro.puntuacion, " 
-                                + "libro.descripcion, " 
-                                + "libro.precio " 
-                            + "FROM " 
-                                + "libros_autores "
-                            + "INNER JOIN autor "
-                            + "ON autor.id = libros_autores.idAutor "
-                            + "INNER JOIN "
-                            + "libro ON libro.id = libros_autores.idLibro";
-        
-        try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()) {
-                // La lógica irá aquí
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+  }
 }
