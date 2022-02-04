@@ -44,9 +44,44 @@ public class LibroDAO {
     try {
       preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
       resultSet = preparedStatement.executeQuery();
+<<<<<<< HEAD
 
       while (resultSet.next()) {
         // La lógica irá aquí
+=======
+
+      modelo = (DefaultTableModel) tablaLibros.getModel();
+
+      while (resultSet.next()) {
+        Libro libro =
+            new Libro(
+                resultSet.getString(2),
+                resultSet.getString(3),
+                resultSet.getString(4),
+                resultSet.getInt(5),
+                resultSet.getInt(6),
+                resultSet.getString(7),
+                resultSet.getFloat(8),
+                resultSet.getString(10),
+                resultSet.getString(11),
+                resultSet.getString(12),
+                resultSet.getString(13),
+                resultSet.getInt(14));
+
+        String[] datos = {
+          libro.getTitulo(),
+          libro.getNombreAutor(),
+          "Algún género",
+          libro.getFechaDePublicacion(),
+          libro.getIsbn(),
+          String.valueOf(libro.getNumeroDePaginas()),
+          String.valueOf(libro.getPuntuacion()),
+          libro.getDescripcion(),
+          String.valueOf(libro.getPrecio())
+        };
+
+        modelo.addRow(datos);
+>>>>>>> 759048a90fcfc86681a081846173698137872617
       }
     } catch (SQLException ex) {
       Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
