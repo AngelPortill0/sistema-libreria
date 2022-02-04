@@ -34,8 +34,14 @@ public class Genero extends javax.swing.JFrame {
     jLabel1.setText("Genero");
 
     tablaGenero.setModel(
-        new javax.swing.table.DefaultTableModel(
-            new Object[][] {{null}, {null}, {null}, {null}}, new String[] {"Genero"}));
+        new javax.swing.table.DefaultTableModel(new Object[][] {}, new String[] {"Genero"}) {
+
+          boolean[] canEdit = new boolean[] {false};
+
+          public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+          }
+        });
     tablaGenero.addMouseListener(
         new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {

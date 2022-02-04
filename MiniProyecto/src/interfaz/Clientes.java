@@ -46,12 +46,7 @@ public class Clientes extends javax.swing.JFrame {
 
     tablaClientes.setModel(
         new javax.swing.table.DefaultTableModel(
-            new Object[][] {
-              {null, null, null, null, null, null},
-              {null, null, null, null, null, null},
-              {null, null, null, null, null, null},
-              {null, null, null, null, null, null}
-            },
+            new Object[][] {},
             new String[] {
               "Nombre",
               "Apellido",
@@ -59,7 +54,13 @@ public class Clientes extends javax.swing.JFrame {
               "Cédula",
               "Número de teléfono",
               "Dirección"
-            }));
+            }) {
+          boolean[] canEdit = new boolean[] {false, false, false, false, false, false};
+
+          public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+          }
+        });
     tablaClientes.addMouseListener(
         new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {

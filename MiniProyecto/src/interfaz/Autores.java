@@ -9,7 +9,7 @@ public class Autores extends javax.swing.JFrame {
     initComponents();
     setLocationRelativeTo(null);
     AutorDAO aDAO = new AutorDAO();
-    aDAO.listar(tablaAutores);
+    //aDAO.listar(tablaAutores);
   }
 
   @SuppressWarnings("unchecked")
@@ -43,15 +43,16 @@ public class Autores extends javax.swing.JFrame {
 
     tablaAutores.setModel(
         new javax.swing.table.DefaultTableModel(
-            new Object[][] {
-              {null, null, null, null, null},
-              {null, null, null, null, null},
-              {null, null, null, null, null},
-              {null, null, null, null, null}
-            },
+            new Object[][] {},
             new String[] {
               "Nombre", "Apellido", "Fecha de nacimiento", "Número de publicaciones", "Biografia"
-            }));
+            }) {
+          boolean[] canEdit = new boolean[] {false, false, false, false, false};
+
+          public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+          }
+        });
     tablaAutores.addMouseListener(
         new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -342,137 +343,63 @@ public class Autores extends javax.swing.JFrame {
 
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
-    editar();
+    
   } // GEN-LAST:event_editarActionPerformed
 
-  private void tablaAutoresMouseClicked(
-      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
-    int autor = tablaAutores.getSelectedRow();
-
-    if (autor == -1) {
-      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
-    } else {
-      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
-      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
-      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
-      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
-      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
-
-      Tnombre.setText(Nombre);
-      Tapellido.setText(Apellido);
-      Tfnacimiento.setText(Fnacimiento);
-      Tpublicaciones.setText(Npublicaciones);
-      Tbiografia.setText(Biografia);
-    }
-  }
-
-  void editar() {
-
-    String Nombre = Tnombre.getText();
-    String Apellido = Tapellido.getText();
-    String Fnacimiento = Tfnacimiento.getText();
-    String Npublicaciones = Tpublicaciones.getText();
-    String Biografia = Tbiografia.getText();
-    String sql =
-        "update persona set Nombre = '"
-            + Nombre
-            + "', Apellido = '"
-            + Apellido
-            + "', Fecha de nacimiento = '"
-            + Fnacimiento
-            + "', Número de publicaciones = '"
-            + Npublicaciones
-            + "', Biografia = '"
-            + Biografia
-            + "'";
-
-    if (Nombre.equals("")
-        || Apellido.equals("")
-        || Fnacimiento.equals("")
-        || Npublicaciones.equals("")
-        || Biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Debe introducir datos!!!");
-    } else {
-      try {
-
-      } catch (Exception e) {
-      }
-    }
-  }
+//  private void tablaAutoresMouseClicked(
+//      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
+//    int autor = tablaAutores.getSelectedRow();
+//
+//    if (autor == -1) {
+//      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
+//    } else {
+//      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
+//      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
+//      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
+//      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
+//      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
+//
+//      Tnombre.setText(Nombre);
+//      Tapellido.setText(Apellido);
+//      Tfnacimiento.setText(Fnacimiento);
+//      Tpublicaciones.setText(Npublicaciones);
+//      Tbiografia.setText(Biografia);
+//    }
+//  }
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    eliminar();
+
   } // GEN-LAST:event_eliminarActionPerformed
 
-  void eliminar() {
+  
 
-    int seleccionado = tablaAutores.getSelectedRow();
-
-    if (seleccionado == -1) {
-      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    } else {
-      String sql = "delete from persona where Nombre=" + seleccionado;
-      try {
-
-        JOptionPane.showMessageDialog(null, "Autor eliminado satisfactoriamente");
-
-      } catch (Exception e) {
-
-      }
-    }
-  }
-
-  private void agregarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-    String nombre = Tnombre.getText();
-    String apellido = Tapellido.getText();
-    String fnacimiento = Tfnacimiento.getText();
-    String publicaciones = Tpublicaciones.getText();
-    String biografia = Tbiografia.getText();
-
-    if (nombre.equals("")
-        || apellido.equals("")
-        || fnacimiento.equals("")
-        || publicaciones.equals("")
-        || biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } else {
-      String sql =
-          "insert into persona(Nombre, Apellido, Fecha de nacimiento, Número de Publicaciones,"
-              + " Biografia)values('"
-              + nombre
-              + "','"
-              + apellido
-              + "','"
-              + fnacimiento
-              + "','"
-              + publicaciones
-              + "','"
-              + biografia
-              + "')";
-    }
-  } // GEN-LAST:event_agregarActionPerformed
-
-  private void salirActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
-    dispose();
-  } // GEN-LAST:event_salirActionPerformed
-
-  private void atrasActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
-    General Autores = new General();
-    Autores.setVisible(true);
-    this.setVisible(false);
-  } // GEN-LAST:event_atrasActionPerformed
-
-  public static void main(String args[]) {
-    java.awt.EventQueue.invokeLater(
-        () -> {
-          new Autores().setVisible(true);
-        });
-  }
-
+//  private void agregarActionPerformed(
+//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+//    String nombre = Tnombre.getText();
+//
+//    }
+//  } // GEN-LAST:event_agregarActionPerformed
+//
+//  private void salirActionPerformed(
+//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
+//    dispose();
+//  } // GEN-LAST:event_salirActionPerformed
+//
+//  private void atrasActionPerformed(
+//      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_atrasActionPerformed
+//    General Autores = new General();
+//    Autores.setVisible(true);
+//    this.setVisible(false);
+//  } // GEN-LAST:event_atrasActionPerformed
+//
+//  public static void main(String args[]) {
+//    java.awt.EventQueue.invokeLater(
+//        () -> {
+//          new Autores().setVisible(true);
+//        });
+//  }
+//
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Tapellido;
   private javax.swing.JTextField Tbiografia;

@@ -39,13 +39,14 @@ public class Venta extends javax.swing.JFrame {
 
     tablaVenta.setModel(
         new javax.swing.table.DefaultTableModel(
-            new Object[][] {
-              {null, null},
-              {null, null},
-              {null, null},
-              {null, null}
-            },
-            new String[] {"Libro", "Cliente"}));
+            new Object[][] {}, new String[] {"Libro", "Cliente"}) {
+
+          boolean[] canEdit = new boolean[] {false, false};
+
+          public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+          }
+        });
     tablaVenta.addMouseListener(
         new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {

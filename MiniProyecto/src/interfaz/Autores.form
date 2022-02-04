@@ -152,12 +152,12 @@
         <Component class="javax.swing.JTable" name="tablaAutores">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
-                <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Apellido" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha de nacimiento" type="java.lang.Object"/>
-                <Column editable="true" title="N&#xfa;mero de publicaciones" type="java.lang.Object"/>
-                <Column editable="true" title="Biografia" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha de nacimiento" type="java.lang.Object"/>
+                <Column editable="false" title="N&#xfa;mero de publicaciones" type="java.lang.Object"/>
+                <Column editable="false" title="Biografia" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
