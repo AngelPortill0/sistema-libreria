@@ -424,8 +424,9 @@ public class Autores extends javax.swing.JFrame {
     }
   }
 
-  private void agregarActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-    
+  private void agregarActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+
     AutorDAO aDAO = new AutorDAO();
     String nombre = Tnombre.getText();
     String apellido = Tapellido.getText();
@@ -435,7 +436,6 @@ public class Autores extends javax.swing.JFrame {
 
     aDAO.agregar(nombre, apellido, fnacimiento, publicaciones, biografia);
     aDAO.listar(tablaAutores);
-    
   } // GEN-LAST:event_agregarActionPerformed
 
   private void salirActionPerformed(

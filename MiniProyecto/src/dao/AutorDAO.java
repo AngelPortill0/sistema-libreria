@@ -41,31 +41,40 @@ public class AutorDAO {
     } catch (SQLException e) {
     }
   }
-  
-  public void agregar(String nombre, String apellido, String fnacimiento, 
-          int publicaciones, String biografia) {
-  
-      if (nombre.equals("")
+
+  public void agregar(
+      String nombre, String apellido, String fnacimiento, int publicaciones, String biografia) {
+
+    if (nombre.equals("")
         || apellido.equals("")
         || fnacimiento.equals("")
         || publicaciones == 0
         || biografia.equals("")) {
-          
-            JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-      } 
-      else {
-          
-            String sql = "insert into autor(nombre, apellido, fechaDeNacimiento, numeroDePublicaciones,"
-              + " biografia)values('"+ nombre + "','"+ apellido + "','" + fnacimiento
-              + "','" + publicaciones + "','" + biografia + "')";
-          
-            try {
-        
-                statement = db.conectarBaseDeDatos().createStatement();
-                statement.executeUpdate(sql);
-            
-            } catch (Exception e) {}
+
+      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+    } else {
+
+      String sql =
+          "insert into autor(nombre, apellido, fechaDeNacimiento, numeroDePublicaciones,"
+              + " biografia)values('"
+              + nombre
+              + "','"
+              + apellido
+              + "','"
+              + fnacimiento
+              + "','"
+              + publicaciones
+              + "','"
+              + biografia
+              + "')";
+
+      try {
+
+        statement = db.conectarBaseDeDatos().createStatement();
+        statement.executeUpdate(sql);
+
+      } catch (Exception e) {
       }
-      
+    }
   }
 }
