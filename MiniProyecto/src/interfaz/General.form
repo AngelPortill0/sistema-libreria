@@ -39,17 +39,11 @@
                       <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="book" pref="80" max="32767" attributes="0"/>
-                          <Component id="genero" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="book" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="author" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="venta" pref="80" max="32767" attributes="0"/>
-                          <Component id="client" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="genero" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -65,14 +59,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="book" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="author" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="client" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="genero" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="venta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
+              <EmptySpace pref="110" max="32767" attributes="0"/>
               <Component id="exit" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
@@ -113,29 +102,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="authorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="client">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Clientes"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="genero">
       <Properties>
         <Property name="text" type="java.lang.String" value="Genero"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="venta">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Venta"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ventaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

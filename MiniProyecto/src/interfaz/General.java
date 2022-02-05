@@ -15,9 +15,7 @@ public class General extends javax.swing.JFrame {
     jLabel1 = new javax.swing.JLabel();
     book = new javax.swing.JButton();
     author = new javax.swing.JButton();
-    client = new javax.swing.JButton();
     genero = new javax.swing.JButton();
-    venta = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setBackground(new java.awt.Color(189, 195, 199));
@@ -50,28 +48,11 @@ public class General extends javax.swing.JFrame {
           }
         });
 
-    client.setText("Clientes");
-    client.setToolTipText("");
-    client.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            clientActionPerformed(evt);
-          }
-        });
-
     genero.setText("Genero");
     genero.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
             generoActionPerformed(evt);
-          }
-        });
-
-    venta.setText("Venta");
-    venta.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            ventaActionPerformed(evt);
           }
         });
 
@@ -108,20 +89,11 @@ public class General extends javax.swing.JFrame {
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 layout
                                     .createSequentialGroup()
-                                    .addGroup(
-                                        layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(
-                                                book,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                80,
-                                                Short.MAX_VALUE)
-                                            .addComponent(
-                                                genero,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE))
+                                    .addComponent(
+                                        book,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        80,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(
                                         javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(
@@ -131,20 +103,11 @@ public class General extends javax.swing.JFrame {
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(
                                         javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(
-                                        layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(
-                                                venta,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                80,
-                                                Short.MAX_VALUE)
-                                            .addComponent(
-                                                client,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE))
+                                    .addComponent(
+                                        genero,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        80,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)))));
     layout.setVerticalGroup(
         layout
@@ -161,15 +124,9 @@ public class General extends javax.swing.JFrame {
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(book)
                             .addComponent(author)
-                            .addComponent(client))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(
-                        layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(genero)
-                            .addComponent(venta))
+                            .addComponent(genero))
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                     .addComponent(exit)
                     .addGap(32, 32, 32)));
 
@@ -182,13 +139,6 @@ public class General extends javax.swing.JFrame {
     General.setVisible(true);
     this.setVisible(false);
   } // GEN-LAST:event_generoActionPerformed
-
-  private void ventaActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ventaActionPerformed
-    Venta General = new Venta();
-    General.setVisible(true);
-    this.setVisible(false);
-  } // GEN-LAST:event_ventaActionPerformed
 
   private void exitActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_exitActionPerformed
@@ -209,13 +159,6 @@ public class General extends javax.swing.JFrame {
     this.setVisible(false);
   } // GEN-LAST:event_authorActionPerformed
 
-  private void clientActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_clientActionPerformed
-    Clientes General = new Clientes();
-    General.setVisible(true);
-    this.setVisible(false);
-  } // GEN-LAST:event_clientActionPerformed
-
   public static void main(String args[]) {
 
     java.awt.EventQueue.invokeLater(
@@ -227,10 +170,8 @@ public class General extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton author;
   private javax.swing.JButton book;
-  private javax.swing.JButton client;
   private javax.swing.JToggleButton exit;
   private javax.swing.JButton genero;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JButton venta;
   // End of variables declaration//GEN-END:variables
 }
