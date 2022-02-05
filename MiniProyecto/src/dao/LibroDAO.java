@@ -48,7 +48,7 @@ public class LibroDAO {
       resultSet = preparedStatement.executeQuery();
       
       modelo = (DefaultTableModel) tablaLibros.getModel();
-
+      
       while (resultSet.next()) {
         Libro libro = new Libro(
             resultSet.getString(2),

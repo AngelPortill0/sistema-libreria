@@ -16,6 +16,8 @@ public class Libros extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     var libroDAO = new LibroDAO();
     libroDAO.cargarLibros(tablaLibros);
+        libroDAO.cargarLibros(tablaLibros);
+
   }
 
   @SuppressWarnings("unchecked")
