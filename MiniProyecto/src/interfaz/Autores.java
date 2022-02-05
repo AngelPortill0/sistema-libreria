@@ -424,35 +424,18 @@ public class Autores extends javax.swing.JFrame {
     }
   }
 
-  private void agregarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+  private void agregarActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+    
+    AutorDAO aDAO = new AutorDAO();
     String nombre = Tnombre.getText();
     String apellido = Tapellido.getText();
     String fnacimiento = Tfnacimiento.getText();
-    String publicaciones = Tpublicaciones.getText();
     String biografia = Tbiografia.getText();
+    int publicaciones = Integer.parseInt(Tpublicaciones.getText());
 
-    if (nombre.equals("")
-        || apellido.equals("")
-        || fnacimiento.equals("")
-        || publicaciones.equals("")
-        || biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } else {
-      String sql =
-          "insert into persona(Nombre, Apellido, Fecha de nacimiento, Número de Publicaciones,"
-              + " Biografia)values('"
-              + nombre
-              + "','"
-              + apellido
-              + "','"
-              + fnacimiento
-              + "','"
-              + publicaciones
-              + "','"
-              + biografia
-              + "')";
-    }
+    aDAO.agregar(nombre, apellido, fnacimiento, publicaciones, biografia);
+    aDAO.listar(tablaAutores);
+    
   } // GEN-LAST:event_agregarActionPerformed
 
   private void salirActionPerformed(
