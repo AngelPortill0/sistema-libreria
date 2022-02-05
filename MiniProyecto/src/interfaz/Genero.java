@@ -2,6 +2,7 @@ package interfaz;
 
 import dao.GeneroDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Genero extends javax.swing.JFrame {
 
@@ -166,20 +167,16 @@ public class Genero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TdeseleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TdeseleccionarActionPerformed
-    Tgenero.setText("");
-    tablaGenero.clearSelection();        
+        Tgenero.setText("");
+        tablaGenero.clearSelection();    
     }//GEN-LAST:event_TdeseleccionarActionPerformed
 
   private void tablaGeneroMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaGeneroMouseClicked
-    int fila = tablaGenero.getSelectedRow();
-
-    if (fila == -1) {
-      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
-    } else {
-
-    }
-  } // GEN-LAST:event_tablaGeneroMouseClicked
+       DefaultTableModel modelo = (DefaultTableModel) tablaGenero.getModel();
+      int filaSeleccionada = tablaGenero.getSelectedRow();
+      Tgenero.setText((String) modelo.getValueAt(filaSeleccionada, 0));
+  } 
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
@@ -198,13 +195,6 @@ public class Genero extends javax.swing.JFrame {
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-    String genero = Tgenero.getText();
-
-    if (genero.equals("")) {
-      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } else {
-
-    }
   } // GEN-LAST:event_agregarActionPerformed
 
   private void atras1ActionPerformed(
