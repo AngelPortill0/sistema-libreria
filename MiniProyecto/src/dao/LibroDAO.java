@@ -82,7 +82,7 @@ public class LibroDAO {
           libro.getDescripcion(),
           String.valueOf(libro.getPrecio())
         };
-        
+
         modelo.addRow(datos);
       }
     } catch (SQLException ex) {
