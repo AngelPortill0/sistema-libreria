@@ -1,7 +1,8 @@
 package interfaz;
 
 import dao.AutorDAO;
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import logica.Autor;
 
 public class Autores extends javax.swing.JFrame {
 
@@ -343,100 +344,37 @@ public class Autores extends javax.swing.JFrame {
 
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
-    editar();
   } // GEN-LAST:event_editarActionPerformed
 
   private void tablaAutoresMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaAutoresMouseClicked
-    int autor = tablaAutores.getSelectedRow();
+  
+      DefaultTableModel modelo = (DefaultTableModel) tablaAutores.getModel();
+      int filaSeleccionada = tablaAutores.getSelectedRow();
 
-    if (autor == -1) {
-      JOptionPane.showMessageDialog(null, "Autor no seleccionado");
-    } else {
-      String Nombre = (String) tablaAutores.getValueAt(autor, 0);
-      String Apellido = (String) tablaAutores.getValueAt(autor, 1);
-      String Fnacimiento = (String) tablaAutores.getValueAt(autor, 2);
-      String Npublicaciones = (String) tablaAutores.getValueAt(autor, 3);
-      String Biografia = (String) tablaAutores.getValueAt(autor, 4);
-
-      Tnombre.setText(Nombre);
-      Tapellido.setText(Apellido);
-      Tfnacimiento.setText(Fnacimiento);
-      Tpublicaciones.setText(Npublicaciones);
-      Tbiografia.setText(Biografia);
-    }
-  }
-
-  void editar() {
-
-    String Nombre = Tnombre.getText();
-    String Apellido = Tapellido.getText();
-    String Fnacimiento = Tfnacimiento.getText();
-    String Npublicaciones = Tpublicaciones.getText();
-    String Biografia = Tbiografia.getText();
-    String sql =
-        "update persona set Nombre = '"
-            + Nombre
-            + "', Apellido = '"
-            + Apellido
-            + "', Fecha de nacimiento = '"
-            + Fnacimiento
-            + "', Número de publicaciones = '"
-            + Npublicaciones
-            + "', Biografia = '"
-            + Biografia
-            + "'";
-
-    if (Nombre.equals("")
-        || Apellido.equals("")
-        || Fnacimiento.equals("")
-        || Npublicaciones.equals("")
-        || Biografia.equals("")) {
-      JOptionPane.showMessageDialog(null, "Debe introducir datos!!!");
-    } else {
-      try {
-
-      } catch (Exception e) {
-      }
-    }
+      Tnombre.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+      Tapellido.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+      Tfnacimiento.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+      Tpublicaciones.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+      Tbiografia.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
   }
 
   private void eliminarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    eliminar();
-  } // GEN-LAST:event_eliminarActionPerformed
-
-  void eliminar() {
-
-    int seleccionado = tablaAutores.getSelectedRow();
-
-    if (seleccionado == -1) {
-      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    } else {
-      String sql = "delete from persona where Nombre=" + seleccionado;
-      try {
-
-        JOptionPane.showMessageDialog(null, "Autor eliminado satisfactoriamente");
-
-      } catch (Exception e) {
-
-      }
-    }
-  }
+      java.awt.event.ActionEvent evt) {
+    
+  } 
 
   private void agregarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+      java.awt.event.ActionEvent evt) {
+      
+      Autor autor = new Autor(Tnombre.getText(), Tapellido.getText(),Tfnacimiento.getText(), Tbiografia.getText(), Integer.parseInt(Tpublicaciones.getText())); 
+      AutorDAO aDAO = new AutorDAO();
+    
+      aDAO.agregarAutor(autor.getNombre(), autor.getApellido(), autor.getBiografia(), autor.getPublicaciones(), autor.getFnacimiento());
+      aDAO.listar(tablaAutores); 
+  }
+  
 
-    AutorDAO aDAO = new AutorDAO();
-    String nombre = Tnombre.getText();
-    String apellido = Tapellido.getText();
-    String fnacimiento = Tfnacimiento.getText();
-    String biografia = Tbiografia.getText();
-    int publicaciones = Integer.parseInt(Tpublicaciones.getText());
-
-    aDAO.agregar(nombre, apellido, fnacimiento, publicaciones, biografia, tablaAutores);
-    aDAO.listar(tablaAutores);
-  } // GEN-LAST:event_agregarActionPerformed
 
   private void salirActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed

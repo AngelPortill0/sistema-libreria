@@ -12,6 +12,7 @@ public class AutorDAO {
   private ResultSet resultSet;
   private DefaultTableModel modelo;
   private DataBase db;
+ 
 
   public AutorDAO() {
 
@@ -41,15 +42,9 @@ public class AutorDAO {
     } catch (SQLException e) {
     }
   }
-
-  public void agregar(
-      String nombre,
-      String apellido,
-      String fnacimiento,
-      int publicaciones,
-      String biografia,
-      JTable tablaAutores) {
-
+  
+    public void agregarAutor(String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
+        
     if (nombre.equals("")
         || apellido.equals("")
         || fnacimiento.equals("")
@@ -78,19 +73,12 @@ public class AutorDAO {
         statement = db.conectarBaseDeDatos().createStatement();
         statement.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Autor agregado!!!");
-        limpiarTabla(tablaAutores);
 
       } catch (SQLException e) {
       }
     }
-  }
-
-  public void limpiarTabla(JTable tablaAutor) {
-
-    for (int i = 0; i <= tablaAutor.getRowCount(); i++) {
-
-      modelo.removeRow(i);
-      i = i - 1;
     }
-  }
+
+
+
 }

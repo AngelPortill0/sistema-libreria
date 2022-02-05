@@ -1,37 +1,50 @@
 package logica;
 
 public class Autor extends Persona {
-  private String bio;
-  private int numeroDePublicaciones;
+  private String biografia;
+  private int publicaciones;
+  private String fnacimiento;
 
   public Autor(
       String nombre,
       String apellido,
-      String fechaDeNacimiento,
-      String bio,
-      int numeroDePublicaciones) {
-    super(nombre, apellido, fechaDeNacimiento);
-    this.bio = setBio(bio);
-    this.numeroDePublicaciones = setNumeroDePublicaciones(numeroDePublicaciones);
+      String fnacimiento,
+      String biografia,
+      int publicaciones) {
+    super(nombre, apellido, fnacimiento);
+    this.biografia = setBiografia(biografia);
+    this.publicaciones = setPublicaciones(publicaciones);
+    this.fnacimiento = setFnacimiento(fnacimiento);
   }
 
-  private String setBio(String bio) {
-
-    return bio;
+  private String setBiografia(String biografia) {
+    return biografia;
   }
 
-  private int setNumeroDePublicaciones(int numeroDePublicaciones) {
-
-    return numeroDePublicaciones;
+  private int setPublicaciones(int publicaciones) {
+    return publicaciones;
   }
+  
+  private String setFnacimiento(String fnacimiento) {
+        return fnacimiento;
+    }
+  
+    public String getBiografia() {
+        return biografia;
+    }
 
-  public String getBio() {
+    public int getPublicaciones() {
+        return publicaciones;
+    }
+    
+    public String getFnacimiento(){
+        return fnacimiento;
+    
+    }
 
-    return bio;
-  }
+    
 
-  public int getNumeroDePublicaciones() {
-
-    return numeroDePublicaciones;
-  }
+   
+  
+  
 }
