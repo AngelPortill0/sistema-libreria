@@ -3,12 +3,14 @@ package interfaz;
 import dao.LibroDAO;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 public class Libros extends javax.swing.JFrame {
-
+  private String indiceLibroSeleccionado;
+  
   public Libros() {
     initComponents();
     setLocationRelativeTo(null);
@@ -68,11 +70,11 @@ public class Libros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
+                "ID", "Titulo", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -269,46 +271,37 @@ public class Libros extends javax.swing.JFrame {
 
   private void btnDeseleccionarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnDeseleccionarActionPerformed
-    Ttitulo.setText("");
-    Tautor.setText("");
-    Tfpublicacion.setText("");
-    Tisbn.setText("");
-    Tnpublicacion.setText("");
-    Tpuntuacion.setText("");
-    TxtArea.setText("");
-    Tprecio.setText("");
-    tablaLibros.clearSelection();
+        limpiarCampos();
   } // GEN-LAST:event_btnDeseleccionarActionPerformed
 
   private void tablaLibrosMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaLibrosMouseClicked
     DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
     int filaSeleccionada = tablaLibros.getSelectedRow();
-
-    Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-    Tautor.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 2).toString());  
-    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
-    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
-    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
-    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
-    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
-    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    
+    indiceLibroSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
+    
+    Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+    Tautor.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString());  
+    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
+    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
+    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
   } // GEN-LAST:event_tablaLibrosMouseClicked
 
   private void eliminarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    //    int seleccionado = tablaLibros.getSelectedRow();
-    //
-    //    if (seleccionado == -1) {
-    //      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    //    } else {
-    //      try {
-    //
-    //      } catch (Exception e) {
-    //
-    //      }
-    //    }
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed       
+        if (Integer.parseInt(indiceLibroSeleccionado) == -1) {
+          JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+        } else {
+          var libroDAO = new LibroDAO();
+          libroDAO.eliminarLibro(Integer.parseInt(indiceLibroSeleccionado));
+          limpiarCampos();
+          libroDAO.cargarLibros(tablaLibros);
+        }
   } // GEN-LAST:event_eliminarActionPerformed
 
   private void agregarActionPerformed(
@@ -350,15 +343,17 @@ public class Libros extends javax.swing.JFrame {
     this.setVisible(false);
   } // GEN-LAST:event_atrasActionPerformed
 
-  public void setBox(JTable Tlibros, TableColumn columna) {
-    //
-    //    JComboBox c = new JComboBox();
-    //    c.addItem("MegaBlacksTer");
-    //
-    //    columna.setCellEditor(new DefaultCellEditor(c));
-    //    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+  private void limpiarCampos() {
+        Ttitulo.setText("");
+        Tautor.setText("");
+        Tfpublicacion.setText("");
+        Tisbn.setText("");
+        Tnpublicacion.setText("");
+        Tpuntuacion.setText("");
+        TxtArea.setText("");
+        Tprecio.setText("");
   }
-
+  
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(
         () -> {

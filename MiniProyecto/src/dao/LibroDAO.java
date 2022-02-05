@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logica.Libro;
@@ -71,8 +72,9 @@ public class LibroDAO {
                 resultSet.getString(14), // Fecha Nacimiento
                 resultSet.getString(15), // Biografia
                 resultSet.getInt(16));
-
+        
         String[] datos = {
+          String.valueOf(resultSet.getInt(1)),
           libro.getTitulo(),
           libro.getNombreAutor(),
           libro.getGenero(),
@@ -91,6 +93,22 @@ public class LibroDAO {
     }
   }
 
+  public void eliminarLibro(int idLibro) {
+      String sqlSelect = "DELETE FROM `libros_autores` WHERE `idLibro` = ".concat(String.valueOf(idLibro));
+      
+      try {
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+            int respuesta = preparedStatement.executeUpdate(sqlSelect);
+            
+            if (respuesta == -1) {
+                JOptionPane.showMessageDialog(null, "El Paciente se ha elimando Exitosamente");
+            }
+            
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+  }
+  
   public ArrayList<String> cargarGeneros() {
       var generos = new ArrayList<String>();
       String sqlSelect = "SELECT * FROM genero";
