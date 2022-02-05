@@ -46,6 +46,7 @@ public class Libros extends javax.swing.JFrame {
         salir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtArea = new javax.swing.JTextArea();
+        btnDeseleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,16 +131,17 @@ public class Libros extends javax.swing.JFrame {
         TxtArea.setRows(5);
         jScrollPane2.setViewportView(TxtArea);
 
+        btnDeseleccionar.setText("Deseleccionar");
+        btnDeseleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeseleccionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(atras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salir)
-                .addGap(356, 356, 356))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -164,14 +166,6 @@ public class Libros extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(agregar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(editar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(buscar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(eliminar))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Tpuntuacion, javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +175,28 @@ public class Libros extends javax.swing.JFrame {
                                         .addComponent(Tgenero, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Tautor, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(Ttitulo, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(Tprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(agregar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(editar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buscar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(eliminar)))))
+                        .addGap(115, 115, 115)))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(atras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salir)
+                        .addGap(356, 356, 356))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDeseleccionar)
+                        .addGap(363, 363, 363))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,13 +239,15 @@ public class Libros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Tprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar)
                     .addComponent(eliminar)
                     .addComponent(editar)
                     .addComponent(buscar))
                 .addGap(18, 18, 18)
+                .addComponent(btnDeseleccionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -242,6 +258,19 @@ public class Libros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeseleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeseleccionarActionPerformed
+        tablaLibros.clearSelection();
+        Ttitulo.setText("");
+    Tautor.setText("");
+    Tgenero.setText("");
+    Tfpublicacion.setText("");
+    Tisbn.setText("");
+    Tnpublicacion.setText("");
+    Tpuntuacion.setText("");
+    TxtArea.setText("");
+    Tprecio.setText("");
+    }//GEN-LAST:event_btnDeseleccionarActionPerformed
 
   private void tablaLibrosMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaLibrosMouseClicked
@@ -313,15 +342,6 @@ public class Libros extends javax.swing.JFrame {
     this.setVisible(false);
   } // GEN-LAST:event_atrasActionPerformed
 
-  public void setBox(JTable Tlibros, TableColumn columna) {
-    //
-    //    JComboBox c = new JComboBox();
-    //    c.addItem("MegaBlacksTer");
-    //
-    //    columna.setCellEditor(new DefaultCellEditor(c));
-    //    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
-  }
-
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(
         () -> {
@@ -341,6 +361,7 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JTextArea TxtArea;
     private javax.swing.JButton agregar;
     private javax.swing.JButton atras;
+    private javax.swing.JButton btnDeseleccionar;
     private javax.swing.JButton buscar;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;

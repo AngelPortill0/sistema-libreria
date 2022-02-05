@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class InicioSesion extends javax.swing.JFrame {
 
   public InicioSesion() {
-    setLocationRelativeTo(null);
     initComponents();
+    setLocationRelativeTo(null);
   }
 
   @SuppressWarnings("unchecked")
