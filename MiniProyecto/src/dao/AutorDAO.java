@@ -42,40 +42,55 @@ public class AutorDAO {
     }
   }
 
-  public void agregar(String nombre, String apellido, String fnacimiento, 
-          int publicaciones, String biografia, JTable tablaAutores) {
-  
-      if (nombre.equals("")
+  public void agregar(
+      String nombre,
+      String apellido,
+      String fnacimiento,
+      int publicaciones,
+      String biografia,
+      JTable tablaAutores) {
+
+    if (nombre.equals("")
         || apellido.equals("")
         || fnacimiento.equals("")
         || publicaciones == 0
         || biografia.equals("")) {
 
       JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } 
-      else {
-          
-            String sql = "insert into autor(nombre, apellido, fechaDeNacimiento, biografia,"
-              + " numeroDePublicaciones)values('"+ nombre + "','"+ apellido + "','" + fnacimiento
-              + "','" + biografia + "','" + publicaciones + "')";
-          
-            try {
-        
-                statement = db.conectarBaseDeDatos().createStatement();
-                statement.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Autor agregado!!!");
-                limpiarTabla(tablaAutores);
-                 
-            } catch (SQLException e) {}
+    } else {
+
+      String sql =
+          "insert into autor(nombre, apellido, fechaDeNacimiento, biografia,"
+              + " numeroDePublicaciones)values('"
+              + nombre
+              + "','"
+              + apellido
+              + "','"
+              + fnacimiento
+              + "','"
+              + biografia
+              + "','"
+              + publicaciones
+              + "')";
+
+      try {
+
+        statement = db.conectarBaseDeDatos().createStatement();
+        statement.executeUpdate(sql);
+        JOptionPane.showMessageDialog(null, "Autor agregado!!!");
+        limpiarTabla(tablaAutores);
+
+      } catch (SQLException e) {
       }
     }
+  }
 
-    public void limpiarTabla(JTable tablaAutor) {
-        
-        for(int i = 0; i <= tablaAutor.getRowCount(); i++){
-        
-            modelo.removeRow(i);
-            i = i - 1;
-        }
+  public void limpiarTabla(JTable tablaAutor) {
+
+    for (int i = 0; i <= tablaAutor.getRowCount(); i++) {
+
+      modelo.removeRow(i);
+      i = i - 1;
     }
+  }
 }

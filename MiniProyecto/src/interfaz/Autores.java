@@ -433,7 +433,7 @@ public class Autores extends javax.swing.JFrame {
     String fnacimiento = Tfnacimiento.getText();
     String biografia = Tbiografia.getText();
     int publicaciones = Integer.parseInt(Tpublicaciones.getText());
-    
+
     aDAO.agregar(nombre, apellido, fnacimiento, publicaciones, biografia, tablaAutores);
     aDAO.listar(tablaAutores);
   } // GEN-LAST:event_agregarActionPerformed
