@@ -30,6 +30,8 @@ public class LibroDAO {
             + "libro.puntuacion, "
             + "libro.descripcion, "
             + "libro.precio, "
+            + "libros_autores.idGenero, "
+            + "genero.genero, " 
             + "libros_autores.idAutor, "
             + "autor.nombre, "
             + "autor.apellido, "
@@ -40,6 +42,8 @@ public class LibroDAO {
             + "libros_autores "
             + "INNER JOIN autor "
             + "ON autor.id = libros_autores.idAutor "
+            + "INNER JOIN genero "
+            + "ON genero.id = libros_autores.idGenero "
             + "INNER JOIN "
             + "libro ON libro.id = libros_autores.idLibro";
 
@@ -48,27 +52,30 @@ public class LibroDAO {
       resultSet = preparedStatement.executeQuery();
 
       modelo = (DefaultTableModel) tablaLibros.getModel();
+      modelo.setRowCount(0);
       
       while (resultSet.next()) {
         Libro libro =
             new Libro(
-                resultSet.getString(2),
-                resultSet.getString(3),
-                resultSet.getString(4),
-                resultSet.getInt(5),
-                resultSet.getInt(6),
-                resultSet.getString(7),
-                resultSet.getFloat(8),
-                resultSet.getString(10),
-                resultSet.getString(11),
-                resultSet.getString(12),
-                resultSet.getString(13),
-                resultSet.getInt(14));
+                resultSet.getString(2), // Titulo Libro
+                resultSet.getString(3), // Fecha De Pub.
+                resultSet.getString(4), // ISBN
+                resultSet.getInt(5),    // Nº pag.
+                resultSet.getInt(6),    // Puntuacion
+                resultSet.getString(7), // Descripcion
+                resultSet.getFloat(8),  // Precio
+                resultSet.getString(10),// Genero Liter.
+                resultSet.getString(12),// Nombre Aut.
+                resultSet.getString(13),// Apellido Aut.
+                resultSet.getString(14),// Fecha Nacimiento
+                resultSet.getString(15),// Biografia
+                resultSet.getInt(16)
+            );
 
         String[] datos = {
           libro.getTitulo(),
           libro.getNombreAutor(),
-          "Algún género",
+          libro.getGenero(),
           libro.getFechaDePublicacion(),
           libro.getIsbn(),
           String.valueOf(libro.getNumeroDePaginas()),
