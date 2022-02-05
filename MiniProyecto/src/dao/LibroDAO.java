@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -88,5 +89,23 @@ public class LibroDAO {
     } catch (SQLException ex) {
       Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
+  }
+
+  public ArrayList<String> cargarGeneros() {
+      var generos = new ArrayList<String>();
+      String sqlSelect = "SELECT * FROM genero";
+      
+      try {
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                generos.add(resultSet.getString(2));
+        }
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      return generos;
   }
 }
