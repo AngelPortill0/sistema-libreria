@@ -45,15 +45,6 @@ public class AutorDAO {
   
     public void agregarAutor(String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
         
-    if (nombre.equals("")
-        || apellido.equals("")
-        || fnacimiento.equals("")
-        || publicaciones == 0
-        || biografia.equals("")) {
-
-      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    } else {
-
       String sql =
           "insert into autor(nombre, apellido, fechaDeNacimiento, biografia,"
               + " numeroDePublicaciones)values('"
@@ -76,7 +67,6 @@ public class AutorDAO {
 
       } catch (SQLException e) {
       }
-    }
     }
 
 
