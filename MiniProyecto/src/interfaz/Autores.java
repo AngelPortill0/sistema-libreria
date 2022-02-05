@@ -267,10 +267,12 @@ public class Autores extends javax.swing.JFrame {
       aDAO.listar(tablaAutores); 
      
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a0005d36e6311dec631f5c18950cd749c2f2be0
   }
   
-
-
   private void salirActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_salirActionPerformed
     dispose();
