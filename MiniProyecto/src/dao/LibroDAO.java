@@ -31,7 +31,7 @@ public class LibroDAO {
             + "libro.descripcion, "
             + "libro.precio, "
             + "libros_autores.idGenero, "
-            + "genero.genero, " 
+            + "genero.genero, "
             + "libros_autores.idAutor, "
             + "autor.nombre, "
             + "autor.apellido, "
@@ -53,24 +53,23 @@ public class LibroDAO {
 
       modelo = (DefaultTableModel) tablaLibros.getModel();
       modelo.setRowCount(0);
-      
+
       while (resultSet.next()) {
         Libro libro =
             new Libro(
                 resultSet.getString(2), // Titulo Libro
                 resultSet.getString(3), // Fecha De Pub.
                 resultSet.getString(4), // ISBN
-                resultSet.getInt(5),    // Nº pag.
-                resultSet.getInt(6),    // Puntuacion
+                resultSet.getInt(5), // Nº pag.
+                resultSet.getInt(6), // Puntuacion
                 resultSet.getString(7), // Descripcion
-                resultSet.getFloat(8),  // Precio
-                resultSet.getString(10),// Genero Liter.
-                resultSet.getString(12),// Nombre Aut.
-                resultSet.getString(13),// Apellido Aut.
-                resultSet.getString(14),// Fecha Nacimiento
-                resultSet.getString(15),// Biografia
-                resultSet.getInt(16)
-            );
+                resultSet.getFloat(8), // Precio
+                resultSet.getString(10), // Genero Liter.
+                resultSet.getString(12), // Nombre Aut.
+                resultSet.getString(13), // Apellido Aut.
+                resultSet.getString(14), // Fecha Nacimiento
+                resultSet.getString(15), // Biografia
+                resultSet.getInt(16));
 
         String[] datos = {
           libro.getTitulo(),
@@ -83,7 +82,7 @@ public class LibroDAO {
           libro.getDescripcion(),
           String.valueOf(libro.getPrecio())
         };
-
+        
         modelo.addRow(datos);
       }
     } catch (SQLException ex) {

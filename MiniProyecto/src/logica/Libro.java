@@ -26,7 +26,7 @@ public class Libro {
       String fechaDeNacimientoAutor,
       String bioAutor,
       int numeroDePublicacionesAutor) {
-      
+
     this.titulo = setTitulo(titulo);
     this.fechaDePublicacion = setFechaDePubicacion(fechaDePublicacion);
     this.isbn = setIsbn(isbn);
@@ -80,9 +80,9 @@ public class Libro {
   }
 
   private String setGenero(String genero) {
-      return genero;
+    return genero;
   }
-  
+
   public String getNombreAutor() {
     return autor.getNombre() + " " + autor.getApellido();
   }
@@ -111,13 +111,12 @@ public class Libro {
     return descripcion;
   }
 
-  public float getPrecio()
-  {
+  public float getPrecio() {
 
     return precio;
   }
-  
+
   public String getGenero() {
-      return generoLiterario;
+    return generoLiterario;
   }
 }
