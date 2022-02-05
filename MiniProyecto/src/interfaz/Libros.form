@@ -73,7 +73,6 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -89,7 +88,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnDeseleccionar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="363" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
