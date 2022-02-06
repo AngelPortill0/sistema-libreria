@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 06, 2022 at 07:44 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-02-2022 a las 20:14:43
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `libreria_db`
+-- Base de datos: `libreria_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autor`
+-- Estructura de tabla para la tabla `autor`
 --
 
 CREATE TABLE `autor` (
@@ -37,7 +37,7 @@ CREATE TABLE `autor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `autor`
+-- Volcado de datos para la tabla `autor`
 --
 
 INSERT INTO `autor` (`id`, `nombre`, `apellido`, `fechaDeNacimiento`, `biografia`, `numeroDePublicaciones`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `autor` (`id`, `nombre`, `apellido`, `fechaDeNacimiento`, `biografia
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genero`
+-- Estructura de tabla para la tabla `genero`
 --
 
 CREATE TABLE `genero` (
@@ -57,7 +57,7 @@ CREATE TABLE `genero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genero`
+-- Volcado de datos para la tabla `genero`
 --
 
 INSERT INTO `genero` (`id`, `genero`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `genero` (`id`, `genero`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `libro`
+-- Estructura de tabla para la tabla `libro`
 --
 
 CREATE TABLE `libro` (
@@ -83,7 +83,7 @@ CREATE TABLE `libro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `libro`
+-- Volcado de datos para la tabla `libro`
 --
 
 INSERT INTO `libro` (`id`, `titulo`, `fechaDePublicacion`, `isbn`, `numeroDePaginas`, `puntuacion`, `descripcion`, `precio`) VALUES
@@ -98,91 +98,78 @@ INSERT INTO `libro` (`id`, `titulo`, `fechaDePublicacion`, `isbn`, `numeroDePagi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `libros_autores`
+-- Estructura de tabla para la tabla `libros_autores`
 --
 
 CREATE TABLE `libros_autores` (
   `idLibro` int(10) NOT NULL,
-  `idAutor` int(10) NOT NULL,
-  `idGenero` int(10) NOT NULL
+  `idGenero` int(10) NOT NULL,
+  `idAutor` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `libros_autores`
---
-
-INSERT INTO `libros_autores` (`idLibro`, `idAutor`, `idGenero`) VALUES
-(8, 5, 2),
-(7, 6, 3),
-(7, 6, 3),
-(10, 4, 4),
-(7, 4, 2),
-(11, 6, 2),
-(11, 5, 3);
-
---
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `autor`
+-- Indices de la tabla `autor`
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `genero`
+-- Indices de la tabla `genero`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `libro`
+-- Indices de la tabla `libro`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `libros_autores`
+-- Indices de la tabla `libros_autores`
 --
 ALTER TABLE `libros_autores`
-  ADD KEY `fkAutor` (`idAutor`),
   ADD KEY `idLibro` (`idLibro`),
-  ADD KEY `idGenero` (`idGenero`);
+  ADD KEY `idGenero` (`idGenero`),
+  ADD KEY `idAutor` (`idAutor`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `autor`
+-- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `genero`
+-- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `libro`
+-- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `libros_autores`
+-- Filtros para la tabla `libros_autores`
 --
 ALTER TABLE `libros_autores`
-  ADD CONSTRAINT `fkAutor` FOREIGN KEY (`idAutor`) REFERENCES `autor` (`id`),
-  ADD CONSTRAINT `libros_autores_ibfk_1` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`id`),
-  ADD CONSTRAINT `libros_autores_ibfk_2` FOREIGN KEY (`idGenero`) REFERENCES `genero` (`id`);
+  ADD CONSTRAINT `libros_autores_ibfk_1` FOREIGN KEY (`idGenero`) REFERENCES `genero` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `libros_autores_ibfk_2` FOREIGN KEY (`idAutor`) REFERENCES `autor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `libros_autores_ibfk_3` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
