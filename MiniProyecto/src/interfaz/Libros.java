@@ -4,12 +4,11 @@ import dao.LibroDAO;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class Libros extends javax.swing.JFrame {
   private String indiceLibroSeleccionado;
+  private int filaSeleccionada;
   
   public Libros() {
     initComponents();
@@ -76,11 +75,11 @@ public class Libros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Titulo", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
+                "ID Libro", "Titulo", "ID Autor", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,7 +114,7 @@ public class Libros extends javax.swing.JFrame {
 
         jLabel9.setText("ISBN:");
 
-        jLabel10.setText("Número de publicación:");
+        jLabel10.setText("Número de páginas:");
 
         jLabel11.setText("Puntuación:");
 
@@ -127,6 +126,11 @@ public class Libros extends javax.swing.JFrame {
         });
 
         editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +220,7 @@ public class Libros extends javax.swing.JFrame {
                         .addGap(356, 356, 356))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnDeseleccionar)
-                        .addGap(365, 365, 365))))
+                        .addGap(381, 381, 381))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,9 +269,9 @@ public class Libros extends javax.swing.JFrame {
                     .addComponent(eliminar)
                     .addComponent(editar)
                     .addComponent(buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDeseleccionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,6 +283,29 @@ public class Libros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        if (Integer.parseInt(indiceLibroSeleccionado) == -1) {
+          JOptionPane.showMessageDialog(null, "Debes seleccionar un libro");
+        } else {
+          String idLibroSeleccionado = tablaLibros.getModel().getValueAt(filaSeleccionada, 0).toString();
+          var libroDAO = new LibroDAO();
+
+          libroDAO.editarLibro(
+                               idLibroSeleccionado,
+                               Ttitulo.getText(),
+                               cmbGenero.getSelectedItem().toString(),
+                               Tfpublicacion.getText(),
+                               Tisbn.getText(),
+                                Integer.parseInt(Tnpublicacion.getText()),
+                               Integer.parseInt(Tpuntuacion.getText()),
+                               TxtArea.getText(),
+                               Float.parseFloat(Tprecio.getText())
+          );
+          limpiarCampos();
+          libroDAO.cargarLibros(tablaLibros);
+        }
+    }//GEN-LAST:event_editarActionPerformed
+
   private void btnDeseleccionarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnDeseleccionarActionPerformed
         limpiarCampos();
@@ -287,21 +314,21 @@ public class Libros extends javax.swing.JFrame {
   private void tablaLibrosMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaLibrosMouseClicked
     DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
-    int filaSeleccionada = tablaLibros.getSelectedRow();
+    filaSeleccionada = tablaLibros.getSelectedRow();
     
     indiceLibroSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
     
     Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
     
-    cmbAutor.setSelectedItem(modelo.getValueAt(filaSeleccionada, 2).toString());
-    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString()); 
+    cmbAutor.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString());
+    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 4).toString()); 
     
-    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
-    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
-    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
-    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
-    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
-    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
+    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
+    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
+    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
+    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 10).toString());
   } // GEN-LAST:event_tablaLibrosMouseClicked
 
   private void eliminarActionPerformed(
