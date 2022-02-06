@@ -7,7 +7,6 @@ import logica.Autor;
 
 public class Autores extends javax.swing.JFrame {
     private String indiceAutorSeleccionado;
-    private int filaSeleccionada;
     
   public Autores() {
     initComponents();
@@ -235,19 +234,18 @@ public class Autores extends javax.swing.JFrame {
           
           JOptionPane.showMessageDialog(null, "Debes seleccionar un autor");   
     } else {
-          String idAutorSeleccionado = tablaAutores.getModel().getValueAt(filaSeleccionada, 0).toString();
-          var autorDao = new AutorDAO();
+          var aDAO = new AutorDAO();
           
-          autorDao.editarAutor(
-                  idAutorSeleccionado,
+          aDAO.editarAutor(
+                  indiceAutorSeleccionado,
                   Tnombre.getText(),
                   Tapellido.getText(),
                   Tbiografia.getText(),
-                  Integer.parseInt(Tfnacimiento.getText()),
+                  Tfnacimiento.getText(),
                   Integer.parseInt(Tpublicaciones.getText())
           );
           limpiarCampos();
-          
+          aDAO.listar(tablaAutores);
       }
   } 
 
