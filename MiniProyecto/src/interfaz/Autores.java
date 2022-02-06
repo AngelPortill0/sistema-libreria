@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import logica.Autor;
 
 public class Autores extends javax.swing.JFrame {
-
+private String indiceAutorSeleccionado;
   public Autores() {
     initComponents();
     setLocationRelativeTo(null);
@@ -49,11 +49,11 @@ public class Autores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Fecha de nacimiento", "Número de publicaciones", "Biografia"
+                "ID", "Nombre", "Apellido", "Fecha de nacimiento", "Número de publicaciones", "Biografia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -235,17 +235,26 @@ public class Autores extends javax.swing.JFrame {
   
       DefaultTableModel modelo = (DefaultTableModel) tablaAutores.getModel();
       int filaSeleccionada = tablaAutores.getSelectedRow();
+      
+      indiceAutorSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
 
-      Tnombre.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-      Tapellido.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-      Tfnacimiento.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-      Tpublicaciones.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
-      Tbiografia.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+      Tnombre.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+      Tapellido.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+      Tfnacimiento.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+      Tpublicaciones.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+      Tbiografia.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
   }
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) {
-    
+      if (Integer.parseInt(indiceAutorSeleccionado) == -1) {
+          JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+        } else {
+          var autorDAO = new AutorDAO();
+          autorDAO.eiminarAutor(Integer.parseInt(indiceAutorSeleccionado));
+          limpiarCampos();
+          autorDAO.listar(tablaAutores);
+        }
   } 
 
   private void agregarActionPerformed(
@@ -264,9 +273,18 @@ public class Autores extends javax.swing.JFrame {
       AutorDAO aDAO = new AutorDAO();
     
       aDAO.agregarAutor(autor.getNombre(), autor.getApellido(), autor.getBiografia(), autor.getPublicaciones(), autor.getFnacimiento());
+      limpiarCampos();
       aDAO.listar(tablaAutores); 
      
       }
+  }
+  
+    private void limpiarCampos() {
+        Tnombre.setText("");
+        Tapellido.setText("");
+        Tfnacimiento.setText("");
+        Tbiografia.setText("");
+        Tpublicaciones.setText("");
   }
   
   private void salirActionPerformed(

@@ -1,5 +1,8 @@
 package dao;
 
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -13,7 +16,6 @@ public class AutorDAO {
   private DefaultTableModel modelo;
   private DataBase db;
  
-
   public AutorDAO() {
 
     db = new DataBase();
@@ -27,16 +29,17 @@ public class AutorDAO {
 
       prepareStatement = db.conectarBaseDeDatos().prepareStatement(sql);
       resultSet = prepareStatement.executeQuery(sql);
-      Object[] autor = new Object[5];
+      Object[] autor = new Object[6];
       modelo = (DefaultTableModel) tablaAutor.getModel();
+      modelo.setRowCount(0);
 
       while (resultSet.next()) {
-
-        autor[0] = resultSet.getString("nombre");
-        autor[1] = resultSet.getString("apellido");
-        autor[2] = resultSet.getString("fechaDeNacimiento");
-        autor[3] = resultSet.getInt("numeroDePublicaciones");
-        autor[4] = resultSet.getString("biografia");
+        autor[0] = resultSet.getString("ID");
+        autor[1] = resultSet.getString("nombre");
+        autor[2] = resultSet.getString("apellido");
+        autor[3] = resultSet.getString("fechaDeNacimiento");
+        autor[4] = resultSet.getInt("numeroDePublicaciones");
+        autor[5] = resultSet.getString("biografia");
         modelo.addRow(autor);
       }
     } catch (SQLException e) {
@@ -46,27 +49,45 @@ public class AutorDAO {
     public void agregarAutor(String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
         
       String sql =
-          "insert into autor(nombre, apellido, fechaDeNacimiento, biografia,"
-              + " numeroDePublicaciones)values('"
-              + nombre
-              + "','"
-              + apellido
-              + "','"
-              + fnacimiento
-              + "','"
-              + biografia
-              + "','"
-              + publicaciones
-              + "')";
+          "INSERT INTO `autor` (`id`, `nombre`, `apellido`, `fechaDeNacimiento`, `biografia`, `numeroDePublicaciones`) VALUES (NULL, "
+              + nombre+","
+              + apellido+","
+              + fnacimiento+","
+              + biografia+","
+              + publicaciones;
 
       try {
+        prepareStatement = db.conectarBaseDeDatos().prepareStatement(sql);
+        prepareStatement.setString(1,nombre);
+        prepareStatement.setString(2,apellido);
+        prepareStatement.setString(3,fnacimiento);
+        prepareStatement.setString(4,biografia);
+        prepareStatement.setInt(5,publicaciones);
 
-        statement = db.conectarBaseDeDatos().createStatement();
-        statement.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Autor agregado!!!");
 
       } catch (SQLException e) {
       }
     }
+    
+    public void eiminarAutor (int idAutor){
+        
+         String sqlSelect = "DELETE FROM `libros_autores` WHERE `idAutor` = ".concat(String.valueOf(idAutor));
+      
+      try {
+            prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+            int respuesta = prepareStatement.executeUpdate(sqlSelect);
+            
+            if (respuesta == -1) {
+                JOptionPane.showMessageDialog(null, "El Paciente se ha elimando Exitosamente");
+            }
+            
+      } catch (SQLException ex) {
+        Logger.getLogger(AutorDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    
+    }
+
+    
 
 }
