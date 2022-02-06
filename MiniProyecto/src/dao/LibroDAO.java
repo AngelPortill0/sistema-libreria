@@ -76,6 +76,7 @@ public class LibroDAO {
         String[] datos = {
           String.valueOf(resultSet.getInt(1)),
           libro.getTitulo(),
+          String.valueOf(resultSet.getInt(11)),
           libro.getNombreAutor(),
           libro.getGenero(),
           libro.getFechaDePublicacion(),
@@ -94,11 +95,11 @@ public class LibroDAO {
   }
 
   public void eliminarLibro(int idLibro) {
-      String sqlSelect = "DELETE FROM `libros_autores` WHERE `idLibro` = ".concat(String.valueOf(idLibro));
+      String sqlDelete = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idLibro));
       
       try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            int respuesta = preparedStatement.executeUpdate(sqlSelect);
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlDelete);
+            int respuesta = preparedStatement.executeUpdate(sqlDelete);
             
             if (respuesta == -1) {
                 JOptionPane.showMessageDialog(null, "El libro se ha elimando Exitosamente");
@@ -112,14 +113,34 @@ public class LibroDAO {
   public void editarLibro(
                             String idLibro, 
                             String titulo, 
-                            String autor, 
+                            // String idAutor, 
                             String genero,
                             String fechaDePublicacion,
-                            String numeroDePublicacion,
+                            String isbn,
+                            int numeroDePaginas,
                             int puntuacion,
                             String descripcion,
                             float precio) {
+      String sqlUpdate = "UPDATE libro SET titulo = '" + titulo + "', "
+              + "fechaDePublicacion = '" + fechaDePublicacion + "', "
+              + "isbn = '" + isbn + "', "
+              + "numeroDePaginas = " + numeroDePaginas + ", "
+              + "puntuacion = " + puntuacion + ", "
+              + "descripcion = '" + descripcion + "', "
+              + "precio = " + precio + " "
+              + "WHERE id = " + idLibro;
       
+      try {
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdate);
+            int respuesta = preparedStatement.executeUpdate(sqlUpdate);
+            
+            if (respuesta == -1) {
+                JOptionPane.showMessageDialog(null, "El libro se ha elimando Exitosamente");
+            }
+            
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }
   
   public ArrayList<String> cargarAutores() {
