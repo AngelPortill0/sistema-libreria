@@ -192,6 +192,12 @@ public class Genero extends javax.swing.JFrame {
       }
     }
   } // GEN-LAST:event_eliminarActionPerformed
+  
+      private void limpiarCampos() {
+        Tgenero.setText("");
+
+  }
+  
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed

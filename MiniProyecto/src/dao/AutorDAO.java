@@ -9,8 +9,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AutorDAO {
-
-  private Statement statement;
   private PreparedStatement prepareStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
@@ -72,14 +70,14 @@ public class AutorDAO {
     
     public void eiminarAutor (int idAutor){
         
-         String sqlSelect = "DELETE FROM `libros_autores` WHERE `idAutor` = ".concat(String.valueOf(idAutor));
+         String sqlSelect = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idAutor));
       
       try {
             prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
             int respuesta = prepareStatement.executeUpdate(sqlSelect);
             
             if (respuesta == -1) {
-                JOptionPane.showMessageDialog(null, "El Paciente se ha elimando Exitosamente");
+                JOptionPane.showMessageDialog(null, "El autor se ha elimando Exitosamente");
             }
             
       } catch (SQLException ex) {
