@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,5 +37,22 @@ public class GeneroDAO {
       }
     } catch (SQLException e) {
     }
+  }
+  
+  public void eliminar(String genero){
+      
+      int confirmar = JOptionPane.showConfirmDialog(null, "Desea eliminar este genero?");
+      
+      if (confirmar == JOptionPane.OK_OPTION){
+          try {
+              String sql = "DELETE FROM genero" + "WHERE genero = ?";
+              statement = db.conectarBaseDeDatos().createStatement();
+              statement.executeUpdate(sql);
+          } catch (Exception e) {
+          }
+      
+      }
+  
+  
   }
 }
