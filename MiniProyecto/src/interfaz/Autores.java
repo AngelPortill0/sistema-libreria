@@ -6,7 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import logica.Autor;
 
 public class Autores extends javax.swing.JFrame {
-private String indiceAutorSeleccionado;
+    private String indiceAutorSeleccionado;
+    private int filaSeleccionada;
+    
   public Autores() {
     initComponents();
     setLocationRelativeTo(null);
@@ -227,7 +229,26 @@ private String indiceAutorSeleccionado;
     }//GEN-LAST:event_TdeseleccionarActionPerformed
 
   private void editarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_editarActionPerformed
+      java.awt.event.ActionEvent evt) {
+      
+      if (Integer.parseInt(indiceAutorSeleccionado) == -1){
+          
+          JOptionPane.showMessageDialog(null, "Debes seleccionar un autor");   
+    } else {
+          String idAutorSeleccionado = tablaAutores.getModel().getValueAt(filaSeleccionada, 0).toString();
+          var autorDao = new AutorDAO();
+          
+          autorDao.editarAutor(
+                  idAutorSeleccionado,
+                  Tnombre.getText(),
+                  Tapellido.getText(),
+                  Tbiografia.getText(),
+                  Integer.parseInt(Tfnacimiento.getText()),
+                  Integer.parseInt(Tpublicaciones.getText())
+          );
+          limpiarCampos();
+          
+      }
   } 
 
   private void tablaAutoresMouseClicked(

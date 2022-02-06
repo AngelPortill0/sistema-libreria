@@ -78,6 +78,31 @@ public class AutorDAO {
     
     }
 
-    
-
+    public void editarAutor(String idAutorSeleccionado,
+            String nombre,
+            String apellido,
+            String biografia,
+            int fnacimiento,
+            int publicaciones) {
+      String sqlUpdate = "UPDATE autir SET nombre = '" + nombre + "', "
+              + "apellido = '" + apellido + "', "
+              + "fechaDeNacimiento = '" + fnacimiento + "', "
+              + "biografia = " + biografia + ", "
+              + "numeroDePublicaciones = " + publicaciones;
+      
+              try {
+            prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdate);
+            int respuesta = prepareStatement.executeUpdate(sqlUpdate);
+            
+            if (respuesta == -1) {
+                JOptionPane.showMessageDialog(null, "El autor se ha editado exitosamente");
+            }
+            
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+              
+        
+    }
+  
 }
