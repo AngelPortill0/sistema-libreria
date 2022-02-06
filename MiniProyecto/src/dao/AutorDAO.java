@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AutorDAO {
+  private Statement statement;
   private PreparedStatement prepareStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
@@ -32,7 +33,7 @@ public class AutorDAO {
       modelo.setRowCount(0);
 
       while (resultSet.next()) {
-        autor[0] = resultSet.getString("ID");
+        autor[0] = resultSet.getString("id");
         autor[1] = resultSet.getString("nombre");
         autor[2] = resultSet.getString("apellido");
         autor[3] = resultSet.getString("fechaDeNacimiento");
@@ -46,21 +47,12 @@ public class AutorDAO {
   
     public void agregarAutor(String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
         
-      String sql =
-          "INSERT INTO `autor` (`id`, `nombre`, `apellido`, `fechaDeNacimiento`, `biografia`, `numeroDePublicaciones`) VALUES (NULL, "
-              + nombre+","
-              + apellido+","
-              + fnacimiento+","
-              + biografia+","
-              + publicaciones;
+      String sql = "INSERT INTO autor VALUES (NULL,'"+ nombre +"','"+ apellido +"',"
+              + "'"+ fnacimiento +"','"+ biografia +"','"+ publicaciones +"')";
 
       try {
-        prepareStatement = db.conectarBaseDeDatos().prepareStatement(sql);
-        prepareStatement.setString(1,nombre);
-        prepareStatement.setString(2,apellido);
-        prepareStatement.setString(3,fnacimiento);
-        prepareStatement.setString(4,biografia);
-        prepareStatement.setInt(5,publicaciones);
+        statement = db.conectarBaseDeDatos().createStatement();
+        statement.executeUpdate(sql);
 
         JOptionPane.showMessageDialog(null, "Autor agregado!!!");
 
