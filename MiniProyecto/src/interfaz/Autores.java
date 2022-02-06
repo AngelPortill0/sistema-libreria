@@ -267,7 +267,6 @@ public class Autores extends javax.swing.JFrame {
       aDAO.listar(tablaAutores); 
      
       }
-
   }
   
   private void salirActionPerformed(

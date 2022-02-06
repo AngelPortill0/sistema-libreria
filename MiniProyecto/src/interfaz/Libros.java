@@ -1,17 +1,29 @@
 package interfaz;
 
 import dao.LibroDAO;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 public class Libros extends javax.swing.JFrame {
-
+  private String indiceLibroSeleccionado;
+  
   public Libros() {
     initComponents();
     setLocationRelativeTo(null);
+    
+    cmbGenero.removeAllItems();
+    
     var libroDAO = new LibroDAO();
     libroDAO.cargarLibros(tablaLibros);
+    
+    ArrayList<String> datosCombobox = libroDAO.cargarGeneros();
+    for (Iterator<String> genero = datosCombobox.iterator(); genero.hasNext();) {
+        cmbGenero.addItem(genero.next());
+    }
   }
 
   @SuppressWarnings("unchecked")
@@ -33,7 +45,6 @@ public class Libros extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         Ttitulo = new javax.swing.JTextField();
         Tautor = new javax.swing.JTextField();
-        Tgenero = new javax.swing.JTextField();
         Tfpublicacion = new javax.swing.JTextField();
         Tisbn = new javax.swing.JTextField();
         Tnpublicacion = new javax.swing.JTextField();
@@ -47,6 +58,7 @@ public class Libros extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TxtArea = new javax.swing.JTextArea();
         btnDeseleccionar = new javax.swing.JButton();
+        cmbGenero = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +70,11 @@ public class Libros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
+                "ID", "Titulo", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -138,6 +150,8 @@ public class Libros extends javax.swing.JFrame {
             }
         });
 
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,17 +185,15 @@ public class Libros extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tpuntuacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tnpublicacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tisbn, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tfpublicacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tgenero, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tautor, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Ttitulo, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Tprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(Tpuntuacion)
+                                    .addComponent(Tnpublicacion)
+                                    .addComponent(Tisbn)
+                                    .addComponent(Tfpublicacion)
+                                    .addComponent(Tautor)
+                                    .addComponent(Ttitulo)
+                                    .addComponent(Tprecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(agregar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -189,7 +201,8 @@ public class Libros extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(buscar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(eliminar))))))
+                                        .addComponent(eliminar))
+                                    .addComponent(cmbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(401, 401, 401)
                         .addComponent(btnDeseleccionar)))
@@ -209,10 +222,10 @@ public class Libros extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(Tautor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Tgenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(Tfpublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -244,7 +257,7 @@ public class Libros extends javax.swing.JFrame {
                     .addComponent(buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDeseleccionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -258,47 +271,37 @@ public class Libros extends javax.swing.JFrame {
 
   private void btnDeseleccionarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnDeseleccionarActionPerformed
-    Ttitulo.setText("");
-    Tautor.setText("");
-    Tgenero.setText("");
-    Tfpublicacion.setText("");
-    Tisbn.setText("");
-    Tnpublicacion.setText("");
-    Tpuntuacion.setText("");
-    TxtArea.setText("");
-    Tprecio.setText("");
-    tablaLibros.clearSelection();
+        limpiarCampos();
   } // GEN-LAST:event_btnDeseleccionarActionPerformed
 
   private void tablaLibrosMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaLibrosMouseClicked
     DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
     int filaSeleccionada = tablaLibros.getSelectedRow();
-
-    Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-    Tautor.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-    Tgenero.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
-    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
-    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
-    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
-    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
-    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    
+    indiceLibroSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
+    
+    Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+    Tautor.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString());  
+    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
+    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
+    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
   } // GEN-LAST:event_tablaLibrosMouseClicked
 
   private void eliminarActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    //    int seleccionado = tablaLibros.getSelectedRow();
-    //
-    //    if (seleccionado == -1) {
-    //      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    //    } else {
-    //      try {
-    //
-    //      } catch (Exception e) {
-    //
-    //      }
-    //    }
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed       
+        if (Integer.parseInt(indiceLibroSeleccionado) == -1) {
+          JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+        } else {
+          var libroDAO = new LibroDAO();
+          libroDAO.eliminarLibro(Integer.parseInt(indiceLibroSeleccionado));
+          limpiarCampos();
+          libroDAO.cargarLibros(tablaLibros);
+        }
   } // GEN-LAST:event_eliminarActionPerformed
 
   private void agregarActionPerformed(
@@ -340,15 +343,17 @@ public class Libros extends javax.swing.JFrame {
     this.setVisible(false);
   } // GEN-LAST:event_atrasActionPerformed
 
-  public void setBox(JTable Tlibros, TableColumn columna) {
-    //
-    //    JComboBox c = new JComboBox();
-    //    c.addItem("MegaBlacksTer");
-    //
-    //    columna.setCellEditor(new DefaultCellEditor(c));
-    //    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+  private void limpiarCampos() {
+        Ttitulo.setText("");
+        Tautor.setText("");
+        Tfpublicacion.setText("");
+        Tisbn.setText("");
+        Tnpublicacion.setText("");
+        Tpuntuacion.setText("");
+        TxtArea.setText("");
+        Tprecio.setText("");
   }
-
+  
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(
         () -> {
@@ -359,7 +364,6 @@ public class Libros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Tautor;
     private javax.swing.JTextField Tfpublicacion;
-    private javax.swing.JTextField Tgenero;
     private javax.swing.JTextField Tisbn;
     private javax.swing.JTextField Tnpublicacion;
     private javax.swing.JTextField Tprecio;
@@ -370,6 +374,7 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JButton atras;
     private javax.swing.JButton btnDeseleccionar;
     private javax.swing.JButton buscar;
+    private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
