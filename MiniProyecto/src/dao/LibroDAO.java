@@ -101,12 +101,43 @@ public class LibroDAO {
             int respuesta = preparedStatement.executeUpdate(sqlSelect);
             
             if (respuesta == -1) {
-                JOptionPane.showMessageDialog(null, "El Paciente se ha elimando Exitosamente");
+                JOptionPane.showMessageDialog(null, "El libro se ha elimando Exitosamente");
             }
             
       } catch (SQLException ex) {
         Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
       }
+  }
+  
+  public void editarLibro(
+                            String idLibro, 
+                            String titulo, 
+                            String autor, 
+                            String genero,
+                            String fechaDePublicacion,
+                            String numeroDePublicacion,
+                            int puntuacion,
+                            String descripcion,
+                            float precio) {
+      
+  }
+  
+  public ArrayList<String> cargarAutores() {
+      var autores = new ArrayList<String>();
+      String sqlSelect = "SELECT nombre, apellido FROM autor";
+      
+      try {
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                autores.add( resultSet.getString(1) + " " + resultSet.getString(2));
+        }
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      return autores;
   }
   
   public ArrayList<String> cargarGeneros() {

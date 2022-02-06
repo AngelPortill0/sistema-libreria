@@ -16,13 +16,19 @@ public class Libros extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     
     cmbGenero.removeAllItems();
+    cmbAutor.removeAllItems();
     
     var libroDAO = new LibroDAO();
     libroDAO.cargarLibros(tablaLibros);
     
-    ArrayList<String> datosCombobox = libroDAO.cargarGeneros();
-    for (Iterator<String> genero = datosCombobox.iterator(); genero.hasNext();) {
+    ArrayList<String> comboboxGeneros = libroDAO.cargarGeneros();
+    for (Iterator<String> genero = comboboxGeneros.iterator(); genero.hasNext();) {
         cmbGenero.addItem(genero.next());
+    }
+    
+    ArrayList<String> comboboxAutores = libroDAO.cargarAutores();
+    for (Iterator<String> autor = comboboxAutores.iterator(); autor.hasNext();) {
+        cmbAutor.addItem(autor.next());
     }
   }
 
@@ -44,7 +50,6 @@ public class Libros extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         Ttitulo = new javax.swing.JTextField();
-        Tautor = new javax.swing.JTextField();
         Tfpublicacion = new javax.swing.JTextField();
         Tisbn = new javax.swing.JTextField();
         Tnpublicacion = new javax.swing.JTextField();
@@ -59,6 +64,7 @@ public class Libros extends javax.swing.JFrame {
         TxtArea = new javax.swing.JTextArea();
         btnDeseleccionar = new javax.swing.JButton();
         cmbGenero = new javax.swing.JComboBox<>();
+        cmbAutor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,16 +158,12 @@ public class Libros extends javax.swing.JFrame {
 
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        cmbAutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(atras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salir)
-                .addGap(356, 356, 356))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -191,7 +193,6 @@ public class Libros extends javax.swing.JFrame {
                                     .addComponent(Tnpublicacion)
                                     .addComponent(Tisbn)
                                     .addComponent(Tfpublicacion)
-                                    .addComponent(Tautor)
                                     .addComponent(Ttitulo)
                                     .addComponent(Tprecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
@@ -202,11 +203,20 @@ public class Libros extends javax.swing.JFrame {
                                         .addComponent(buscar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(eliminar))
-                                    .addComponent(cmbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(401, 401, 401)
-                        .addComponent(btnDeseleccionar)))
+                                    .addComponent(cmbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(atras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salir)
+                        .addGap(356, 356, 356))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDeseleccionar)
+                        .addGap(365, 365, 365))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +230,7 @@ public class Libros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(Tautor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -282,8 +292,10 @@ public class Libros extends javax.swing.JFrame {
     indiceLibroSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
     
     Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-    Tautor.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString());  
+    
+    cmbAutor.setSelectedItem(modelo.getValueAt(filaSeleccionada, 2).toString());
+    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString()); 
+    
     Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
     Tisbn.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
     Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
@@ -345,7 +357,6 @@ public class Libros extends javax.swing.JFrame {
 
   private void limpiarCampos() {
         Ttitulo.setText("");
-        Tautor.setText("");
         Tfpublicacion.setText("");
         Tisbn.setText("");
         Tnpublicacion.setText("");
@@ -362,7 +373,6 @@ public class Libros extends javax.swing.JFrame {
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Tautor;
     private javax.swing.JTextField Tfpublicacion;
     private javax.swing.JTextField Tisbn;
     private javax.swing.JTextField Tnpublicacion;
@@ -374,6 +384,7 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JButton atras;
     private javax.swing.JButton btnDeseleccionar;
     private javax.swing.JButton buscar;
+    private javax.swing.JComboBox<String> cmbAutor;
     private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;

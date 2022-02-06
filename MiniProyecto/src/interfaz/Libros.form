@@ -23,13 +23,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="atras" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="salir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -62,7 +55,6 @@
                                   <Component id="Tnpublicacion" alignment="0" max="32767" attributes="0"/>
                                   <Component id="Tisbn" alignment="0" max="32767" attributes="0"/>
                                   <Component id="Tfpublicacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Tautor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="Ttitulo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="Tprecio" alignment="0" pref="354" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -75,16 +67,28 @@
                                       <Component id="eliminar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="cmbGenero" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbAutor" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="401" max="-2" attributes="0"/>
-                      <Component id="btnDeseleccionar" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="atras" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="salir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnDeseleccionar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,7 +105,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Tautor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbAutor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -310,8 +314,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Ttitulo">
     </Component>
-    <Component class="javax.swing.JTextField" name="Tautor">
-    </Component>
     <Component class="javax.swing.JTextField" name="Tfpublicacion">
     </Component>
     <Component class="javax.swing.JTextField" name="Tisbn">
@@ -381,6 +383,21 @@
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbGenero">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbAutor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
