@@ -13,6 +13,8 @@ public class Genero extends javax.swing.JFrame {
     gDAO.listar(tablaGenero);
   }
 
+  String idGeneroSeleccionado;
+  
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -25,12 +27,12 @@ public class Genero extends javax.swing.JFrame {
         agregar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
-        buscar = new javax.swing.JButton();
         atras1 = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         Tdeseleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setText("Genero");
@@ -40,11 +42,11 @@ public class Genero extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Genero"
+                "Id", "Genero"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -68,6 +70,11 @@ public class Genero extends javax.swing.JFrame {
         });
 
         editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,8 +82,6 @@ public class Genero extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-
-        buscar.setText("Buscar");
 
         atras1.setText("Atrás");
         atras1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,39 +109,37 @@ public class Genero extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(93, 348, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Tgenero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(324, 324, 324))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(376, 376, 376))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(atras1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(salir)
-                                .addGap(329, 329, 329))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(agregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(editar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eliminar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Tdeseleccionar)
-                                .addGap(212, 212, 212))))))
+                                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Tdeseleccionar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Tgenero, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(247, 247, 247)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 64, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(atras1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,15 +155,14 @@ public class Genero extends javax.swing.JFrame {
                     .addComponent(agregar)
                     .addComponent(eliminar)
                     .addComponent(editar)
-                    .addComponent(buscar)
                     .addComponent(Tdeseleccionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
                     .addComponent(atras1))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -171,26 +173,49 @@ public class Genero extends javax.swing.JFrame {
         tablaGenero.clearSelection();    
     }//GEN-LAST:event_TdeseleccionarActionPerformed
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        
+        GeneroDAO gDAO = new GeneroDAO();
+        
+        if(idGeneroSeleccionado == null)
+            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        
+        else{
+        
+            gDAO.modificar(idGeneroSeleccionado, Tgenero.getText());
+            limpiarCampos();
+            gDAO.listar(tablaGenero);
+        }
+        
+        
+    }//GEN-LAST:event_editarActionPerformed
+
   private void tablaGeneroMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaGeneroMouseClicked
-       DefaultTableModel modelo = (DefaultTableModel) tablaGenero.getModel();
+       
+      DefaultTableModel modelo = (DefaultTableModel) tablaGenero.getModel();
       int filaSeleccionada = tablaGenero.getSelectedRow();
-      Tgenero.setText((String) modelo.getValueAt(filaSeleccionada, 0));
+      
+      idGeneroSeleccionado = (String) modelo.getValueAt(filaSeleccionada, 0).toString();
+      Tgenero.setText((String) modelo.getValueAt(filaSeleccionada, 1));
   } 
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    int seleccionado = tablaGenero.getSelectedRow();
-
-    if (seleccionado == -1) {
-      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    } else {
-      try {
-
-      } catch (Exception e) {
-
+    
+      GeneroDAO gDAO = new GeneroDAO();
+      
+      if(idGeneroSeleccionado == null)
+            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        
+      else{
+      
+          gDAO.eliminar(idGeneroSeleccionado);
+          limpiarCampos();
+          gDAO.listar(tablaGenero);
       }
-    }
   } // GEN-LAST:event_eliminarActionPerformed
   
       private void limpiarCampos() {
@@ -198,9 +223,14 @@ public class Genero extends javax.swing.JFrame {
 
   }
   
-
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+      
+      GeneroDAO gDAO = new GeneroDAO();
+      gDAO.agregar(Tgenero.getText());
+      limpiarCampos();
+      gDAO.listar(tablaGenero);
+      
   } // GEN-LAST:event_agregarActionPerformed
 
   private void atras1ActionPerformed(
@@ -255,7 +285,6 @@ public class Genero extends javax.swing.JFrame {
     private javax.swing.JTextField Tgenero;
     private javax.swing.JButton agregar;
     private javax.swing.JButton atras1;
-    private javax.swing.JButton buscar;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
