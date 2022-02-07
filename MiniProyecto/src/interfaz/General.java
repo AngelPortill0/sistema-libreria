@@ -1,5 +1,9 @@
 package interfaz;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class General extends javax.swing.JFrame {
 
   public General() {
@@ -48,7 +52,11 @@ public class General extends javax.swing.JFrame {
         genero.setText("Genero");
         genero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generoActionPerformed(evt);
+                try {
+                    generoActionPerformed(evt);
+                } catch (IOException ex) {
+                    Logger.getLogger(Genero.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -92,7 +100,7 @@ public class General extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   private void generoActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_generoActionPerformed
+      java.awt.event.ActionEvent evt) throws IOException { // GEN-FIRST:event_generoActionPerformed
     Genero General = new Genero();
     General.setVisible(true);
     this.setVisible(false);
