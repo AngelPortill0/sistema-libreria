@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
@@ -54,28 +53,25 @@ public class AutorDAO {
         statement = db.conectarBaseDeDatos().createStatement();
         statement.executeUpdate(sql);
 
-        JOptionPane.showMessageDialog(null, "Autor agregado!!!");
+        JOptionPane.showMessageDialog(null, "Autor agregado");
 
       } catch (SQLException e) {
       }
     }
     
     public void eiminarAutor (int idAutor){
-        
+        int confirmar = JOptionPane.showConfirmDialog(null, "Desea eliminar este autor?");
          String sqlSelect = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idAutor));
-      
-      try {
+         
+      if (confirmar == JOptionPane.OK_OPTION) { 
+             try {
             prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            int respuesta = prepareStatement.executeUpdate(sqlSelect);
-            
-            if (respuesta == -1) {
-                JOptionPane.showMessageDialog(null, "El autor se ha elimando Exitosamente");
-            }
-            
-      } catch (SQLException ex) {
-        Logger.getLogger(AutorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            prepareStatement.executeUpdate(sqlSelect);
+            JOptionPane.showMessageDialog(null, "El autor se ha elimando exitosamente");
+      
+      } catch (SQLException ex) { 
       }
-    
+            }
     }
 
     public void editarAutor(String idAutor,

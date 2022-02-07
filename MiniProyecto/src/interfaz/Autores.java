@@ -235,7 +235,7 @@ public class Autores extends javax.swing.JFrame {
   private void editarActionPerformed(
       java.awt.event.ActionEvent evt) {
       
-      if (Integer.parseInt(indiceAutorSeleccionado) == -1){
+      if (indiceAutorSeleccionado == null){
           
           JOptionPane.showMessageDialog(null, "Debes seleccionar un autor");   
     } else {
@@ -271,7 +271,7 @@ public class Autores extends javax.swing.JFrame {
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) {
-      if (Integer.parseInt(indiceAutorSeleccionado) == -1) {
+      if (indiceAutorSeleccionado == null) {
           JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         } else {
           var autorDAO = new AutorDAO();
@@ -290,7 +290,7 @@ public class Autores extends javax.swing.JFrame {
         || !(Tpublicaciones.getText().matches("^[1-9]\\d*$"))
         || Tbiografia.getText().equals("")) {
 
-      JOptionPane.showMessageDialog(null, "Por favor compruebe que los datos ingresados son correctos");
+      JOptionPane.showMessageDialog(null, "Ingrese los datos");
     } else {
           
       Autor autor = new Autor(Tnombre.getText(), Tapellido.getText(),Tfnacimiento.getText(), Tbiografia.getText(), Integer.parseInt(Tpublicaciones.getText())); 

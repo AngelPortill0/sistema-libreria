@@ -179,7 +179,7 @@ public class Genero extends javax.swing.JFrame {
         
         if(idGeneroSeleccionado == null)
             
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!!!");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         
         else{
         
@@ -223,7 +223,6 @@ public class Genero extends javax.swing.JFrame {
 
   }
   
-
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
       

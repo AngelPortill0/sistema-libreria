@@ -1,6 +1,5 @@
 package dao;
 
-import java.awt.HeadlessException;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -46,7 +45,7 @@ public class GeneroDAO {
   
       if(genero.equals(""))
           
-          JOptionPane.showMessageDialog(null, "Ingrese un dato!!!");
+          JOptionPane.showMessageDialog(null, "Ingrese un dato");
       
       else {
           
@@ -56,7 +55,7 @@ public class GeneroDAO {
           
               statement = db.conectarBaseDeDatos().createStatement();
               statement.executeUpdate(sql);
-              JOptionPane.showMessageDialog(null, "Autor agregado!!!");
+              JOptionPane.showMessageDialog(null, "Genero agregado");
           } 
           catch(SQLException e){}
       }
@@ -72,14 +71,11 @@ public class GeneroDAO {
               
               statement = db.conectarBaseDeDatos().createStatement();
               statement.executeUpdate(sql);
-              JOptionPane.showMessageDialog(null, "Genero eliminado exitosamente!!!");
+              JOptionPane.showMessageDialog(null, "Genero eliminado exitosamente");
               
           } catch (Exception e) {
           }
-      
       }
-  
-  
   }
 
     public void modificar(String idGenero, String genero) {
@@ -89,7 +85,7 @@ public class GeneroDAO {
         
         if(genero.equals(""))
             
-            JOptionPane.showMessageDialog(null, "Ingrese datos!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese datos");
         
         else {
         
@@ -97,7 +93,7 @@ public class GeneroDAO {
             
                 statement = db.conectarBaseDeDatos().createStatement();
                 statement.executeUpdate(sqlUpdate);
-                JOptionPane.showMessageDialog(null, "Genero editado!!!");
+                JOptionPane.showMessageDialog(null, "Genero editado");
                 
             }catch(SQLException e){}
         }
