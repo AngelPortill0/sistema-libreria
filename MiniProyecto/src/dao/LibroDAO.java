@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,6 +19,8 @@ public class LibroDAO {
   private PreparedStatement preparedStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
+
+
 
   public LibroDAO() {
     db = new DataBase();
@@ -78,6 +83,7 @@ public class LibroDAO {
           libro.getTitulo(),
           String.valueOf(resultSet.getInt(11)),
           libro.getNombreAutor(),
+          String.valueOf(resultSet.getInt(9)),
           libro.getGenero(),
           libro.getFechaDePublicacion(),
           libro.getIsbn(),
@@ -95,33 +101,28 @@ public class LibroDAO {
   }
 
   public void eliminarLibro(int idLibro) {
-      String sqlDelete = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idLibro));
+      String sqlDelete = "DELETE FROM `libro` WHERE `id` = ".concat(String.valueOf(idLibro));
       
       try {
             preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlDelete);
-            int respuesta = preparedStatement.executeUpdate(sqlDelete);
-            
-            if (respuesta == -1) {
-                JOptionPane.showMessageDialog(null, "El libro se ha elimando Exitosamente");
-            }
-            
+            preparedStatement.executeUpdate();           
       } catch (SQLException ex) {
         Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
       }
   }
   
   public void editarLibro(
-                            String idLibro, 
+                            int idLibro, 
                             String titulo, 
-                            // String idAutor, 
-                            String genero,
+                            int idAutor, 
+                            int idGenero,
                             String fechaDePublicacion,
                             String isbn,
                             int numeroDePaginas,
                             int puntuacion,
                             String descripcion,
                             float precio) {
-      String sqlUpdate = "UPDATE libro SET titulo = '" + titulo + "', "
+      String sqlUpdateLibro = "UPDATE libro SET titulo = '" + titulo + "', "
               + "fechaDePublicacion = '" + fechaDePublicacion + "', "
               + "isbn = '" + isbn + "', "
               + "numeroDePaginas = " + numeroDePaginas + ", "
@@ -130,29 +131,34 @@ public class LibroDAO {
               + "precio = " + precio + " "
               + "WHERE id = " + idLibro;
       
+      String sqlUpdateAutorGenero = "UPDATE libros_autores SET idAutor = " + idAutor + ","
+              + "idGenero = " + idGenero + " WHERE idLibro = " + idLibro + ";";
+      
+      
       try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdate);
-            int respuesta = preparedStatement.executeUpdate(sqlUpdate);
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateLibro);
+            preparedStatement.executeUpdate();
             
-            if (respuesta == -1) {
-                JOptionPane.showMessageDialog(null, "El libro se ha elimando Exitosamente");
-            }
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateAutorGenero);
+            preparedStatement.executeUpdate();
             
+
       } catch (SQLException ex) {
         Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
       }
   }
   
-  public ArrayList<String> cargarAutores() {
-      var autores = new ArrayList<String>();
-      String sqlSelect = "SELECT nombre, apellido FROM autor";
+  public HashMap<String, Integer> cargarAutores() {
+      var autores = new HashMap<String, Integer>();
+      String sqlSelect = "SELECT id, nombre, apellido FROM autor";
       
       try {
             preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                autores.add( resultSet.getString(1) + " " + resultSet.getString(2));
+                String nombreAutor = resultSet.getString(2);
+                autores.put(nombreAutor, resultSet.getInt(1));
         }
       } catch (SQLException ex) {
         Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,8 +167,8 @@ public class LibroDAO {
       return autores;
   }
   
-  public ArrayList<String> cargarGeneros() {
-      var generos = new ArrayList<String>();
+  public HashMap<String, Integer> cargarGeneros() {
+      var generos = new HashMap<String, Integer>();
       String sqlSelect = "SELECT * FROM genero";
       
       try {
@@ -170,7 +176,7 @@ public class LibroDAO {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                generos.add(resultSet.getString(2));
+                generos.put(resultSet.getString(2), resultSet.getInt(1));
         }
       } catch (SQLException ex) {
         Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,4 +184,6 @@ public class LibroDAO {
       
       return generos;
   }
+  
 }
+

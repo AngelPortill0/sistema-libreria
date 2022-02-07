@@ -1,14 +1,16 @@
 package interfaz;
 
 import dao.LibroDAO;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Libros extends javax.swing.JFrame {
-  private String indiceLibroSeleccionado;
-  private int filaSeleccionada;
+  private int filaSeleccionada = -1;
+  private HashMap<String, Integer> comboboxGeneros = new HashMap<>();
+  private HashMap<String, Integer> comboboxAutores = new HashMap<>();
+
   
   public Libros() {
     initComponents();
@@ -20,14 +22,14 @@ public class Libros extends javax.swing.JFrame {
     var libroDAO = new LibroDAO();
     libroDAO.cargarLibros(tablaLibros);
     
-    ArrayList<String> comboboxGeneros = libroDAO.cargarGeneros();
-    for (Iterator<String> genero = comboboxGeneros.iterator(); genero.hasNext();) {
-        cmbGenero.addItem(genero.next());
-    }
+               HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+          for (Map.Entry<String, Integer> genero: comboboxGeneros.entrySet()) {
+            cmbGenero.addItem(genero.getKey());
+            }
     
-    ArrayList<String> comboboxAutores = libroDAO.cargarAutores();
-    for (Iterator<String> autor = comboboxAutores.iterator(); autor.hasNext();) {
-        cmbAutor.addItem(autor.next());
+    HashMap<String, Integer> comboboxAutores = libroDAO.cargarAutores();
+    for (Map.Entry<String, Integer> autor: comboboxAutores.entrySet()) {
+        cmbAutor.addItem(autor.getKey());
     }
   }
 
@@ -75,11 +77,11 @@ public class Libros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Libro", "Titulo", "ID Autor", "Autor", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
+                "ID Libro", "Titulo", "ID Autor", "Autor", "ID Genero", "Genero", "Fecha de publicación", "ISBN", "Número de páginas", "Puntuación", "Descripción", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -284,25 +286,30 @@ public class Libros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        if (Integer.parseInt(indiceLibroSeleccionado) == -1) {
+        if (filaSeleccionada == -1) {
           JOptionPane.showMessageDialog(null, "Debes seleccionar un libro");
         } else {
           String idLibroSeleccionado = tablaLibros.getModel().getValueAt(filaSeleccionada, 0).toString();
           var libroDAO = new LibroDAO();
-
+          
+            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+            HashMap<String, Integer> comboboxAutores = libroDAO.cargarAutores();
+          
           libroDAO.editarLibro(
-                               idLibroSeleccionado,
+                               Integer.parseInt(idLibroSeleccionado),
                                Ttitulo.getText(),
-                               cmbGenero.getSelectedItem().toString(),
+                               comboboxAutores.get(cmbAutor.getSelectedItem().toString()),
+                               comboboxGeneros.get(cmbGenero.getSelectedItem().toString()),
                                Tfpublicacion.getText(),
                                Tisbn.getText(),
-                                Integer.parseInt(Tnpublicacion.getText()),
+                               Integer.parseInt(Tnpublicacion.getText()),
                                Integer.parseInt(Tpuntuacion.getText()),
                                TxtArea.getText(),
                                Float.parseFloat(Tprecio.getText())
           );
           limpiarCampos();
           libroDAO.cargarLibros(tablaLibros);
+          filaSeleccionada = -1;
         }
     }//GEN-LAST:event_editarActionPerformed
 
@@ -316,30 +323,30 @@ public class Libros extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
     filaSeleccionada = tablaLibros.getSelectedRow();
     
-    indiceLibroSeleccionado = modelo.getValueAt(filaSeleccionada, 0).toString();
-    
     Ttitulo.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
     
     cmbAutor.setSelectedItem(modelo.getValueAt(filaSeleccionada, 3).toString());
-    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 4).toString()); 
+    cmbGenero.setSelectedItem(modelo.getValueAt(filaSeleccionada, 5).toString()); 
     
-    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
-    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
-    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
-    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
-    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
-    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 10).toString());
+    Tfpublicacion.setText(modelo.getValueAt(filaSeleccionada, 6).toString());
+    Tisbn.setText(modelo.getValueAt(filaSeleccionada, 7).toString());
+    Tnpublicacion.setText(modelo.getValueAt(filaSeleccionada, 8).toString());
+    Tpuntuacion.setText(modelo.getValueAt(filaSeleccionada, 9).toString());
+    TxtArea.setText(modelo.getValueAt(filaSeleccionada, 10).toString());
+    Tprecio.setText(modelo.getValueAt(filaSeleccionada, 11).toString());
   } // GEN-LAST:event_tablaLibrosMouseClicked
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed       
-        if (Integer.parseInt(indiceLibroSeleccionado) == -1) {
+        if (filaSeleccionada == -1) {
           JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
         } else {
           var libroDAO = new LibroDAO();
-          libroDAO.eliminarLibro(Integer.parseInt(indiceLibroSeleccionado));
+          String idLibroSeleccionado = tablaLibros.getModel().getValueAt(filaSeleccionada, 0).toString();
+          libroDAO.eliminarLibro(Integer.parseInt(idLibroSeleccionado));
           limpiarCampos();
           libroDAO.cargarLibros(tablaLibros);
+          filaSeleccionada = -1;
         }
   } // GEN-LAST:event_eliminarActionPerformed
 
