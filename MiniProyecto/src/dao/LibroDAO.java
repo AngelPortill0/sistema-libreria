@@ -4,13 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logica.Libro;
@@ -206,7 +202,7 @@ public class LibroDAO {
       return autores;
   }
   
-  public HashMap<String, Integer> cargarGeneros() {
+  public HashMap<String, Integer> cargarGenerosPorNombre() {
       var generos = new HashMap<String, Integer>();
       String sqlSelect = "SELECT * FROM genero";
       

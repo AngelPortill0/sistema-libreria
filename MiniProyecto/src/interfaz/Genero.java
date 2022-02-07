@@ -1,12 +1,16 @@
 package interfaz;
 
 import dao.GeneroDAO;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.Reporte;
 
 public class Genero extends javax.swing.JFrame {
 
-  public Genero() {
+  public Genero() throws IOException {
     initComponents();
     setLocationRelativeTo(null);
     GeneroDAO gDAO = new GeneroDAO();
@@ -30,6 +34,7 @@ public class Genero extends javax.swing.JFrame {
         atras1 = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         Tdeseleccionar = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -104,6 +109,13 @@ public class Genero extends javax.swing.JFrame {
             }
         });
 
+        btnReporte.setText("Generar Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,10 +148,15 @@ public class Genero extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(atras1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(atras1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnReporte)
+                        .addGap(215, 215, 215))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +175,9 @@ public class Genero extends javax.swing.JFrame {
                     .addComponent(Tdeseleccionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReporte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
                     .addComponent(atras1))
@@ -186,10 +205,22 @@ public class Genero extends javax.swing.JFrame {
             gDAO.modificar(idGeneroSeleccionado, Tgenero.getText());
             limpiarCampos();
             gDAO.listar(tablaGenero);
-        }
-        
-        
+        }   
     }//GEN-LAST:event_editarActionPerformed
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        GeneroDAO gDAO = new GeneroDAO();
+        var freq = gDAO.generarListaDeFrecuenciasGeneros();
+        var generos = gDAO.cargarGenerosPorId();
+        var generosConFreq = gDAO.cargarGenerosConFreq(freq, generos);
+    
+        var reporte = new Reporte(generosConFreq);
+      try {
+          reporte.graficar();
+      } catch (IOException ex) {
+          Logger.getLogger(Genero.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }//GEN-LAST:event_btnReporteActionPerformed
 
   private void tablaGeneroMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaGeneroMouseClicked
@@ -276,7 +307,11 @@ public class Genero extends javax.swing.JFrame {
 
     java.awt.EventQueue.invokeLater(
         () -> {
-          new Genero().setVisible(true);
+        try {
+            new Genero().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Genero.class.getName()).log(Level.SEVERE, null, ex);
+        }
         });
   }
 
@@ -285,6 +320,7 @@ public class Genero extends javax.swing.JFrame {
     private javax.swing.JTextField Tgenero;
     private javax.swing.JButton agregar;
     private javax.swing.JButton atras1;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;

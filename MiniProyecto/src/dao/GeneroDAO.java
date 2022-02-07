@@ -1,6 +1,11 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -78,7 +83,7 @@ public class GeneroDAO {
       }
   }
 
-    public void modificar(String idGenero, String genero) {
+  public void modificar(String idGenero, String genero) {
         
         String sqlUpdate = "UPDATE genero SET genero = '" + genero + 
                 "' WHERE id = " + idGenero;
@@ -98,4 +103,67 @@ public class GeneroDAO {
             }catch(SQLException e){}
         }
     }
+  
+  public HashMap<Integer, Integer> generarListaDeFrecuenciasGeneros() {
+      String sqlSelectIdGeneros = "SELECT idGenero, COUNT(*) freq FROM libros_autores GROUP BY idGenero;";
+      
+      var freqGeneros = new HashMap<Integer, Integer>();
+      
+      try {
+        conexion = db.conectarBaseDeDatos();
+        statement = conexion.createStatement();
+        resultSet = statement.executeQuery(sqlSelectIdGeneros);
+
+        while (resultSet.next()) {
+          freqGeneros.put(resultSet.getInt(1), resultSet.getInt(2));
+        }
+        
+       
+      } catch (SQLException ex) {
+          Logger.getLogger(GeneroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      return freqGeneros;
+  }
+  
+  public HashMap<Integer, String> cargarGenerosPorId() {
+      var generos = new HashMap<Integer, String>();
+      String sqlSelect = "SELECT * FROM genero";
+      
+      try {
+            conexion = db.conectarBaseDeDatos();
+            statement = conexion.createStatement();
+            resultSet = statement.executeQuery(sqlSelect);
+
+            while (resultSet.next()) {
+                generos.put(resultSet.getInt(1), resultSet.getString(2));
+        }
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      return generos;
+  }
+  
+  public HashMap<String, Integer> cargarGenerosConFreq(HashMap<Integer, Integer> freq, HashMap<Integer, String> generos) {
+      var generosConFreq = new HashMap<String, Integer>();
+      
+      for (Map.Entry<Integer, String> genero: generos.entrySet()) {
+            
+//          System.out.println(genero.getKey());
+//          System.out.println(genero.getValue());
+//          System.out.println(freq.containsKey(genero.getKey()));
+          
+          if (freq.containsKey(genero.getKey())) {
+              generosConFreq.put(genero.getValue(), freq.get((genero.getKey())));
+          }
+          
+//            if (generos.containsKey(frecuencia.getKey())) {
+//                generosConFreq.put(generos.get(frecuencia.getKey()), frecuencia.getValue());
+//            }
+          
+     }
+      
+      return generosConFreq;
+  }
 }

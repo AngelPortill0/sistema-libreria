@@ -22,7 +22,7 @@ public class Libros extends javax.swing.JFrame {
     var libroDAO = new LibroDAO();
     libroDAO.cargarLibros(tablaLibros);
     
-               HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+               HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGenerosPorNombre();
           for (Map.Entry<String, Integer> genero: comboboxGeneros.entrySet()) {
             cmbGenero.addItem(genero.getKey());
             }
@@ -292,7 +292,7 @@ public class Libros extends javax.swing.JFrame {
           String idLibroSeleccionado = tablaLibros.getModel().getValueAt(filaSeleccionada, 0).toString();
           var libroDAO = new LibroDAO();
           
-            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGenerosPorNombre();
             HashMap<String, Integer> comboboxAutores = libroDAO.cargarAutores();
           
           libroDAO.editarLibro(
@@ -365,7 +365,7 @@ public class Libros extends javax.swing.JFrame {
         } else {
             var libroDAO = new LibroDAO();
             
-            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGenerosPorNombre();
             HashMap<String, Integer> comboboxAutores = libroDAO.cargarAutores();
                         
             libroDAO.agregarLibro(
