@@ -143,19 +143,9 @@ public class GeneroDAO {
     var generosConFreq = new HashMap<String, Integer>();
 
     for (Map.Entry<Integer, String> genero : generos.entrySet()) {
-
-      //          System.out.println(genero.getKey());
-      //          System.out.println(genero.getValue());
-      //          System.out.println(freq.containsKey(genero.getKey()));
-
       if (freq.containsKey(genero.getKey())) {
         generosConFreq.put(genero.getValue(), freq.get((genero.getKey())));
       }
-
-      //            if (generos.containsKey(frecuencia.getKey())) {
-      //                generosConFreq.put(generos.get(frecuencia.getKey()), frecuencia.getValue());
-      //            }
-
     }
 
     return generosConFreq;
