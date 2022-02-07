@@ -3,12 +3,14 @@ package dao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AutorDAO {
   private Statement statement;
+  private Connection conexion;
   private PreparedStatement prepareStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
@@ -99,5 +101,26 @@ public class AutorDAO {
               
         
     }
-  
+    
+    public HashMap<String, Integer> generarAutoresConPublicaciones() {
+      String sqlSelectNumPublicaciones = "SELECT nombre, apellido, numeroDePublicaciones FROM autor";
+      
+      var numPublicacionesAutor = new HashMap<String, Integer>();
+      
+      try {
+        conexion = db.conectarBaseDeDatos();
+        statement = conexion.createStatement();
+        resultSet = statement.executeQuery(sqlSelectNumPublicaciones);
+
+        while (resultSet.next()) {
+          numPublicacionesAutor.put(resultSet.getString(1) + " " + resultSet.getString(2), resultSet.getInt(3));
+        }
+        
+       
+      } catch (SQLException ex) {
+          Logger.getLogger(GeneroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      return numPublicacionesAutor;
+  }
 }

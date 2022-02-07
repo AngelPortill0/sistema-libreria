@@ -214,9 +214,9 @@ public class Genero extends javax.swing.JFrame {
         var generos = gDAO.cargarGenerosPorId();
         var generosConFreq = gDAO.cargarGenerosConFreq(freq, generos);
     
-        var reporte = new Reporte(generosConFreq);
+        var reporte = new Reporte(generosConFreq, "reporte_genero_frecuencia");
       try {
-          reporte.graficar();
+          reporte.graficar("Reporte de Géneros Literarios más Comunes");
       } catch (IOException ex) {
           Logger.getLogger(Genero.class.getName()).log(Level.SEVERE, null, ex);
       }

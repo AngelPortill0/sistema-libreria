@@ -21,18 +21,18 @@ public class Reporte {
     private HashMap<String, Integer> datos = new HashMap<>(); 
     private DefaultPieDataset dataset = new DefaultPieDataset();
     
-    public Reporte(HashMap<String, Integer> datos){
+    public Reporte(HashMap<String, Integer> datos, String nombreArchivo){
         
         for(String dato: datos.keySet())
             dataset.setValue(dato, datos.get(dato));
     }
     
-    public void graficar() throws IOException {     
+    public void graficar(String tituloGrafico) throws IOException {     
 
         JFreeChart chart = ChartFactory.createPieChart( 
-         "Géneros Literarios más Frecuentes" ,  // chart title                   
-         dataset ,                              // data 
-         true ,                                 // include legend                   
+         tituloGrafico,  // chart title                   
+         dataset,        // data 
+         true,           // include legend                   
          true, 
          false);
         
@@ -55,7 +55,7 @@ public class Reporte {
         
         int width = 1280;   /* Width of the image */             
         int height = 720;  /* Height of the image */                             
-        File pieChart = new File( "generos_mas_comunes" );                           
+        File pieChart = new File("nombreArchivo".concat(".png"));                           
         ChartUtils.saveChartAsPNG(pieChart, chart, width, height);
         
         JOptionPane.showMessageDialog(null, "Reporte generado, revise su directorio!");
