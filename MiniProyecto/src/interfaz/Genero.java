@@ -13,6 +13,8 @@ public class Genero extends javax.swing.JFrame {
     gDAO.listar(tablaGenero);
   }
 
+  String idGeneroSeleccionado;
+  
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,6 +70,11 @@ public class Genero extends javax.swing.JFrame {
         });
 
         editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,26 +178,49 @@ public class Genero extends javax.swing.JFrame {
         tablaGenero.clearSelection();    
     }//GEN-LAST:event_TdeseleccionarActionPerformed
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        
+        GeneroDAO gDAO = new GeneroDAO();
+        
+        if(idGeneroSeleccionado == null)
+            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!!!");
+        
+        else{
+        
+            gDAO.modificar(idGeneroSeleccionado, Tgenero.getText());
+            limpiarCampos();
+            gDAO.listar(tablaGenero);
+        }
+        
+        
+    }//GEN-LAST:event_editarActionPerformed
+
   private void tablaGeneroMouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_tablaGeneroMouseClicked
-       DefaultTableModel modelo = (DefaultTableModel) tablaGenero.getModel();
+       
+      DefaultTableModel modelo = (DefaultTableModel) tablaGenero.getModel();
       int filaSeleccionada = tablaGenero.getSelectedRow();
-      Tgenero.setText((String) modelo.getValueAt(filaSeleccionada, 0));
+      
+      idGeneroSeleccionado = (String) modelo.getValueAt(filaSeleccionada, 0).toString();
+      Tgenero.setText((String) modelo.getValueAt(filaSeleccionada, 1));
   } 
 
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_eliminarActionPerformed
-    int seleccionado = tablaGenero.getSelectedRow();
-
-    if (seleccionado == -1) {
-      JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
-    } else {
-      try {
-
-      } catch (Exception e) {
-
+    
+      GeneroDAO gDAO = new GeneroDAO();
+      
+      if(idGeneroSeleccionado == null)
+            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!!!");
+        
+      else{
+      
+          gDAO.eliminar(idGeneroSeleccionado);
+          limpiarCampos();
+          gDAO.listar(tablaGenero);
       }
-    }
   } // GEN-LAST:event_eliminarActionPerformed
   
       private void limpiarCampos() {

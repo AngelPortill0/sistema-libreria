@@ -1,5 +1,6 @@
 package dao;
 
+import java.awt.HeadlessException;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -61,15 +62,18 @@ public class GeneroDAO {
       }
   }
   
-  public void eliminar(String genero){
+  public void eliminar(String idGenero){
       
       int confirmar = JOptionPane.showConfirmDialog(null, "Desea eliminar este genero?");
+      String sql = "DELETE FROM genero WHERE id = " + idGenero;
       
       if (confirmar == JOptionPane.OK_OPTION){
           try {
-              String sql = "DELETE FROM genero" + "WHERE genero = ?";
+              
               statement = db.conectarBaseDeDatos().createStatement();
               statement.executeUpdate(sql);
+              JOptionPane.showMessageDialog(null, "Genero eliminado exitosamente!!!");
+              
           } catch (Exception e) {
           }
       
@@ -77,4 +81,25 @@ public class GeneroDAO {
   
   
   }
+
+    public void modificar(String idGenero, String genero) {
+        
+        String sqlUpdate = "UPDATE genero SET genero = '" + genero + 
+                "' WHERE id = " + idGenero;
+        
+        if(genero.equals(""))
+            
+            JOptionPane.showMessageDialog(null, "Ingrese datos!!!");
+        
+        else {
+        
+            try{
+            
+                statement = db.conectarBaseDeDatos().createStatement();
+                statement.executeUpdate(sqlUpdate);
+                JOptionPane.showMessageDialog(null, "Genero editado!!!");
+                
+            }catch(SQLException e){}
+        }
+    }
 }
