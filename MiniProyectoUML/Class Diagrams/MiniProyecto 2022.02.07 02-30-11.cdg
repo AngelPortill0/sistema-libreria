@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="MiniProyecto">
+  <ClassDiagramComponents>
+    <Class name="AutorDAO" package="dao" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="statement" type="Statement" visibility="private"/>
+        <Field name="prepareStatement" type="PreparedStatement" visibility="private"/>
+        <Field name="resultSet" type="ResultSet" visibility="private"/>
+        <Field name="modelo" type="DefaultTableModel" visibility="private"/>
+        <Field name="db" type="DataBase" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="listar" returnType="void" visibility="public">
+          <Argument type="JTable" name="tablaAutor"/>
+        </Method>
+        <Method name="agregarAutor" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="biografia"/>
+          <Argument type="int" name="publicaciones"/>
+          <Argument type="String" name="fnacimiento"/>
+        </Method>
+        <Method name="eiminarAutor" returnType="void" visibility="public">
+          <Argument type="int" name="idAutor"/>
+        </Method>
+        <Method name="editarAutor" returnType="void" visibility="public">
+          <Argument type="String" name="idAutor"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="biografia"/>
+          <Argument type="String" name="fnacimiento"/>
+          <Argument type="int" name="publicaciones"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DataBase" package="dao" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="USUARIO_BD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="CONTRASENA_BD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="conectarBaseDeDatos" returnType="Connection" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GeneroDAO" package="dao" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="statement" type="Statement" visibility="private"/>
+        <Field name="conexion" type="Connection" visibility="private"/>
+        <Field name="resultSet" type="ResultSet" visibility="private"/>
+        <Field name="modelo" type="DefaultTableModel" visibility="private"/>
+        <Field name="db" type="DataBase" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="listar" returnType="void" visibility="public">
+          <Argument type="JTable" name="tablaAutor"/>
+        </Method>
+        <Method name="agregar" returnType="void" visibility="public">
+          <Argument type="String" name="genero"/>
+        </Method>
+        <Method name="eliminar" returnType="void" visibility="public">
+          <Argument type="String" name="idGenero"/>
+        </Method>
+        <Method name="modificar" returnType="void" visibility="public">
+          <Argument type="String" name="idGenero"/>
+          <Argument type="String" name="genero"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LibroDAO" package="dao" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DataBase" visibility="private"/>
+        <Field name="preparedStatement" type="PreparedStatement" visibility="private"/>
+        <Field name="resultSet" type="ResultSet" visibility="private"/>
+        <Field name="modelo" type="DefaultTableModel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="cargarLibros" returnType="void" visibility="public">
+          <Argument type="JTable" name="tablaLibros"/>
+        </Method>
+        <Method name="eliminarLibro" returnType="void" visibility="public">
+          <Argument type="int" name="idLibro"/>
+        </Method>
+        <Method name="editarLibro" returnType="void" visibility="public">
+          <Argument type="int" name="idLibro"/>
+          <Argument type="String" name="titulo"/>
+          <Argument type="int" name="idAutor"/>
+          <Argument type="int" name="idGenero"/>
+          <Argument type="String" name="fechaDePublicacion"/>
+          <Argument type="String" name="isbn"/>
+          <Argument type="int" name="numeroDePaginas"/>
+          <Argument type="int" name="puntuacion"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="float" name="precio"/>
+        </Method>
+        <Method name="cargarAutores" returnType="HashMap&lt;String, Integer&gt;" visibility="public"/>
+        <Method name="cargarGeneros" returnType="HashMap&lt;String, Integer&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Autores" package="interfaz" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="indiceAutorSeleccionado" type="String" visibility="private"/>
+        <Field name="Tapellido" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tbiografia" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="Tdeseleccionar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Tfnacimiento" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tnombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tpublicaciones" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="agregar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="editar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="eliminar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="salir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="tablaAutores" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="TdeseleccionarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="editarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tablaAutoresMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="eliminarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="agregarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limpiarCampos" returnType="void" visibility="private"/>
+        <Method name="salirActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="atrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="General" package="interfaz" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="author" type="javax.swing.JButton" visibility="private"/>
+        <Field name="book" type="javax.swing.JButton" visibility="private"/>
+        <Field name="exit" type="javax.swing.JToggleButton" visibility="private"/>
+        <Field name="genero" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="generoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="exitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="bookActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="authorActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Genero" package="interfaz" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="idGeneroSeleccionado" type="String" visibility="package"/>
+        <Field name="Tdeseleccionar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Tgenero" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="agregar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="atras1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="editar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="eliminar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="salir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="tablaGenero" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="TdeseleccionarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="editarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tablaGeneroMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="eliminarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limpiarCampos" returnType="void" visibility="private"/>
+        <Method name="agregarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="atras1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="salirActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InicioSesion" package="interfaz" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="aceptar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="contasena" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="jDesktopPane1" type="javax.swing.JDesktopPane" visibility="private"/>
+        <Field name="jInternalFrame1" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="jInternalFrame2" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="salir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="usuario" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="salirActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="aceptarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="usuarioActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Libros" package="interfaz" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="filaSeleccionada" type="int" visibility="private"/>
+        <Field name="comboboxGeneros" type="HashMap&lt;String, Integer&gt;" visibility="private"/>
+        <Field name="comboboxAutores" type="HashMap&lt;String, Integer&gt;" visibility="private"/>
+        <Field name="Tfpublicacion" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tisbn" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tnpublicacion" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tprecio" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Tpuntuacion" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Ttitulo" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="TxtArea" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="agregar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDeseleccionar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="buscar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cmbAutor" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="cmbGenero" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="editar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="eliminar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="salir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="tablaLibros" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="editarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDeseleccionarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tablaLibrosMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="eliminarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="agregarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="salirActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="atrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="limpiarCampos" returnType="void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Autor" package="logica" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="biografia" type="String" visibility="private"/>
+        <Field name="publicaciones" type="int" visibility="private"/>
+        <Field name="fnacimiento" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="fnacimiento"/>
+          <Argument type="String" name="biografia"/>
+          <Argument type="int" name="publicaciones"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setBiografia" returnType="String" visibility="private">
+          <Argument type="String" name="biografia"/>
+        </Method>
+        <Method name="setPublicaciones" returnType="int" visibility="private">
+          <Argument type="int" name="publicaciones"/>
+        </Method>
+        <Method name="setFnacimiento" returnType="String" visibility="private">
+          <Argument type="String" name="fnacimiento"/>
+        </Method>
+        <Method name="getBiografia" returnType="String" visibility="public"/>
+        <Method name="getPublicaciones" returnType="int" visibility="public"/>
+        <Method name="getFnacimiento" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="GeneroLiterario" package="logica" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Literals>
+        <Literal name="ROMANCE"/>
+        <Literal name="MISTERIO"/>
+        <Literal name="CIENCIA_FICCION"/>
+        <Literal name="THRILLER"/>
+        <Literal name="HORROR"/>
+        <Literal name="AUTOAYUDA"/>
+        <Literal name="AUTOBIOGRAFIA"/>
+      </Literals>
+    </Enum>
+    <Class name="Libro" package="logica" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="fechaDePublicacion" type="String" visibility="private"/>
+        <Field name="isbn" type="String" visibility="private"/>
+        <Field name="numeroDePaginas" type="int" visibility="private"/>
+        <Field name="puntuacion" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="precio" type="float" visibility="private"/>
+        <Field name="autor" type="Autor" visibility="private"/>
+        <Field name="generoLiterario" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="titulo"/>
+          <Argument type="String" name="fechaDePublicacion"/>
+          <Argument type="String" name="isbn"/>
+          <Argument type="int" name="numeroDePaginas"/>
+          <Argument type="int" name="puntuacion"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="float" name="precio"/>
+          <Argument type="String" name="generoLiterario"/>
+          <Argument type="String" name="nombreAutor"/>
+          <Argument type="String" name="apellidoAutor"/>
+          <Argument type="String" name="fechaDeNacimientoAutor"/>
+          <Argument type="String" name="bioAutor"/>
+          <Argument type="int" name="numeroDePublicacionesAutor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setTitulo" returnType="String" visibility="private">
+          <Argument type="String" name="titulo"/>
+        </Method>
+        <Method name="setFechaDePubicacion" returnType="String" visibility="private">
+          <Argument type="String" name="fechaDePublicacion"/>
+        </Method>
+        <Method name="setIsbn" returnType="String" visibility="private">
+          <Argument type="String" name="isbn"/>
+        </Method>
+        <Method name="setNumeroDePaginas" returnType="int" visibility="private">
+          <Argument type="int" name="numeroDePaginas"/>
+        </Method>
+        <Method name="setPuntuacion" returnType="int" visibility="private">
+          <Argument type="int" name="puntuacion"/>
+        </Method>
+        <Method name="setDescripcion" returnType="String" visibility="private">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+        <Method name="setPrecio" returnType="float" visibility="private">
+          <Argument type="float" name="precio"/>
+        </Method>
+        <Method name="setGenero" returnType="String" visibility="private">
+          <Argument type="String" name="genero"/>
+        </Method>
+        <Method name="getNombreAutor" returnType="String" visibility="public"/>
+        <Method name="getTitulo" returnType="String" visibility="public"/>
+        <Method name="getFechaDePublicacion" returnType="String" visibility="public"/>
+        <Method name="getIsbn" returnType="String" visibility="public"/>
+        <Method name="getNumeroDePaginas" returnType="int" visibility="public"/>
+        <Method name="getPuntuacion" returnType="int" visibility="public"/>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="getPrecio" returnType="float" visibility="public"/>
+        <Method name="getGenero" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MiniProyecto" package="logica" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Persona" package="logica" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="fechaDeNacimiento" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="fechaDeNacimiento"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setNombre" returnType="String" visibility="private">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="setApellido" returnType="String" visibility="private">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="setFechaDeNacimiento" returnType="String" visibility="private">
+          <Argument type="String" name="fechaDeNacimiento"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="getFechaDeNacimiento" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="db" source="dao.LibroDAO" target="dao.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="dao.AutorDAO" target="dao.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="logica.Autor" target="logica.Persona"/>
+    <HasRelation name="autor" source="logica.Libro" target="logica.Autor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="dao.GeneroDAO" target="dao.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
