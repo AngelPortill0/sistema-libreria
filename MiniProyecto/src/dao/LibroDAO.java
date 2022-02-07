@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import logica.Libro;
 
 public class LibroDAO {
   private DataBase db;
+  private Statement statement;
   private PreparedStatement preparedStatement;
   private ResultSet resultSet;
   private DefaultTableModel modelo;
@@ -100,6 +102,43 @@ public class LibroDAO {
     }
   }
 
+  public void agregarLibro(
+                            String titulo, 
+                            String fechaDePublicacion, 
+                            String isbn, 
+                            int numeroDePaginas, 
+                            int puntuacion, 
+                            String descripcion, 
+                            float precio,
+                            int idGenero,
+                            int idAutor) {
+      
+      String sqlInsertLibro = "INSERT INTO libro VALUES (NULL, '" + titulo + "', '" + fechaDePublicacion + "', '" + isbn + "', " + numeroDePaginas + ", " + puntuacion + ", '" + descripcion + "', " + precio + ");";
+
+      try {
+            statement = db.conectarBaseDeDatos().createStatement();
+            statement.executeUpdate(sqlInsertLibro);
+            
+            String sqlSelectIdLibroCreado = "SELECT MAX(id) FROM libro;";
+            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelectIdLibroCreado);
+            resultSet = preparedStatement.executeQuery();
+            
+            int idLibro = 0;
+            if (resultSet.next()) {
+                idLibro = resultSet.getInt(1);
+            }
+            
+            String sqlInsertLibroGeneroAutor = "INSERT INTO libros_autores VALUES "
+              + "(" + idLibro + ", " + idGenero + ", " + idAutor + ");";
+            
+            statement = db.conectarBaseDeDatos().createStatement();
+            statement.executeUpdate(sqlInsertLibroGeneroAutor);
+            
+      } catch (SQLException ex) {
+        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+      }
+  }
+  
   public void eliminarLibro(int idLibro) {
       String sqlDelete = "DELETE FROM `libro` WHERE `id` = ".concat(String.valueOf(idLibro));
       

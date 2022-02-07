@@ -352,29 +352,37 @@ public class Libros extends javax.swing.JFrame {
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
-    //    String titulo = Ttitulo.getText();
-    //    String autor = Tautor.getText();
-    //    String genero = Tgenero.getText();
-    //    String fpublicacion = Tfpublicacion.getText();
-    //    String isbn = Tisbn.getText();
-    //    String publicacion = Tfpublicacion.getText();
-    //    String puntuacion = Tnpublicacion.getText();
-    //    String descripcion = Tdescripcion.getText();
-    //    String precio = Tprecio.getText();
-    //
-    //    if (titulo.equals("")
-    //        || autor.equals("")
-    //        || genero.equals("")
-    //        || fpublicacion.equals("")
-    //        || isbn.equals("")
-    //        || publicacion.equals("")
-    //        || puntuacion.equals("")
-    //        || descripcion.equals("")
-    //        || precio.equals("")) {
-    //      JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
-    //    } else {
-    //
-    //    }
+        if (Ttitulo.getText().equals("")
+            || cmbAutor.getSelectedItem().equals("")
+            || cmbGenero.getSelectedItem().equals("")
+            || Tfpublicacion.getText().equals("")
+            || Tisbn.getText().equals("")
+            || Tnpublicacion.getText().equals("")
+            || Tpuntuacion.getText().equals("")
+            || TxtArea.getText().equals("")
+            || Tprecio.getText().equals("")) {
+          JOptionPane.showMessageDialog(null, "Los campos estan vacios!!!");
+        } else {
+            var libroDAO = new LibroDAO();
+            
+            HashMap<String, Integer> comboboxGeneros = libroDAO.cargarGeneros();
+            HashMap<String, Integer> comboboxAutores = libroDAO.cargarAutores();
+                        
+            libroDAO.agregarLibro(
+                                    Ttitulo.getText(),
+                                    Tfpublicacion.getText(),
+                                    Tisbn.getText(),
+                                    Integer.parseInt(Tnpublicacion.getText()),
+                                    Integer.parseInt(Tpuntuacion.getText()),
+                                    TxtArea.getText(),
+                                    Float.parseFloat(Tprecio.getText()),
+                                    comboboxAutores.get(cmbAutor.getSelectedItem().toString()),
+                                    comboboxGeneros.get(cmbGenero.getSelectedItem().toString())
+            );
+            limpiarCampos();
+            libroDAO.cargarLibros(tablaLibros);
+            filaSeleccionada = -1;
+        }
   } // GEN-LAST:event_agregarActionPerformed
 
   private void salirActionPerformed(
