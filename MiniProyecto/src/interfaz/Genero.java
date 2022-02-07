@@ -208,7 +208,7 @@ public class Genero extends javax.swing.JFrame {
       
       if(idGeneroSeleccionado == null)
             
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!!!");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         
       else{
       

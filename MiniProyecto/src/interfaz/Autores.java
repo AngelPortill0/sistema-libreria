@@ -272,7 +272,7 @@ public class Autores extends javax.swing.JFrame {
   private void eliminarActionPerformed(
       java.awt.event.ActionEvent evt) {
       if (Integer.parseInt(indiceAutorSeleccionado) == -1) {
-          JOptionPane.showMessageDialog(null, "Debes seleccionar una fila");
+          JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         } else {
           var autorDAO = new AutorDAO();
           autorDAO.eiminarAutor(Integer.parseInt(indiceAutorSeleccionado));
