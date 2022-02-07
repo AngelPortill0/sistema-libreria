@@ -27,16 +27,38 @@ public class GeneroDAO {
       conexion = db.conectarBaseDeDatos();
       statement = conexion.createStatement();
       resultSet = statement.executeQuery(sql);
-      Object[] registro = new Object[1];
+      Object[] registro = new Object[2];
       modelo = (DefaultTableModel) tablaAutor.getModel();
+      modelo.setRowCount(0);
 
       while (resultSet.next()) {
 
-        registro[0] = resultSet.getString("genero");
+        registro[0] = resultSet.getInt("id");
+        registro[1] = resultSet.getString("genero");
         modelo.addRow(registro);
       }
     } catch (SQLException e) {
     }
+  }
+  
+  public void agregar(String genero){
+  
+      if(genero.equals(""))
+          
+          JOptionPane.showMessageDialog(null, "Ingrese un dato!!!");
+      
+      else {
+          
+          String sql = "INSERT INTO genero values(NULL, '"+ genero +"')";
+      
+          try {
+          
+              statement = db.conectarBaseDeDatos().createStatement();
+              statement.executeUpdate(sql);
+              JOptionPane.showMessageDialog(null, "Autor agregado!!!");
+          } 
+          catch(SQLException e){}
+      }
   }
   
   public void eliminar(String genero){

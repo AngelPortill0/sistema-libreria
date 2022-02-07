@@ -40,11 +40,11 @@ public class Genero extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Genero"
+                "Id", "Genero"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -201,6 +201,12 @@ public class Genero extends javax.swing.JFrame {
 
   private void agregarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_agregarActionPerformed
+      
+      GeneroDAO gDAO = new GeneroDAO();
+      gDAO.agregar(Tgenero.getText());
+      limpiarCampos();
+      gDAO.listar(tablaGenero);
+      
   } // GEN-LAST:event_agregarActionPerformed
 
   private void atras1ActionPerformed(
