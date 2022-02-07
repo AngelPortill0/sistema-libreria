@@ -18,8 +18,6 @@ public class LibroDAO {
   private ResultSet resultSet;
   private DefaultTableModel modelo;
 
-
-
   public LibroDAO() {
     db = new DataBase();
   }
@@ -75,7 +73,7 @@ public class LibroDAO {
                 resultSet.getString(14), // Fecha Nacimiento
                 resultSet.getString(15), // Biografia
                 resultSet.getInt(16));
-        
+
         String[] datos = {
           String.valueOf(resultSet.getInt(1)),
           libro.getTitulo(),
@@ -99,126 +97,167 @@ public class LibroDAO {
   }
 
   public void agregarLibro(
-                            String titulo, 
-                            String fechaDePublicacion, 
-                            String isbn, 
-                            int numeroDePaginas, 
-                            int puntuacion, 
-                            String descripcion, 
-                            float precio,
-                            int idGenero,
-                            int idAutor) {
-      
-      String sqlInsertLibro = "INSERT INTO libro VALUES (NULL, '" + titulo + "', '" + fechaDePublicacion + "', '" + isbn + "', " + numeroDePaginas + ", " + puntuacion + ", '" + descripcion + "', " + precio + ");";
+      String titulo,
+      String fechaDePublicacion,
+      String isbn,
+      int numeroDePaginas,
+      int puntuacion,
+      String descripcion,
+      float precio,
+      int idGenero,
+      int idAutor) {
 
-      try {
-            statement = db.conectarBaseDeDatos().createStatement();
-            statement.executeUpdate(sqlInsertLibro);
-            
-            String sqlSelectIdLibroCreado = "SELECT MAX(id) FROM libro;";
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelectIdLibroCreado);
-            resultSet = preparedStatement.executeQuery();
-            
-            int idLibro = 0;
-            if (resultSet.next()) {
-                idLibro = resultSet.getInt(1);
-            }
-            
-            String sqlInsertLibroGeneroAutor = "INSERT INTO libros_autores VALUES "
-              + "(" + idLibro + ", " + idGenero + ", " + idAutor + ");";
-            
-            statement = db.conectarBaseDeDatos().createStatement();
-            statement.executeUpdate(sqlInsertLibroGeneroAutor);
-            
-      } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    String sqlInsertLibro =
+        "INSERT INTO libro VALUES (NULL, '"
+            + titulo
+            + "', '"
+            + fechaDePublicacion
+            + "', '"
+            + isbn
+            + "', "
+            + numeroDePaginas
+            + ", "
+            + puntuacion
+            + ", '"
+            + descripcion
+            + "', "
+            + precio
+            + ");";
+
+    try {
+      statement = db.conectarBaseDeDatos().createStatement();
+      statement.executeUpdate(sqlInsertLibro);
+
+      String sqlSelectIdLibroCreado = "SELECT MAX(id) FROM libro;";
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelectIdLibroCreado);
+      resultSet = preparedStatement.executeQuery();
+
+      int idLibro = 0;
+      if (resultSet.next()) {
+        idLibro = resultSet.getInt(1);
       }
+
+      String sqlInsertLibroGeneroAutor =
+          "INSERT INTO libros_autores VALUES "
+              + "("
+              + idLibro
+              + ", "
+              + idGenero
+              + ", "
+              + idAutor
+              + ");";
+
+      statement = db.conectarBaseDeDatos().createStatement();
+      statement.executeUpdate(sqlInsertLibroGeneroAutor);
+
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
-  
+
   public void eliminarLibro(int idLibro) {
-      String sqlDelete = "DELETE FROM `libro` WHERE `id` = ".concat(String.valueOf(idLibro));
-      
-      try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlDelete);
-            preparedStatement.executeUpdate();           
-      } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
-      }
+    String sqlDelete = "DELETE FROM `libro` WHERE `id` = ".concat(String.valueOf(idLibro));
+
+    try {
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlDelete);
+      preparedStatement.executeUpdate();
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
-  
+
   public void editarLibro(
-                            int idLibro, 
-                            String titulo, 
-                            int idAutor, 
-                            int idGenero,
-                            String fechaDePublicacion,
-                            String isbn,
-                            int numeroDePaginas,
-                            int puntuacion,
-                            String descripcion,
-                            float precio) {
-      String sqlUpdateLibro = "UPDATE libro SET titulo = '" + titulo + "', "
-              + "fechaDePublicacion = '" + fechaDePublicacion + "', "
-              + "isbn = '" + isbn + "', "
-              + "numeroDePaginas = " + numeroDePaginas + ", "
-              + "puntuacion = " + puntuacion + ", "
-              + "descripcion = '" + descripcion + "', "
-              + "precio = " + precio + " "
-              + "WHERE id = " + idLibro;
-      
-      String sqlUpdateAutorGenero = "UPDATE libros_autores SET idAutor = " + idAutor + ","
-              + "idGenero = " + idGenero + " WHERE idLibro = " + idLibro + ";";
-      
-      
-      try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateLibro);
-            preparedStatement.executeUpdate();
-            
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateAutorGenero);
-            preparedStatement.executeUpdate();
-            
+      int idLibro,
+      String titulo,
+      int idAutor,
+      int idGenero,
+      String fechaDePublicacion,
+      String isbn,
+      int numeroDePaginas,
+      int puntuacion,
+      String descripcion,
+      float precio) {
+    String sqlUpdateLibro =
+        "UPDATE libro SET titulo = '"
+            + titulo
+            + "', "
+            + "fechaDePublicacion = '"
+            + fechaDePublicacion
+            + "', "
+            + "isbn = '"
+            + isbn
+            + "', "
+            + "numeroDePaginas = "
+            + numeroDePaginas
+            + ", "
+            + "puntuacion = "
+            + puntuacion
+            + ", "
+            + "descripcion = '"
+            + descripcion
+            + "', "
+            + "precio = "
+            + precio
+            + " "
+            + "WHERE id = "
+            + idLibro;
 
-      } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
-      }
+    String sqlUpdateAutorGenero =
+        "UPDATE libros_autores SET idAutor = "
+            + idAutor
+            + ","
+            + "idGenero = "
+            + idGenero
+            + " WHERE idLibro = "
+            + idLibro
+            + ";";
+
+    try {
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateLibro);
+      preparedStatement.executeUpdate();
+
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdateAutorGenero);
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
-  
+
   public HashMap<String, Integer> cargarAutores() {
-      var autores = new HashMap<String, Integer>();
-      String sqlSelect = "SELECT id, nombre, apellido FROM autor";
-      
-      try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            resultSet = preparedStatement.executeQuery();
+    var autores = new HashMap<String, Integer>();
+    String sqlSelect = "SELECT id, nombre, apellido FROM autor";
 
-            while (resultSet.next()) {
-                String nombreAutor = resultSet.getString(2);
-                autores.put(nombreAutor, resultSet.getInt(1));
-        }
-      } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    try {
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+      resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()) {
+        String nombreAutor = resultSet.getString(2);
+        autores.put(nombreAutor, resultSet.getInt(1));
       }
-      
-      return autores;
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return autores;
   }
-  
+
   public HashMap<String, Integer> cargarGenerosPorNombre() {
-      var generos = new HashMap<String, Integer>();
-      String sqlSelect = "SELECT * FROM genero";
-      
-      try {
-            preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            resultSet = preparedStatement.executeQuery();
+    var generos = new HashMap<String, Integer>();
+    String sqlSelect = "SELECT * FROM genero";
 
-            while (resultSet.next()) {
-                generos.put(resultSet.getString(2), resultSet.getInt(1));
-        }
-      } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    try {
+      preparedStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+      resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()) {
+        generos.put(resultSet.getString(2), resultSet.getInt(1));
       }
-      
-      return generos;
-  }
-  
-}
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
+    return generos;
+  }
+}

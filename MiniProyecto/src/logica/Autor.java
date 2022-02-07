@@ -6,11 +6,7 @@ public class Autor extends Persona {
   private String fnacimiento;
 
   public Autor(
-      String nombre,
-      String apellido,
-      String fnacimiento,
-      String biografia,
-      int publicaciones) {
+      String nombre, String apellido, String fnacimiento, String biografia, int publicaciones) {
     super(nombre, apellido, fnacimiento);
     this.biografia = setBiografia(biografia);
     this.publicaciones = setPublicaciones(publicaciones);
@@ -24,27 +20,20 @@ public class Autor extends Persona {
   private int setPublicaciones(int publicaciones) {
     return publicaciones;
   }
-  
+
   private String setFnacimiento(String fnacimiento) {
-        return fnacimiento;
-    }
-  
-    public String getBiografia() {
-        return biografia;
-    }
+    return fnacimiento;
+  }
 
-    public int getPublicaciones() {
-        return publicaciones;
-    }
-    
-    public String getFnacimiento(){
-        return fnacimiento;
-    
-    }
+  public String getBiografia() {
+    return biografia;
+  }
 
-    
+  public int getPublicaciones() {
+    return publicaciones;
+  }
 
-   
-  
-  
+  public String getFnacimiento() {
+    return fnacimiento;
+  }
 }

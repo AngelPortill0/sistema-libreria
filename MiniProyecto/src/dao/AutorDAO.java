@@ -1,9 +1,9 @@
 package dao;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +15,7 @@ public class AutorDAO {
   private ResultSet resultSet;
   private DefaultTableModel modelo;
   private DataBase db;
- 
+
   public AutorDAO() {
 
     db = new DataBase();
@@ -45,82 +45,104 @@ public class AutorDAO {
     } catch (SQLException e) {
     }
   }
-  
-    public void agregarAutor(String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
-        
-      String sql = "INSERT INTO autor VALUES (NULL,'"+ nombre +"','"+ apellido +"',"
-              + "'"+ fnacimiento +"','"+ biografia +"','"+ publicaciones +"')";
 
+  public void agregarAutor(
+      String nombre, String apellido, String biografia, int publicaciones, String fnacimiento) {
+
+    String sql =
+        "INSERT INTO autor VALUES (NULL,'"
+            + nombre
+            + "','"
+            + apellido
+            + "',"
+            + "'"
+            + fnacimiento
+            + "','"
+            + biografia
+            + "','"
+            + publicaciones
+            + "')";
+
+    try {
+      statement = db.conectarBaseDeDatos().createStatement();
+      statement.executeUpdate(sql);
+
+      JOptionPane.showMessageDialog(null, "Autor agregado");
+
+    } catch (SQLException e) {
+    }
+  }
+
+  public void eiminarAutor(int idAutor) {
+    int confirmar = JOptionPane.showConfirmDialog(null, "Desea eliminar este autor?");
+    String sqlSelect = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idAutor));
+
+    if (confirmar == JOptionPane.OK_OPTION) {
       try {
-        statement = db.conectarBaseDeDatos().createStatement();
-        statement.executeUpdate(sql);
+        prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
+        prepareStatement.executeUpdate(sqlSelect);
+        JOptionPane.showMessageDialog(null, "El autor se ha elimando exitosamente");
 
-        JOptionPane.showMessageDialog(null, "Autor agregado");
-
-      } catch (SQLException e) {
-      }
-    }
-    
-    public void eiminarAutor (int idAutor){
-        int confirmar = JOptionPane.showConfirmDialog(null, "Desea eliminar este autor?");
-         String sqlSelect = "DELETE FROM `autor` WHERE `id` = ".concat(String.valueOf(idAutor));
-         
-      if (confirmar == JOptionPane.OK_OPTION) { 
-             try {
-            prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlSelect);
-            prepareStatement.executeUpdate(sqlSelect);
-            JOptionPane.showMessageDialog(null, "El autor se ha elimando exitosamente");
-      
-      } catch (SQLException ex) { 
-      }
-            }
-    }
-
-    public void editarAutor(String idAutor,
-            String nombre,
-            String apellido,
-            String biografia,
-            String fnacimiento,
-            int publicaciones) {
-      String sqlUpdate = "UPDATE autor SET nombre = '" + nombre + "', "
-              + "apellido = '" + apellido + "', "
-              + "fechaDeNacimiento = '" + fnacimiento + "', "
-              + "biografia = '" + biografia + "', "
-              + "numeroDePublicaciones = '" + publicaciones + "' "
-              + "WHERE id = " + idAutor;
-      
-              try {
-            prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdate);
-            prepareStatement.executeUpdate(sqlUpdate);
-            JOptionPane.showMessageDialog(null, "El autor se ha editado exitosamente");
-            
-            
       } catch (SQLException ex) {
-        Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
       }
-              
-        
     }
-    
-    public HashMap<String, Integer> generarAutoresConPublicaciones() {
-      String sqlSelectNumPublicaciones = "SELECT nombre, apellido, numeroDePublicaciones FROM autor";
-      
-      var numPublicacionesAutor = new HashMap<String, Integer>();
-      
-      try {
-        conexion = db.conectarBaseDeDatos();
-        statement = conexion.createStatement();
-        resultSet = statement.executeQuery(sqlSelectNumPublicaciones);
+  }
 
-        while (resultSet.next()) {
-          numPublicacionesAutor.put(resultSet.getString(1) + " " + resultSet.getString(2), resultSet.getInt(3));
-        }
-        
-       
-      } catch (SQLException ex) {
-          Logger.getLogger(GeneroDAO.class.getName()).log(Level.SEVERE, null, ex);
+  public void editarAutor(
+      String idAutor,
+      String nombre,
+      String apellido,
+      String biografia,
+      String fnacimiento,
+      int publicaciones) {
+    String sqlUpdate =
+        "UPDATE autor SET nombre = '"
+            + nombre
+            + "', "
+            + "apellido = '"
+            + apellido
+            + "', "
+            + "fechaDeNacimiento = '"
+            + fnacimiento
+            + "', "
+            + "biografia = '"
+            + biografia
+            + "', "
+            + "numeroDePublicaciones = '"
+            + publicaciones
+            + "' "
+            + "WHERE id = "
+            + idAutor;
+
+    try {
+      prepareStatement = db.conectarBaseDeDatos().prepareStatement(sqlUpdate);
+      prepareStatement.executeUpdate(sqlUpdate);
+      JOptionPane.showMessageDialog(null, "El autor se ha editado exitosamente");
+
+    } catch (SQLException ex) {
+      Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  public HashMap<String, Integer> generarAutoresConPublicaciones() {
+    String sqlSelectNumPublicaciones = "SELECT nombre, apellido, numeroDePublicaciones FROM autor";
+
+    var numPublicacionesAutor = new HashMap<String, Integer>();
+
+    try {
+      conexion = db.conectarBaseDeDatos();
+      statement = conexion.createStatement();
+      resultSet = statement.executeQuery(sqlSelectNumPublicaciones);
+
+      while (resultSet.next()) {
+        numPublicacionesAutor.put(
+            resultSet.getString(1) + " " + resultSet.getString(2), resultSet.getInt(3));
       }
-      
-      return numPublicacionesAutor;
+
+    } catch (SQLException ex) {
+      Logger.getLogger(GeneroDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return numPublicacionesAutor;
   }
 }
