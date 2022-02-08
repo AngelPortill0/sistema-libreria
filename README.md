@@ -3,3 +3,6 @@
 # sistema-libreria
 Proyecto para evaluación de la materia Programación no Numérica II
 
+# Dependencias
+MiniProyecto\lib
+
