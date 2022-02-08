@@ -4,5 +4,6 @@
 Proyecto para evaluación de la materia Programación no Numérica II
 
 # Dependencias
-MiniProyecto\lib
+mysql-connector-java-8.0.25.jar
+jfreechart-1.5.3.jar
 
